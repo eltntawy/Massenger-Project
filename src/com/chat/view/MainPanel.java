@@ -7,14 +7,11 @@ package com.chat.view;
 
 import com.chat.model.Status;
 import com.chat.model.User;
+import com.chat.view.renderer.ContactListCellRender;
+import com.chat.view.renderer.StatusListCellRender;
 import com.chat.view.resource.Resource;
-import java.awt.Color;
-import java.awt.Component;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JList;
-import javax.swing.ListCellRenderer;
 
 /**
  *
@@ -47,15 +44,15 @@ public class MainPanel extends javax.swing.JPanel {
         cbBoxUserStatus = new javax.swing.JComboBox();
         contactPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        btnAddContact = new javax.swing.JButton();
+        comboBoxContactSearch = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         listContact = new javax.swing.JList();
         adPanel = new javax.swing.JPanel();
 
-        setMaximumSize(new java.awt.Dimension(300, 600));
-        setMinimumSize(new java.awt.Dimension(300, 600));
-        setPreferredSize(new java.awt.Dimension(300, 600));
+        setMaximumSize(new java.awt.Dimension(350, 600));
+        setMinimumSize(new java.awt.Dimension(350, 600));
+        setPreferredSize(new java.awt.Dimension(350, 600));
         setLayout(new java.awt.BorderLayout());
 
         userPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("User Profile"));
@@ -78,7 +75,7 @@ public class MainPanel extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                     .addComponent(cbBoxUserStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -100,12 +97,15 @@ public class MainPanel extends javax.swing.JPanel {
         add(userPanel, java.awt.BorderLayout.PAGE_START);
 
         contactPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Contacts"));
+        contactPanel.setMinimumSize(new java.awt.Dimension(300, 600));
         contactPanel.setPreferredSize(new java.awt.Dimension(300, 600));
 
-        jButton1.setText("+");
+        btnAddContact.setText("+");
 
-        jComboBox1.setEditable(true);
-        jComboBox1.setToolTipText("Search Contacts");
+        comboBoxContactSearch.setEditable(true);
+        comboBoxContactSearch.setToolTipText("Search Contacts");
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         listContact.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(listContact);
@@ -116,17 +116,17 @@ public class MainPanel extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddContact, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addComponent(comboBoxContactSearch, 0, 254, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxContactSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddContact, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -154,11 +154,11 @@ public class MainPanel extends javax.swing.JPanel {
         adPanel.setLayout(adPanelLayout);
         adPanelLayout.setHorizontalGroup(
             adPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 303, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         adPanelLayout.setVerticalGroup(
             adPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 55, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         add(adPanel, java.awt.BorderLayout.NORTH);
@@ -167,10 +167,10 @@ public class MainPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel adPanel;
+    private javax.swing.JButton btnAddContact;
     private javax.swing.JComboBox cbBoxUserStatus;
+    private javax.swing.JComboBox comboBoxContactSearch;
     private javax.swing.JPanel contactPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -184,7 +184,21 @@ public class MainPanel extends javax.swing.JPanel {
         if (listContact != null) {
 
             DefaultListModel<User> listModel = new DefaultListModel<User>();
-            
+
+            listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.BUSY));
+            listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.AVAILABLE));
+            listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.OFFLINE));
+            listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.AVAILABLE));
+            listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.AVAILABLE));
+            listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.AWAY));
+            listModel.addElement(new User("Marwa", "Password", "Marwa", Resource.IMAGE_DEFAULT_USER, User.AVAILABLE));
+            listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.BUSY));
+            listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.AVAILABLE));
+            listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.OFFLINE));
+            listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.AVAILABLE));
+            listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.AVAILABLE));
+            listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.AWAY));
+            listModel.addElement(new User("Marwa", "Password", "Marwa", Resource.IMAGE_DEFAULT_USER, User.AVAILABLE));
             listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.BUSY));
             listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.AVAILABLE));
             listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.OFFLINE));
@@ -196,81 +210,18 @@ public class MainPanel extends javax.swing.JPanel {
             listContact.setModel(listModel);
         }
     }
-    
+
     public void initStatusCbBox() {
         if (cbBoxUserStatus != null) {
 
             DefaultComboBoxModel<Status> listModel = new DefaultComboBoxModel<Status>();
-            listModel.addElement(new Status(Resource.IMAGE_AVAILABLE_SMALL, "Avilable",User.AVAILABLE));
-            listModel.addElement(new Status(Resource.IMAGE_AWAY_SMALL, "Away",User.AWAY));
-            listModel.addElement(new Status(Resource.IMAGE_BUSY_SMALL, "Busy",User.BUSY));
-            listModel.addElement(new Status(Resource.IMAGE_OFFLINE_SMALL, "Offline",User.OFFLINE));
-            
+            listModel.addElement(new Status(Resource.IMAGE_AVAILABLE_SMALL, "Avilable", User.AVAILABLE));
+            listModel.addElement(new Status(Resource.IMAGE_AWAY_SMALL, "Away", User.AWAY));
+            listModel.addElement(new Status(Resource.IMAGE_BUSY_SMALL, "Busy", User.BUSY));
+            listModel.addElement(new Status(Resource.IMAGE_OFFLINE_SMALL, "Offline", User.OFFLINE));
 
             cbBoxUserStatus.setModel(listModel);
         }
     }
 
-    class ContactListCellRender implements ListCellRenderer<User> {
-
-        @Override
-        public Component getListCellRendererComponent(JList<? extends User> list, User value, int index, boolean isSelected, boolean cellHasFocus) {
-
-            ContactPanel contact = new ContactPanel();
-
-            contact.setUserPicture((ImageIcon) lblUserImage.getIcon());
-            contact.setUserName(value.getUserName());
-            contact.setUserPicture(value.getUserPicture());
-
-            if (value.getStatus() == User.AVAILABLE) {
-                contact.setUserStatusImage(Resource.IMAGE_AVAILABLE);
-            } else if (value.getStatus() == User.BUSY) {
-                contact.setUserStatusImage(Resource.IMAGE_BUSY);
-            } else if (value.getStatus() == User.AWAY) {
-                contact.setUserStatusImage(Resource.IMAGE_AWAY);
-            } else if (value.getStatus() == User.OFFLINE) {
-                contact.setUserStatusImage(Resource.IMAGE_OFFLINE);
-            }
-
-            if (isSelected) {
-                contact.setBackground(Resource.HIGHLIGHT_COLOR);
-            }
-
-            return contact;
-
-        }
-    }
-
-    class StatusListCellRender implements ListCellRenderer<Status> {
-
-        @Override
-        public Component getListCellRendererComponent(JList<? extends Status> list, Status value, int index, boolean isSelected, boolean cellHasFocus) {
-
-            StatusCellPanel status = new StatusCellPanel();
-
-
-
-            if (value.getStatus() == User.AVAILABLE) {
-                status.setStatusIcon(Resource.IMAGE_AVAILABLE_SMALL);
-                status.setStatusText(value.getStatusText());
-
-            } else if (value.getStatus() == User.BUSY) {
-                status.setStatusIcon(Resource.IMAGE_BUSY_SMALL);
-                status.setStatusText(value.getStatusText());
-            } else if (value.getStatus() == User.AWAY) {
-                status.setStatusIcon(Resource.IMAGE_AWAY_SMALL);
-                status.setStatusText(value.getStatusText());
-            } else if (value.getStatus() == User.OFFLINE) {
-                status.setStatusIcon(Resource.IMAGE_OFFLINE_SMALL);
-                status.setStatusText(value.getStatusText());
-            }
-
-            if (isSelected) {
-                status.setBackground(Resource.HIGHLIGHT_COLOR);
-            }
-
-            return status;
-
-        }
-    }
 }
