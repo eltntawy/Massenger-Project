@@ -123,7 +123,8 @@ public class GroupChatPanel extends javax.swing.JPanel {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                final JFrame f = new ChatFrame();
+                final JFrame f = new JFrame();
+                f.add(new GroupChatPanel());
 
                 try {
 
