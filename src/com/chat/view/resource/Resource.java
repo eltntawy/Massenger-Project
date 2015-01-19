@@ -31,12 +31,25 @@ public class Resource {
 
     /**
      *
-     * @param url : is relative URL for image
-     * @return : return an Icon object for image URL
+     *
+     * @param imageName : is relative URL for image
+     * @return : return an Icon object for image name in path "/com/chat/view/resource/img/"
      *
      * @throws maybe throw NullPointerException
      */
-    public static Icon getImage(String url) {
-        return new ImageIcon(Resource.class.getResource(url));
+    public static Icon getImage(String imageName) {
+        return new ImageIcon(Resource.class.getResource("/com/chat/view/resource/img/" + imageName));
+    }
+
+    /**
+     *
+     *  
+     * @param iconName : is relative URL for image
+     * @return : return an Icon object for image name in path "/com/chat/view/resource/img/"
+     *
+     * @throws maybe throw NullPointerException
+     */
+    public static Icon getIcon(String iconName) {
+        return new ImageIcon(Resource.class.getResource("/com/chat/view/resource/img/" + iconName));
     }
 }

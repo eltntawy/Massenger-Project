@@ -2,7 +2,7 @@
 
 
 
-package git.eclipse.demo;
+package com.test.chat;
 
 /**
  *

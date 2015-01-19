@@ -3,7 +3,7 @@ package com.chat.controller;
 import com.chat.view.MainPanel;
 import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel;
-import git.eclipse.demo.TestLookAndFeelForm;
+import com.test.chat.TestLookAndFeelForm;
 import java.awt.Dimension;
 import java.awt.Frame;
 import javax.swing.JFrame;
