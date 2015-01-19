@@ -6,10 +6,12 @@
 
 package com.chat.view;
 
+import com.chat.model.Message;
 import com.chat.model.User;
 import com.chat.view.renderer.ContactListCellRender;
 import com.chat.view.resource.Resource;
 import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -35,6 +37,15 @@ public class GroupChatPanel extends javax.swing.JPanel {
         jList1.setModel(chatList);
         jList1.setCellRenderer(new ContactListCellRender());
         this.setLayout(new FlowLayout());
+        Message m = new Message("user1","user2","Hello");
+        jTextArea1.setForeground(Color.red);
+        jTextArea1.append(m.getSenderName());
+        jTextArea1.setForeground(Color.BLACK);
+        jTextArea1.append("  "+m.getMessage()+"\n");
+        jTextArea1.setAlignmentX(RIGHT_ALIGNMENT);
+        jTextArea1.append(m.getTime());
+        
+        
     }
 
     /**
