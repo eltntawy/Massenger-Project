@@ -5,10 +5,8 @@
  */
 package com.chat.view.renderer;
 
-import com.chat.model.Status;
 import com.chat.model.User;
 import com.chat.view.ContactPanel;
-import com.chat.view.StatusCellPanel;
 import com.chat.view.resource.Resource;
 import java.awt.Component;
 import javax.swing.ImageIcon;

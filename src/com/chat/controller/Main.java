@@ -2,10 +2,7 @@ package com.chat.controller;
 
 import com.chat.view.MainPanel;
 import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
-import de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel;
-import com.test.chat.TestLookAndFeelForm;
 import java.awt.Dimension;
-import java.awt.Frame;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -41,10 +38,10 @@ public class Main {
         
         final JFrame frame = new JFrame("Massanger");
         initLookAndFeel(frame);
-        frame.setSize(350,800);
-        frame.setMinimumSize(new Dimension(350,800));
+        frame.setSize(315,800);
+        frame.setMinimumSize(new Dimension(315,800));
         
-        frame.setPreferredSize(new Dimension(350,800));
+        frame.setPreferredSize(new Dimension(315,800));
         
         frame.add(new MainPanel());
         frame.setMinimumSize(new Dimension(315, 500));
