@@ -41,7 +41,11 @@ public class Main {
         
         final JFrame frame = new JFrame("Massanger");
         initLookAndFeel(frame);
-        frame.setSize(315,800);
+        frame.setSize(350,800);
+        frame.setMinimumSize(new Dimension(350,800));
+        
+        frame.setPreferredSize(new Dimension(350,800));
+        
         frame.add(new MainPanel());
         frame.setMinimumSize(new Dimension(315, 500));
         
