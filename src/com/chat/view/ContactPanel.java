@@ -14,16 +14,16 @@ import javax.swing.ImageIcon;
  */
 public class ContactPanel extends javax.swing.JPanel {
 
-    public String getStrUserName() {
+    public String getUserName() {
         if (lblUserName != null) {
             return lblUserName.getText();
         }
         return null;
     }
 
-    public void setStrUserName(String strUserName) {
+    public void setUserName(String UserName) {
         if (lblUserName != null) {
-            this.lblUserName.setText(strUserName);
+            this.lblUserName.setText(UserName);
         }
     }
 

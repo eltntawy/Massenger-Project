@@ -46,13 +46,16 @@ public class MainPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         cbBoxUserStatus = new javax.swing.JComboBox();
         contactPanel = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         listContact = new javax.swing.JList();
         adPanel = new javax.swing.JPanel();
 
-        setMaximumSize(new java.awt.Dimension(300, 800));
-        setMinimumSize(new java.awt.Dimension(300, 800));
-        setPreferredSize(new java.awt.Dimension(300, 800));
+        setMaximumSize(new java.awt.Dimension(300, 600));
+        setMinimumSize(new java.awt.Dimension(300, 600));
+        setPreferredSize(new java.awt.Dimension(300, 600));
         setLayout(new java.awt.BorderLayout());
 
         userPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("User Profile"));
@@ -75,14 +78,13 @@ public class MainPanel extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbBoxUserStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                    .addComponent(cbBoxUserStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         userPanelLayout.setVerticalGroup(
             userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(userPanelLayout.createSequentialGroup()
                 .addGroup(userPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(userPanelLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -90,7 +92,7 @@ public class MainPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbBoxUserStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         cbBoxUserStatus.setRenderer(new StatusListCellRender());
@@ -98,10 +100,37 @@ public class MainPanel extends javax.swing.JPanel {
         add(userPanel, java.awt.BorderLayout.PAGE_START);
 
         contactPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Contacts"));
+        contactPanel.setPreferredSize(new java.awt.Dimension(300, 600));
+
+        jButton1.setText("+");
+
+        jComboBox1.setEditable(true);
+        jComboBox1.setToolTipText("Search Contacts");
 
         listContact.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(listContact);
         listContact.setCellRenderer(new ContactListCellRender());
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout contactPanelLayout = new javax.swing.GroupLayout(contactPanel);
         contactPanel.setLayout(contactPanelLayout);
@@ -109,14 +138,14 @@ public class MainPanel extends javax.swing.JPanel {
             contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contactPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         contactPanelLayout.setVerticalGroup(
             contactPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contactPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(contactPanelLayout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         add(contactPanel, java.awt.BorderLayout.CENTER);
@@ -125,11 +154,11 @@ public class MainPanel extends javax.swing.JPanel {
         adPanel.setLayout(adPanelLayout);
         adPanelLayout.setHorizontalGroup(
             adPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 303, Short.MAX_VALUE)
         );
         adPanelLayout.setVerticalGroup(
             adPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 55, Short.MAX_VALUE)
         );
 
         add(adPanel, java.awt.BorderLayout.NORTH);
@@ -140,8 +169,11 @@ public class MainPanel extends javax.swing.JPanel {
     private javax.swing.JPanel adPanel;
     private javax.swing.JComboBox cbBoxUserStatus;
     private javax.swing.JPanel contactPanel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblUserImage;
     private javax.swing.JList listContact;
@@ -152,12 +184,14 @@ public class MainPanel extends javax.swing.JPanel {
         if (listContact != null) {
 
             DefaultListModel<User> listModel = new DefaultListModel<User>();
+            
             listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.BUSY));
             listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.AVAILABLE));
             listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.OFFLINE));
             listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.AVAILABLE));
             listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.AVAILABLE));
             listModel.addElement(new User("User Name", "Password", "Full Name", Resource.IMAGE_DEFAULT_USER, User.AWAY));
+            listModel.addElement(new User("Marwa", "Password", "Marwa", Resource.IMAGE_DEFAULT_USER, User.AVAILABLE));
 
             listContact.setModel(listModel);
         }
@@ -171,6 +205,7 @@ public class MainPanel extends javax.swing.JPanel {
             listModel.addElement(new Status(Resource.IMAGE_AWAY_SMALL, "Away",User.AWAY));
             listModel.addElement(new Status(Resource.IMAGE_BUSY_SMALL, "Busy",User.BUSY));
             listModel.addElement(new Status(Resource.IMAGE_OFFLINE_SMALL, "Offline",User.OFFLINE));
+            
 
             cbBoxUserStatus.setModel(listModel);
         }
@@ -184,7 +219,7 @@ public class MainPanel extends javax.swing.JPanel {
             ContactPanel contact = new ContactPanel();
 
             contact.setUserPicture((ImageIcon) lblUserImage.getIcon());
-            contact.setName(value.getUserName());
+            contact.setUserName(value.getUserName());
             contact.setUserPicture(value.getUserPicture());
 
             if (value.getStatus() == User.AVAILABLE) {
