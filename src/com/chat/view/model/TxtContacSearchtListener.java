@@ -9,6 +9,7 @@ import com.chat.model.User;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 import javax.swing.JList;
 import javax.swing.JTextField;
 
@@ -54,13 +55,29 @@ public class TxtContacSearchtListener extends KeyAdapter {
     public void listFilter(String enteredText) {
         java.util.List<User> filterArray = new ArrayList<User>();
         for (int i = 0; i < model.getSize(); i++) {
-            if (((User) model.getElementAt(i)).getFullName().toLowerCase().contains(enteredText.toLowerCase())) {
-                filterArray.add((User) model.getElementAt(i));
+            String name = ((User) model.getElementAt(i)).getFullName();
+            String userName = ((User) model.getElementAt(i)).getUserName();
+            
+            StringTokenizer strToken = new StringTokenizer(name, " ");
+
+            while (strToken.hasMoreElements()) {
+
+                if (strToken.nextToken().toLowerCase().startsWith(enteredText.toLowerCase())) {
+
+                    filterArray.add((User) model.getElementAt(i));
+                    break;
+
+                }
+
             }
+
         }
-        if (filterArray.size() > 0) {
+        if (filterArray.size() >= 0) {
             filterList.setModel(new ListComboBoxModel<User>(filterArray));
-            filterList.setSelectedValue(filterArray.get(0), true);
+
+            if (filterArray.size() > 0) {
+                filterList.setSelectedValue(filterArray.get(0), true);
+            }
         }
     }
 

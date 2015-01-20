@@ -12,13 +12,7 @@ import com.chat.view.model.TxtContacSearchtListener;
 import com.chat.view.renderer.ContactListCellRender;
 import com.chat.view.renderer.StatusListCellRender;
 import com.chat.view.resource.Resource;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
