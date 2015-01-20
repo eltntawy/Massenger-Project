@@ -101,9 +101,9 @@ public class ContactPanel extends javax.swing.JPanel {
                     .addComponent(lblUserImage)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblUserName)
-                            .addComponent(lblUserStatus))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUserStatus)
+                            .addComponent(lblUserName))))
                 .addContainerGap(2, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
