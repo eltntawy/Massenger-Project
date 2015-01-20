@@ -2,18 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Marwa/Documents/NetBeansProjects/Messenger-Project/src/com/chat/model/User.java</file>
-            <file>file:/C:/Users/Marwa/Documents/NetBeansProjects/Messenger-Project/src/com/chat/view/resource/Resource.java</file>
-            <file>file:/C:/Users/Marwa/Documents/NetBeansProjects/Messenger-Project/src/com/chat/view/renderer/StatusListCellRender.java</file>
-            <file>file:/C:/Users/Marwa/Documents/NetBeansProjects/Messenger-Project/src/com/chat/view/TempletePanel.java</file>
-            <file>file:/C:/Users/Marwa/Documents/NetBeansProjects/Messenger-Project/src/com/chat/view/renderer/ContactListCellRender.java</file>
-            <file>file:/C:/Users/Marwa/Documents/NetBeansProjects/Messenger-Project/src/com/chat/view/TempletePanel1.java</file>
-            <file>file:/C:/Users/Marwa/Documents/NetBeansProjects/Messenger-Project/src/com/chat/view/resource/img/messenger.png</file>
-            <file>file:/C:/Users/Marwa/Documents/NetBeansProjects/Messenger-Project/src/com/chat/view/MainPanel.java</file>
-            <file>file:/C:/Users/Marwa/Documents/NetBeansProjects/Messenger-Project/src/com/chat/view/StatusCellPanel.java</file>
-            <file>file:/C:/Users/Marwa/Documents/NetBeansProjects/Messenger-Project/src/com/chat/view/ContactPanel.java</file>
-            <file>file:/C:/Users/Marwa/Documents/NetBeansProjects/Messenger-Project/src/com/chat/model/Status.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
