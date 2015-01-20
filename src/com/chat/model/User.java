@@ -74,4 +74,11 @@ public class User {
         this.userPicture = userPicture;
     }
 
+    @Override
+    public String toString() {
+        return FullName;
+    }
+    
+    
+
 }
