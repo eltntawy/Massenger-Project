@@ -5,6 +5,8 @@
  */
 package com.chat.view;
 
+import com.chat.model.Status;
+import com.chat.model.User;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -12,8 +14,23 @@ import javax.swing.ImageIcon;
  *
  * @author eltntawy
  */
-public class ContactPanel extends javax.swing.JPanel {
 
+
+public class ContactPanel extends javax.swing.JPanel {
+    
+    User username;
+    Status state;
+
+    public ContactPanel(User username) {
+        
+        this.username = username;
+        lblUserName.setText(username.getUserName());
+        lblUserImage.setIcon(username.getUserPicture());
+        state = Status.getStatusIcon(username.getStatus());
+        lblUserStatus.setIcon(state.getStatusIcon());
+    }
+    
+    
     public String getUserName() {
         if (lblUserName != null) {
             return lblUserName.getText();

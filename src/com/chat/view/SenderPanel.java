@@ -6,6 +6,7 @@
 
 package com.chat.view;
 
+import com.chat.model.User;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
@@ -18,8 +19,15 @@ public class SenderPanel extends javax.swing.JPanel {
     /**
      * Creates new form SenderPanel
      */
+    User username;
     public SenderPanel() {
         initComponents();
+    }
+
+    public SenderPanel(User username) {
+        this.username = username;
+        this.SenderNamelbl.setText(username.getUserName());
+        this.SenderImagelbl.setIcon(username.getUserPicture());   
     }
 
     public Icon getSenderImagelbl() {
@@ -29,6 +37,7 @@ public class SenderPanel extends javax.swing.JPanel {
     public String getSenderNamelbl() {
         return SenderNamelbl.getText();
     }
+    
 
     public void setSenderImagelbl(Icon UserPicture) {
         this.SenderImagelbl.setIcon(UserPicture);
@@ -56,12 +65,11 @@ public class SenderPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(SenderNamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(SenderImagelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(SenderImagelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SenderNamelbl, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
