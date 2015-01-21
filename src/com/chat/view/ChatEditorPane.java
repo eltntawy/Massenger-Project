@@ -7,6 +7,7 @@
 package com.chat.view;
 
 import com.chat.model.Message;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -136,7 +137,7 @@ public class ChatEditorPane extends javax.swing.JPanel {
                 +SenderName+"<br>"+message+"<p align = right>"+time+"</p></body></html>";
         msg += htmlTxt;
         JEditorPane chatEditorPane = new JEditorPane("text/html", null);
-        chatEditorPane.setPreferredSize(new Dimension(400, 300));
+        ////chatEditorPane.setPreferredSize(new Dimension(400, 300));
         chatEditorPane.setText(msg);
         this.add(chatEditorPane);
         chatEditorPane.setEditable(false);
@@ -187,7 +188,7 @@ public class ChatEditorPane extends javax.swing.JPanel {
     
     
     
-    
+     JEditorPane chatEditorPane = new JEditorPane("text/html", null);
     
     public ChatEditorPane(String SenderName, String message, String time, Font font, Color color, int size) {
         
@@ -206,14 +207,15 @@ public class ChatEditorPane extends javax.swing.JPanel {
         colorMap.put(Color.GRAY, "Gray");
         colorMap.put(Color.CYAN, "Cyan");
         String colorName = colorMap.get(color);
-        
+        String msg = "";
         String htmlTxt = "<html><body>"
                 + "<FONT face="+htmlfont+" color="+colorName+" size="+size+"><b>"
                 +SenderName+" : "+message+"<p align = right>"+time+"</p></body></html>";
         
-        JEditorPane chatEditorPane = new JEditorPane("text/html", null);
-        chatEditorPane.setPreferredSize(new Dimension(350, 100));
+       msg += htmlTxt;
+        //chatEditorPane.setPreferredSize(new Dimension(350, 100));
         chatEditorPane.setText(htmlTxt);
+        this.setSize(new Dimension(300, 400));
         this.add(chatEditorPane);
         chatEditorPane.setEditable(false);
         System.out.println(time);
@@ -234,7 +236,7 @@ public class ChatEditorPane extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(400, 300));
         setMinimumSize(new java.awt.Dimension(400, 300));
         setPreferredSize(new java.awt.Dimension(400, 300));
-        setLayout(new java.awt.BorderLayout());
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
     }// </editor-fold>//GEN-END:initComponents
 
 
