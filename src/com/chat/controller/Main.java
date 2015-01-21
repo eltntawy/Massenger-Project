@@ -12,13 +12,13 @@ public class Main {
 
     
     static void renderSplashFrame(Graphics2D g, int frame) {
-	final String[] comps = { "", ".", ".", ".." };
+	final String[] comps = { "", ".", "..","..."};
 	g.setComposite(AlphaComposite.Clear);
-	g.fillRect(0, 0, 400, 300);
+	g.fillRect(0, 0, 512, 512);
 	g.setPaintMode();
-	g.setColor(Color.WHITE);
+	g.setColor(Color.black);
 	g.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-	g.drawString("Loading" + comps[(frame / 5) % 4] + "", 10, 280);
+	g.drawString("Loading" + comps[(frame / 5) % 4] + "", 250, 300);
     }
 
     public static void initSplashScreen(JFrame frame) {
@@ -32,12 +32,12 @@ public class Main {
 
 	Graphics2D graphics = splashScreen.createGraphics();
 
-	for (int i = 0; i < 25; i++) {
+	for (int i = 0; i < 80; i++) {
 
 	    renderSplashFrame(graphics, i);
 	    splashScreen.update();
 	    try {
-		Thread.sleep(90);
+		Thread.sleep(100);
 	    } catch (InterruptedException e) {
 		e.printStackTrace();
 	    }
@@ -52,7 +52,7 @@ public class Main {
 
        
         MainFrame frame = new MainFrame();
-         initSplashScreen(frame);
+        initSplashScreen(frame);
         frame.initSignInPanel();
         
         
