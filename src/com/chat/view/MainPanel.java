@@ -15,6 +15,7 @@ import com.chat.view.model.TxtContacSearchtListener;
 import com.chat.view.renderer.ContactListCellRender;
 import com.chat.view.renderer.StatusListCellRender;
 import com.chat.view.resource.Resource;
+import java.awt.event.WindowListener;
 
 /**
  *
@@ -33,7 +34,7 @@ public class MainPanel extends javax.swing.JPanel {
         initStatusCbBox();
         addSimpleContact();
         txtContactSearch.addKeyListener(new TxtContacSearchtListener(listContact));
-
+        
     }
 
     /**
@@ -117,6 +118,11 @@ public class MainPanel extends javax.swing.JPanel {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         listContact.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listContact.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                listContactMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(listContact);
         listContact.setCellRenderer(new ContactListCellRender());
 
@@ -180,13 +186,27 @@ public class MainPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(( (Status)evt.getItem()).getStatus() == User.SIGNOUT ) {
             parentFrame.remove(this);
+            parentFrame.setVisible(false);
             
             parentFrame.add(new SignInPanel(parentFrame));
             
             parentFrame.validate();
             parentFrame.repaint();
+            
+            parentFrame.setVisible(true);
+            parentFrame.setLocation(10,10);
         }
     }//GEN-LAST:event_cbBoxUserStatusItemStateChanged
+
+    private void listContactMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listContactMousePressed
+        // TODO add your handling code here:
+        evt.consume();
+        if(evt.getClickCount() == 2) {
+            ChatFrame chatFrame = new ChatFrame();
+            
+            chatFrame.setVisible(true);
+        }
+    }//GEN-LAST:event_listContactMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

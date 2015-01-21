@@ -6,6 +6,7 @@
 package com.chat.view.model;
 
 import com.chat.model.User;
+import com.chat.view.ChatFrame;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -36,6 +37,11 @@ public class TxtContacSearchtListener extends KeyAdapter {
 
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 // TODO fire action to open chat with current contact
+                
+                ChatFrame chatFrame = new ChatFrame();
+                
+                chatFrame.setVisible(true);
+                
                 System.out.println("Open chat with : " + filterList.getSelectedValue());
             } else if (e.getKeyCode() == KeyEvent.VK_UP) {
                 if (0 < index) {
@@ -58,18 +64,12 @@ public class TxtContacSearchtListener extends KeyAdapter {
             String name = ((User) model.getElementAt(i)).getFullName();
             String userName = ((User) model.getElementAt(i)).getUserName();
             
-            StringTokenizer strToken = new StringTokenizer(name, " ");
-
-            while (strToken.hasMoreElements()) {
-
-                if (strToken.nextToken().toLowerCase().startsWith(enteredText.toLowerCase())) {
+                if (name.toLowerCase().contains(enteredText.toLowerCase())) {
 
                     filterArray.add((User) model.getElementAt(i));
-                    break;
+                    
 
                 }
-
-            }
 
         }
         if (filterArray.size() >= 0) {
