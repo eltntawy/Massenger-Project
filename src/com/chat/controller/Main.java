@@ -9,7 +9,8 @@ public class Main {
 
         MainFrame frame = new MainFrame();
         frame.initSignInPanel();
-        //frame.initMainMessangerPanel();
+        
+        
 
     }
 }
