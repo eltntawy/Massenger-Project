@@ -28,6 +28,9 @@ public class StatusListCellRender implements ListCellRenderer<Status> {
         } else if (value.getStatus() == User.OFFLINE) {
             status.setStatusIcon(Resource.IMAGE_OFFLINE_SMALL);
             status.setStatusText(value.getStatusText());
+        }else if (value.getStatus() == User.SIGNOUT) {
+            status.setStatusIcon(Resource.IMAGE_SIGNOUT);
+            status.setStatusText(value.getStatusText());
         }
 
         if (isSelected) {

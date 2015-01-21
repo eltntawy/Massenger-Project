@@ -73,8 +73,6 @@ public class MainPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel1.setText("User Name");
 
-        cbBoxUserStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Available", "Busy", "Away" }));
-
         javax.swing.GroupLayout userPanelLayout = new javax.swing.GroupLayout(userPanel);
         userPanel.setLayout(userPanelLayout);
         userPanelLayout.setHorizontalGroup(
@@ -213,10 +211,11 @@ public class MainPanel extends javax.swing.JPanel {
         if (cbBoxUserStatus != null) {
 
             DefaultComboBoxModel<Status> listModel = new DefaultComboBoxModel<Status>();
-            listModel.addElement(new Status(Resource.IMAGE_AVAILABLE_SMALL, "Avilable", User.AVAILABLE));
+            listModel.addElement(new Status(Resource.IMAGE_AVAILABLE_SMALL, "Available", User.AVAILABLE));
             listModel.addElement(new Status(Resource.IMAGE_AWAY_SMALL, "Away", User.AWAY));
             listModel.addElement(new Status(Resource.IMAGE_BUSY_SMALL, "Busy", User.BUSY));
             listModel.addElement(new Status(Resource.IMAGE_OFFLINE_SMALL, "Offline", User.OFFLINE));
+            listModel.addElement(new Status(Resource.IMAGE_SIGNOUT, "Sign out", User.SIGNOUT));
 
             cbBoxUserStatus.setModel(listModel);
         }

@@ -59,7 +59,7 @@ public class StatusCellPanel extends javax.swing.JPanel {
 
         lblStatusIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/chat/view/resource/img/status_online_small.png"))); // NOI18N
 
-        lblStatusText.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblStatusText.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         lblStatusText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblStatusText.setText("Status");
         lblStatusText.setToolTipText("User Status");
@@ -73,7 +73,7 @@ public class StatusCellPanel extends javax.swing.JPanel {
                 .addComponent(lblStatusIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblStatusText)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
