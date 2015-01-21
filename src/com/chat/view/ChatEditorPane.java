@@ -130,13 +130,14 @@ public class ChatEditorPane extends javax.swing.JPanel {
         String htmlfont = font.getFontName();
         
         String colorName = colorMap.get(color);
+        String msg = "";
         String htmlTxt = "<html><body>"
                 + "<FONT face="+htmlfont+" color="+colorName+" size="+size+"><b>"
                 +SenderName+"<br>"+message+"<p align = right>"+time+"</p></body></html>";
-        
+        msg += htmlTxt;
         JEditorPane chatEditorPane = new JEditorPane("text/html", null);
-        chatEditorPane.setPreferredSize(new Dimension(350, 100));
-        chatEditorPane.setText(htmlTxt);
+        chatEditorPane.setPreferredSize(new Dimension(400, 300));
+        chatEditorPane.setText(msg);
         this.add(chatEditorPane);
         chatEditorPane.setEditable(false);
         
@@ -230,6 +231,9 @@ public class ChatEditorPane extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setMaximumSize(new java.awt.Dimension(400, 300));
+        setMinimumSize(new java.awt.Dimension(400, 300));
+        setPreferredSize(new java.awt.Dimension(400, 300));
         setLayout(new java.awt.BorderLayout());
     }// </editor-fold>//GEN-END:initComponents
 
