@@ -5,12 +5,8 @@
  */
 package com.chat.view;
 
-import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
 import java.awt.Dimension;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 
 /**
  *
@@ -21,7 +17,7 @@ public class MainFrame extends JFrame {
     public MainFrame() {
 
         super("Messenger");
-        initLookAndFeel(this);
+
         setSize(315, 700);
         setMinimumSize(new Dimension(315, 600));
 
@@ -34,48 +30,33 @@ public class MainFrame extends JFrame {
     }
 
     public void initMainMessangerPanel() {
-
-        add(new MainPanel());
+        setVisible(false);
+        setLocation(10, 10);
+        add(new MainPanel(this));
 
         setVisible(true);
     }
 
     public void initSignInPanel() {
 
+        setVisible(false);
+        setLocation(10, 10);
         add(new SignInPanel(this));
         setResizable(false);
         setVisible(true);
     }
 
     public void initSignupPanel() {
-
+        setVisible(false);
+        setLocation(10, 10);
         add(new SignUpPanel(this));
         setVisible(true);
     }
 
     public void initForgitPasswordPanel() {
-
+        setVisible(false);
+        setLocation(10, 10);
         setVisible(true);
-    }
-
-    public static void initLookAndFeel(final JFrame frame) {
-        try {
-
-            //UIManager.setLookAndFeel("com.alee.laf.WebLookAndFeel");
-            //UIManager.installLookAndFeel("SeaGlass", "com.seaglasslookandfeel.SeaGlassLookAndFeel");
-            //UIManager.setLookAndFeel(new SyntheticaWhiteVisionLookAndFeel());
-            UIManager.setLookAndFeel(new SyntheticaStandardLookAndFeel());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        SwingUtilities.invokeLater(new Runnable() {
-
-            public void run() {
-                SwingUtilities.updateComponentTreeUI(frame);
-            }
-        });
     }
 
 }

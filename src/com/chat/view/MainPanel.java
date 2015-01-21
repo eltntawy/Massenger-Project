@@ -5,6 +5,9 @@
  */
 package com.chat.view;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+
 import com.chat.model.Status;
 import com.chat.model.User;
 import com.chat.view.model.ListComboBoxModel;
@@ -12,7 +15,6 @@ import com.chat.view.model.TxtContacSearchtListener;
 import com.chat.view.renderer.ContactListCellRender;
 import com.chat.view.renderer.StatusListCellRender;
 import com.chat.view.resource.Resource;
-import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -20,10 +22,13 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class MainPanel extends javax.swing.JPanel {
 
+    JFrame parentFrame ;
     /**
      * Creates new form TempletePanel
      */
-    public MainPanel() {
+    public MainPanel(JFrame parentFrame) {
+	
+	this.parentFrame = parentFrame;
         initComponents();
         initStatusCbBox();
         addSimpleContact();

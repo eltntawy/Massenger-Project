@@ -168,7 +168,7 @@ public class SignInPanel extends javax.swing.JPanel {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         parentFrame.remove(this);
-        MainPanel panel=new MainPanel();
+        MainPanel panel=new MainPanel(parentFrame);
         parentFrame.add(panel);
         parentFrame.validate();
         parentFrame.repaint();
