@@ -61,7 +61,8 @@ public class MainFrame extends JFrame {
 
     public void initMainMessangerPanel() {
         setVisible(false);
-        setLocation(10, 10);
+        
+        setResizable(true);
         add(new MainPanel(this));
 
         setVisible(true);
@@ -70,7 +71,7 @@ public class MainFrame extends JFrame {
     public void initSignInPanel() {
 
         setVisible(false);
-        setLocation(10, 10);
+        
         add(new SignInPanel(this));
         setResizable(false);
         setVisible(true);
@@ -78,14 +79,16 @@ public class MainFrame extends JFrame {
 
     public void initSignupPanel() {
         setVisible(false);
-        setLocation(10, 10);
+        
         add(new SignUpPanel(this));
+        setResizable(false);
         setVisible(true);
     }
 
     public void initForgitPasswordPanel() {
         setVisible(false);
-        setLocation(10, 10);
+        
+        setResizable(false);
         setVisible(true);
     }
 

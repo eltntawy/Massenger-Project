@@ -159,6 +159,7 @@ public class SignInPanel extends javax.swing.JPanel {
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
         parentFrame.remove(this);
+        
         SignUpPanel panel=new SignUpPanel(parentFrame);
         parentFrame.add(panel);
         parentFrame.validate();
@@ -168,10 +169,13 @@ public class SignInPanel extends javax.swing.JPanel {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         parentFrame.remove(this);
+        parentFrame.setVisible(false);
+        parentFrame.setResizable(true);
         MainPanel panel=new MainPanel(parentFrame);
         parentFrame.add(panel);
         parentFrame.validate();
         parentFrame.repaint();
+        parentFrame.setVisible(true);
     }//GEN-LAST:event_btnLoginActionPerformed
 
 
