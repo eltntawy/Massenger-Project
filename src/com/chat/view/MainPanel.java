@@ -194,7 +194,7 @@ public class MainPanel extends javax.swing.JPanel {
             parentFrame.repaint();
             
             parentFrame.setVisible(true);
-            parentFrame.setLocation(10,10);
+            
         }
     }//GEN-LAST:event_cbBoxUserStatusItemStateChanged
 
