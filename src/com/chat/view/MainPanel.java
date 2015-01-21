@@ -73,6 +73,12 @@ public class MainPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel1.setText("User Name");
 
+        cbBoxUserStatus.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbBoxUserStatusItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout userPanelLayout = new javax.swing.GroupLayout(userPanel);
         userPanel.setLayout(userPanelLayout);
         userPanelLayout.setHorizontalGroup(
@@ -169,6 +175,18 @@ public class MainPanel extends javax.swing.JPanel {
 
         add(adPanel, java.awt.BorderLayout.NORTH);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbBoxUserStatusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbBoxUserStatusItemStateChanged
+        // TODO add your handling code here:
+        if(( (Status)evt.getItem()).getStatus() == User.SIGNOUT ) {
+            parentFrame.remove(this);
+            
+            parentFrame.add(new SignInPanel(parentFrame));
+            
+            parentFrame.validate();
+            parentFrame.repaint();
+        }
+    }//GEN-LAST:event_cbBoxUserStatusItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
