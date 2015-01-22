@@ -7,6 +7,7 @@ package com.chat.view.model;
 
 import com.chat.model.User;
 import com.chat.view.ChatFrame;
+import com.chat.view.resource.Resource;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class TxtContacSearchtListener extends KeyAdapter {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 // TODO fire action to open chat with current contact
                 
-                ChatFrame chatFrame = new ChatFrame();
+                ChatFrame chatFrame = new ChatFrame(new User("Youmna", "", "", Resource.IMAGE_AWAY, User.AVAILABLE),new User("Yasmeen", "", "", Resource.IMAGE_AVAILABLE, User.AWAY));
                 
                 chatFrame.setVisible(true);
                 

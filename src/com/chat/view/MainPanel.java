@@ -205,7 +205,7 @@ public class MainPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         evt.consume();
         if(evt.getClickCount() == 2) {
-            ChatFrame chatFrame = new ChatFrame();
+            ChatFrame chatFrame = new ChatFrame(new User("Youmna", "", "", Resource.IMAGE_AWAY, User.AVAILABLE),new User("Yasmeen", "", "", Resource.IMAGE_AVAILABLE, User.AWAY));
             
             chatFrame.setVisible(true);
         }
