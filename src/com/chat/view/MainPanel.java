@@ -5,6 +5,9 @@
  */
 package com.chat.view;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+
 import com.chat.model.Status;
 import com.chat.model.User;
 import com.chat.view.model.ListComboBoxModel;
@@ -14,6 +17,7 @@ import com.chat.view.renderer.StatusListCellRender;
 import com.chat.view.resource.Resource;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
+import java.awt.event.WindowListener;
 
 /**
  *
@@ -21,15 +25,18 @@ import javax.swing.JDialog;
  */
 public class MainPanel extends javax.swing.JPanel {
 
+    JFrame parentFrame ;
     /**
      * Creates new form TempletePanel
      */
-    public MainPanel() {
+    public MainPanel(JFrame parentFrame) {
+	
+	this.parentFrame = parentFrame;
         initComponents();
         initStatusCbBox();
         addSimpleContact();
         txtContactSearch.addKeyListener(new TxtContacSearchtListener(listContact));
-
+        
     }
 
     /**
@@ -69,7 +76,11 @@ public class MainPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel1.setText("User Name");
 
-        cbBoxUserStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Available", "Busy", "Away" }));
+        cbBoxUserStatus.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbBoxUserStatusItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout userPanelLayout = new javax.swing.GroupLayout(userPanel);
         userPanel.setLayout(userPanelLayout);
@@ -109,6 +120,11 @@ public class MainPanel extends javax.swing.JPanel {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         listContact.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listContact.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                listContactMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(listContact);
         listContact.setCellRenderer(new ContactListCellRender());
 
@@ -169,6 +185,33 @@ public class MainPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     
+    private void cbBoxUserStatusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbBoxUserStatusItemStateChanged
+        // TODO add your handling code here:
+        if(( (Status)evt.getItem()).getStatus() == User.SIGNOUT ) {
+            parentFrame.remove(this);
+            parentFrame.setVisible(false);
+            
+            parentFrame.add(new SignInPanel(parentFrame));
+            
+            parentFrame.validate();
+            parentFrame.repaint();
+            
+            parentFrame.setVisible(true);
+            
+        }
+    }//GEN-LAST:event_cbBoxUserStatusItemStateChanged
+
+    private void listContactMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listContactMousePressed
+        // TODO add your handling code here:
+        evt.consume();
+        if(evt.getClickCount() == 2) {
+            ChatFrame chatFrame = new ChatFrame();
+            
+            chatFrame.setVisible(true);
+        }
+    }//GEN-LAST:event_listContactMousePressed
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel adPanel;
     private javax.swing.JButton btnAddContact;
@@ -209,10 +252,11 @@ public class MainPanel extends javax.swing.JPanel {
         if (cbBoxUserStatus != null) {
 
             DefaultComboBoxModel<Status> listModel = new DefaultComboBoxModel<Status>();
-            listModel.addElement(new Status(Resource.IMAGE_AVAILABLE_SMALL, "Avilable", User.AVAILABLE));
+            listModel.addElement(new Status(Resource.IMAGE_AVAILABLE_SMALL, "Available", User.AVAILABLE));
             listModel.addElement(new Status(Resource.IMAGE_AWAY_SMALL, "Away", User.AWAY));
             listModel.addElement(new Status(Resource.IMAGE_BUSY_SMALL, "Busy", User.BUSY));
             listModel.addElement(new Status(Resource.IMAGE_OFFLINE_SMALL, "Offline", User.OFFLINE));
+            listModel.addElement(new Status(Resource.IMAGE_SIGNOUT, "Sign out", User.SIGNOUT));
 
             cbBoxUserStatus.setModel(listModel);
         }

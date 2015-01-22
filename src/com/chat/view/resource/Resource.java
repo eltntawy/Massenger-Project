@@ -26,6 +26,7 @@ public class Resource {
     public final static ImageIcon IMAGE_BUSY_SMALL = new ImageIcon(Resource.class.getResource("/com/chat/view/resource/img/status_busy_small.png"));
     public final static ImageIcon IMAGE_AWAY_SMALL = new ImageIcon(Resource.class.getResource("/com/chat/view/resource/img/status_away_small.png"));
     public final static ImageIcon IMAGE_OFFLINE_SMALL = new ImageIcon(Resource.class.getResource("/com/chat/view/resource/img/status_offline_small.png"));
+    public final static ImageIcon IMAGE_SIGNOUT = new ImageIcon(Resource.class.getResource("/com/chat/view/resource/img/sign-out.png"));
 
     public final static Color HIGHLIGHT_COLOR = new Color(51, 153, 255);
 

@@ -17,6 +17,7 @@ public class User {
     public static int OFFLINE = 0;
     public static int AVAILABLE = 1;
     public static int BUSY = 2;
+    public static int SIGNOUT=3;
 
     private String userName;
     private String password;

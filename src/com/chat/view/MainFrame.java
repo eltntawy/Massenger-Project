@@ -5,10 +5,10 @@
  */
 package com.chat.view;
 
-import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
+import com.test.chat.TestLookAndFeelForm;
+import de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel;
 import java.awt.Dimension;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -21,7 +21,7 @@ public class MainFrame extends JFrame {
     public MainFrame() {
 
         super("Messenger");
-        initLookAndFeel(this);
+
         setSize(315, 700);
         setMinimumSize(new Dimension(315, 600));
 
@@ -30,52 +30,66 @@ public class MainFrame extends JFrame {
         setMinimumSize(new Dimension(315, 500));
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        initLookAndFeel(this);
 
     }
-
-    public void initMainMessangerPanel() {
-
-        add(new MainPanel());
-
-        setVisible(true);
-    }
-
-    public void initSignInPanel() {
-
-        add(new SignInPanel(this));
-        setResizable(false);
-        setVisible(true);
-    }
-
-    public void initSignupPanel() {
-
-        add(new SignUpPanel(this));
-        setVisible(true);
-    }
-
-    public void initForgitPasswordPanel() {
-
-        setVisible(true);
-    }
-
-    public static void initLookAndFeel(final JFrame frame) {
+    
+    
+    public void initLookAndFeel (final JFrame frame){
         try {
 
             //UIManager.setLookAndFeel("com.alee.laf.WebLookAndFeel");
             //UIManager.installLookAndFeel("SeaGlass", "com.seaglasslookandfeel.SeaGlassLookAndFeel");
-            //UIManager.setLookAndFeel(new SyntheticaWhiteVisionLookAndFeel());
-            UIManager.setLookAndFeel(new SyntheticaStandardLookAndFeel());
+            
+            //UIManager.setLookAndFeel(new SyntheticaStandardLookAndFeel());
+            UIManager.setLookAndFeel(new SyntheticaWhiteVisionLookAndFeel());
 
         } catch (Exception e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         SwingUtilities.invokeLater(new Runnable() {
 
             public void run() {
+                // TODO Auto-generated method stub
                 SwingUtilities.updateComponentTreeUI(frame);
             }
         });
+    }
+
+    public void initMainMessangerPanel() {
+        setVisible(false);
+        
+        setResizable(true);
+        add(new MainPanel(this));
+
+        setVisible(true);
+    }
+
+    public void initSignInPanel() {
+
+        setVisible(false);
+        
+        add(new SignInPanel(this));
+        
+        setVisible(true);
+    }
+
+    public void initSignupPanel() {
+        setVisible(false);
+        
+        add(new SignUpPanel(this));
+        
+        setVisible(true);
+    }
+
+    public void initForgitPasswordPanel() {
+        setVisible(false);
+        
+        
+        setVisible(true);
     }
 
 }
