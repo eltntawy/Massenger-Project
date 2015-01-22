@@ -3,41 +3,18 @@ package com.chat.view;
 import java.awt.Container;
 import java.awt.MenuBar;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JToolBar;
 
-/**
- *
- * @author ALHUDA
- */
+
 public class AppMenuBarMenuBar extends JMenuBar
  {
 
 public AppMenuBarMenuBar() {
         initComponents();
     }
-    
-    
-    
-    
-    
-    
-    
-    private javax.swing.JMenuItem EditMenuItem;
-    private javax.swing.JMenuItem HelpMenuItem;
-    private javax.swing.JMenuItem QuitMenuItem;
-    private javax.swing.JMenuItem RemoveMenuItem;
-    private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JMenuItem addContactMenuItem;
-    private javax.swing.JMenu appNameMenu;
-    private javax.swing.JMenu contactsMenu;
-    private javax.swing.JMenuItem fileTransferMenuItem;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem newConversationMenuItem;
-    private javax.swing.JMenuItem settingsMenuItem;
-    private javax.swing.JMenuItem signOutMenuItem;
-    private javax.swing.JMenu themesMenu;
-    private javax.swing.JMenuItem viewMenuItem;
+
 
     private void initComponents() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -84,7 +61,7 @@ public AppMenuBarMenuBar() {
         QuitMenuItem.setText("Quit");
         appNameMenu.add(QuitMenuItem);
 
-        jMenuBar1.add(appNameMenu);
+        this.add(appNameMenu);
 
         contactsMenu.setText("contacts");
 
@@ -100,33 +77,26 @@ public AppMenuBarMenuBar() {
         RemoveMenuItem.setText("Remove");
         contactsMenu.add(RemoveMenuItem);
 
-        jMenuBar1.add(contactsMenu);
+        this.add(contactsMenu);
 
         themesMenu.setText("themes");
-        jMenuBar1.add(themesMenu);
+        this.add(themesMenu);
 
-        
-
-        /*javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
-        );
-
-       */ 
-    
-    
-    
-    
-    
-    
-    
-    }
-
+    } 
+    private javax.swing.JMenuItem EditMenuItem;
+    private javax.swing.JMenuItem HelpMenuItem;
+    private javax.swing.JMenuItem QuitMenuItem;
+    private javax.swing.JMenuItem RemoveMenuItem;
+    private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JMenuItem addContactMenuItem;
+    private javax.swing.JMenu appNameMenu;
+    private javax.swing.JMenu contactsMenu;
+    private javax.swing.JMenuItem fileTransferMenuItem;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem newConversationMenuItem;
+    private javax.swing.JMenuItem settingsMenuItem;
+    private javax.swing.JMenuItem signOutMenuItem;
+    private javax.swing.JMenu themesMenu;
+    private javax.swing.JMenuItem viewMenuItem;
     
 }
