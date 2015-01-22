@@ -5,23 +5,21 @@
  */
 package com.chat.view;
 
-import com.chat.model.Message;
-import com.chat.model.User;
-import com.chat.view.renderer.ContactListCellRender;
-import com.chat.view.resource.Resource;
-import com.test.chat.EditorPaneDemo;
-import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.DefaultListModel;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.ListModel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+
+import com.chat.model.Message;
+import com.chat.model.User;
+import com.chat.view.resource.Resource;
+
+import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
 
 /**
  *
@@ -37,14 +35,14 @@ public class ChatFrame extends javax.swing.JFrame {
     EditorPanel toolbar;
     Font font;
     ConversationEditorPane convEditorPane;
-            
+
     public ChatFrame() {
         initComponents();
         Message m = new Message("Yasmeen", "Marwa", "dfgdfgdfgdfg");
-        Message m2 = new Message ("Mohammed", "Marwa","hhhhhhhh");
+        Message m2 = new Message("Mohammed", "Marwa", "hhhhhhhh");
         Font f = new Font(Font.SERIF, Font.BOLD, 5);
         ConversationEditorPane sec = new ConversationEditorPane(f, Color.GREEN);
-        jScrollPane1.add(sec,BorderLayout.CENTER);
+        jScrollPane1.add(sec, BorderLayout.CENTER);
         SenderPanel panel = new SenderPanel();
         panel.setSenderImagelbl(Resource.IMAGE_DEFAULT_USER);
         panel.setSenderNamelbl(m.getSenderName());
@@ -66,15 +64,15 @@ public class ChatFrame extends javax.swing.JFrame {
         this.Sender = Sender;
         this.Receiver = Receiver;
         initComponents();
-        
+
         Font font = new Font(Font.SANS_SERIF, Font.ITALIC, 7);
         toolbar = new EditorPanel(font, Color.BLACK, 7);
         jPanel4.add(toolbar);
         //Message message = new Message (Sender.getUserName(), Receiver.getUserName(),"hjbiugoiuhiu gjhagdi" );
         convEditorPane = new ConversationEditorPane(font, Color.BLACK);
         /*sec.AppendText(message, font, Color.yellow);
-        Message message2 = new Message (Sender.getUserName(), Receiver.getUserName(),"hjbiugoiuhiu" );
-        sec.AppendText(message2, font, Color.yellow);*/
+         Message message2 = new Message (Sender.getUserName(), Receiver.getUserName(),"hjbiugoiuhiu" );
+         sec.AppendText(message2, font, Color.yellow);*/
         jScrollPane1.setViewportView(convEditorPane);
         SenderPanel panel = new SenderPanel();
         panel.setSenderImagelbl(Sender.getUserPicture());
@@ -86,10 +84,9 @@ public class ChatFrame extends javax.swing.JFrame {
         Rpanel.setSenderNamelbl(Receiver.getUserName());
         jPanel3.add(Rpanel);
         this.pack();
-        
+
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,8 +103,8 @@ public class ChatFrame extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtChat = new javax.swing.JTextField();
+        btnSend = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -121,16 +118,17 @@ public class ChatFrame extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Chat");
         setMinimumSize(new java.awt.Dimension(400, 400));
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Chat"));
-        jPanel6.setLayout(new java.awt.GridLayout());
+        jPanel6.setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.LINE_AXIS));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Chat Area"));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setMaximumSize(null);
-        jScrollPane1.setMinimumSize(null);
         jScrollPane1.setPreferredSize(null);
         jPanel5.add(jScrollPane1);
 
@@ -152,10 +150,16 @@ public class ChatFrame extends javax.swing.JFrame {
         jPanel4.setPreferredSize(new java.awt.Dimension(300, 50));
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.PAGE_AXIS));
 
-        jButton1.setText("Send");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        txtChat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtChatKeyReleased(evt);
+            }
+        });
+
+        btnSend.setText("Send");
+        btnSend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSendActionPerformed(evt);
             }
         });
 
@@ -168,9 +172,9 @@ public class ChatFrame extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jTextField1)
+                        .addComponent(txtChat)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(btnSend)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -179,8 +183,8 @@ public class ChatFrame extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -189,23 +193,50 @@ public class ChatFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         // TODO add your handling code here:
-        Message message = new Message(Sender.getUserName(), Receiver.getUserName(), jTextField1.getText());
-      /*  Font font2 = toolbar.getSelectedFont();
-        if (font2.getFontName() == "Dialog"){
-            System.out.println("||||||||||||||||||||||");
-            convEditorPane.AppendText(message, toolbar.getSelectedFont(), toolbar.getSelectedColor());
-        }
-        else {
-            font = new Font(Font.SANS_SERIF, Font.ITALIC, 7);
-            font = toolbar.getSelectedFont();
-            convEditorPane.AppendText(message, font, Color.BLACK);
-        }*/
+        sendMessage();
+    }//GEN-LAST:event_btnSendActionPerformed
+
+    private void txtChatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtChatKeyReleased
+        // TODO add your handling code here:
         
-        convEditorPane.AppendText(message, toolbar.getSelectedFont(), toolbar.getSelectedColor());
-        jTextField1.setText("");
-    }//GEN-LAST:event_jButton1ActionPerformed
+        evt.consume();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER && !txtChat.getText().equals("")) {
+            if (txtChat.getText().split(" ").length > 0) {
+                sendMessage();
+                txtChat.setText("");
+            }
+
+        }
+
+        if (txtChat.getText().equals("") || txtChat.getText().split(" ").length == 0) {
+            btnSend.setEnabled(false);
+        } else {
+            btnSend.setEnabled(true);
+        }
+        
+    }//GEN-LAST:event_txtChatKeyReleased
+
+    public void sendMessage() {
+
+        if (!txtChat.getText().equals("")) {
+            Message message = new Message(Sender.getUserName(), Receiver.getUserName(), txtChat.getText());
+            /*  Font font2 = toolbar.getSelectedFont();
+             if (font2.getFontName() == "Dialog"){
+             System.out.println("||||||||||||||||||||||");
+             convEditorPane.AppendText(message, toolbar.getSelectedFont(), toolbar.getSelectedColor());
+             }
+             else {
+             font = new Font(Font.SANS_SERIF, Font.ITALIC, 7);
+             font = toolbar.getSelectedFont();
+             convEditorPane.AppendText(message, font, Color.BLACK);
+             }*/
+
+            convEditorPane.AppendText(message, toolbar.getSelectedFont(), toolbar.getSelectedColor());
+            txtChat.setText("");
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -222,11 +253,11 @@ public class ChatFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                final JFrame f = new ChatFrame(new User("Youmna", "", "", Resource.IMAGE_AWAY, User.AVAILABLE),new User("Yasmeen", "", "", Resource.IMAGE_AVAILABLE, User.AWAY));
-                
+                final JFrame f = new ChatFrame(new User("Youmna", "", "", Resource.IMAGE_AWAY, User.AVAILABLE), new User("Yasmeen", "", "", Resource.IMAGE_AVAILABLE, User.AWAY));
+
                 try {
 
-            //UIManager.setLookAndFeel("com.alee.laf.WebLookAndFeel");
+                    //UIManager.setLookAndFeel("com.alee.laf.WebLookAndFeel");
                     //UIManager.installLookAndFeel("SeaGlass", "com.seaglasslookandfeel.SeaGlassLookAndFeel");
                     UIManager.setLookAndFeel(new SyntheticaStandardLookAndFeel());
                     //UIManager.setLookAndFeel(new SyntheticaWhiteVisionLookAndFeel());
@@ -250,7 +281,7 @@ public class ChatFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSend;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -258,6 +289,6 @@ public class ChatFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtChat;
     // End of variables declaration//GEN-END:variables
 }
