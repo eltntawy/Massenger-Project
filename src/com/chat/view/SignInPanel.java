@@ -44,7 +44,7 @@ public class SignInPanel extends javax.swing.JPanel {
         txtUserName = new javax.swing.JTextField();
         TxtUserPassword = new javax.swing.JPasswordField();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sgin In", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sign In", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
         setMaximumSize(new java.awt.Dimension(300, 600));
         setMinimumSize(new java.awt.Dimension(300, 600));
         setPreferredSize(new java.awt.Dimension(300, 600));

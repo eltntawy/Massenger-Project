@@ -1,11 +1,15 @@
 package com.chat.controller;
 
 import com.chat.view.MainFrame;
+
 import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.SplashScreen;
+import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 
 public class Main {
@@ -52,10 +56,15 @@ public class Main {
 
        
         MainFrame frame = new MainFrame();
+        Dimension resolution = Toolkit.getDefaultToolkit().getScreenSize();
+        
+        int x = (int)resolution.getWidth()-frame.getWidth()-2;
+        int y = (int) frame.getLocation().getY();
+        frame.setLocation(x, y);
         initSplashScreen(frame);
         frame.initSignInPanel();
         
-        
+         
 
     }
 }
