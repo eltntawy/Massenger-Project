@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -33,13 +34,16 @@ public class ChatFrame extends javax.swing.JFrame {
      */
     private User Sender;
     private User Receiver;
-    
+    EditorPanel toolbar;
+    Font font;
+    ConversationEditorPane convEditorPane;
+            
     public ChatFrame() {
         initComponents();
         Message m = new Message("Yasmeen", "Marwa", "dfgdfgdfgdfg");
         Message m2 = new Message ("Mohammed", "Marwa","hhhhhhhh");
         Font f = new Font(Font.SERIF, Font.BOLD, 5);
-        ConversationEditorPane sec = new ConversationEditorPane(m,f, Color.GREEN);
+        ConversationEditorPane sec = new ConversationEditorPane(f, Color.GREEN);
         jPanel1.add(sec,BorderLayout.CENTER);
         SenderPanel panel = new SenderPanel();
         panel.setSenderImagelbl(Resource.IMAGE_DEFAULT_USER);
@@ -49,6 +53,8 @@ public class ChatFrame extends javax.swing.JFrame {
         Rpanel.setSenderImagelbl(Resource.IMAGE_DEFAULT_USER);
         Rpanel.setSenderNamelbl(m.getReceiverName());
         jPanel3.add(Rpanel);
+        EditorPanel toolbar = new EditorPanel();
+        jPanel4.add(toolbar);
         /*DefaultListModel<User> listModel = new DefaultListModel<User>();
          listModel.addElement(new User("user name","name","",Resource.IMAGE_DEFAULT_USER,User.AVAILABLE));
          jList1.setCellRenderer(new ContactListCellRender());
@@ -59,20 +65,26 @@ public class ChatFrame extends javax.swing.JFrame {
         this.Sender = Sender;
         this.Receiver = Receiver;
         initComponents();
-        Font font = new Font( Font.SANS_SERIF, Font.ITALIC, 7);
-        Message message = new Message (Sender.getUserName(), Receiver.getUserName(),"hjbiugoiuhiu gjhagdi" );
-        ConversationEditorPane sec = new ConversationEditorPane(message,font, Color.BLUE);
+        
+        Font font = new Font(Font.SANS_SERIF, Font.ITALIC, 7);
+        toolbar = new EditorPanel(font, Color.BLACK, 7);
+        jPanel4.add(toolbar);
+        //Message message = new Message (Sender.getUserName(), Receiver.getUserName(),"hjbiugoiuhiu gjhagdi" );
+        convEditorPane = new ConversationEditorPane(font, Color.BLACK);
+        /*sec.AppendText(message, font, Color.yellow);
         Message message2 = new Message (Sender.getUserName(), Receiver.getUserName(),"hjbiugoiuhiu" );
-        sec.AppendText(message2, font, Color.yellow);
-        jPanel1.add(sec,BorderLayout.CENTER);
+        sec.AppendText(message2, font, Color.yellow);*/
+        jPanel1.add(convEditorPane,BorderLayout.CENTER);
         SenderPanel panel = new SenderPanel();
         panel.setSenderImagelbl(Sender.getUserPicture());
         panel.setSenderNamelbl(Sender.getUserName());
+        jPanel1.setBorder(new TitledBorder(Receiver.getUserName()));
         jPanel3.add(panel);
         SenderPanel Rpanel = new SenderPanel();
         Rpanel.setSenderImagelbl(Receiver.getUserPicture());
         Rpanel.setSenderNamelbl(Receiver.getUserName());
         jPanel3.add(Rpanel);
+        
     }
     
     
@@ -91,9 +103,7 @@ public class ChatFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jPanel4 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -106,14 +116,17 @@ public class ChatFrame extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-
-        setMinimumSize(new java.awt.Dimension(750, 500));
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
+        setMinimumSize(new java.awt.Dimension(750, 500));
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Chat"));
 
         jButton1.setText("Send");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("xdgdfjfgmnjhgf"));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -121,45 +134,69 @@ public class ChatFrame extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("dfgdfg"));
         jPanel3.setLayout(new java.awt.GridLayout(2, 0));
 
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("font"));
+        jPanel4.setToolTipText("font");
+        jPanel4.setLayout(new java.awt.GridLayout());
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jTextField1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11))
         );
 
         getContentPane().add(jPanel6, java.awt.BorderLayout.CENTER);
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        Message message = new Message(Sender.getUserName(), Receiver.getUserName(), jTextField1.getText());
+      /*  Font font2 = toolbar.getSelectedFont();
+        if (font2.getFontName() == "Dialog"){
+            System.out.println("||||||||||||||||||||||");
+            convEditorPane.AppendText(message, toolbar.getSelectedFont(), toolbar.getSelectedColor());
+        }
+        else {
+            font = new Font(Font.SANS_SERIF, Font.ITALIC, 7);
+            font = toolbar.getSelectedFont();
+            convEditorPane.AppendText(message, font, Color.BLACK);
+        }*/
+        
+        convEditorPane.AppendText(message, toolbar.getSelectedFont(), toolbar.getSelectedColor());
+        jTextField1.setText("");
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,12 +242,10 @@ public class ChatFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables

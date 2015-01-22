@@ -8,6 +8,7 @@ package com.chat.view;
 
 import com.chat.model.Message;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JEditorPane;
 
@@ -20,30 +21,31 @@ public class ConversationEditorPane extends JEditorPane{
     Message message;
     Font font;
     Color color;
-    String Txt;
+    String Txt = "";
     
-    public ConversationEditorPane(Message message, Font font, Color color) {
+    public ConversationEditorPane( Font font, Color color) {
         this.setContentType("text/html");
-        this.message = message;
+       // this.message = message;
         this.font = font;
         this.color = color;
-        String htmlfont = font.getName();
+        //this.setMaximumSize(new Dimension(500, 500));
+       /*I String htmlfont = font.getName();
         int red = color.getRed();
         int green = color.getGreen();
         int blue = color.getBlue();
         String htmlcolor = "rgb("+red+","+green+","+blue+")";
         int size = font.getSize();
         
-        String htmlTxt = "<html><body>"
-                + "<FONT face="+htmlfont+" color="+htmlcolor+" size="+size+"><b>"
+        String htmlTxt = 
+                 "<FONT face="+htmlfont+" color="+htmlcolor+" size="+size+"><b>"
                 +message.getSenderName()+" : "+message.getMessage()+"</b><p align = right>"+message.getTime()
-                +"</p></FONT></body></html>";
+                +"</p></FONT>";
         Txt = "<FONT face="+htmlfont+" color="+htmlcolor+" size="+size+"><b>"
                 +message.getSenderName()+" : "+message.getMessage()+"</b><p align = right>"+message.getTime()
                 +"</p></FONT>";
         //this.setText(htmlTxt);
         this.setEditable(false);
-        
+    */    
     }
     public void AppendText (Message message, Font font, Color color){
         
@@ -57,10 +59,10 @@ public class ConversationEditorPane extends JEditorPane{
         int blue = color.getBlue();
         String htmlcolor = "rgb("+red+","+green+","+blue+")";
         int size = font.getSize();
-        Txt = "<html><body>"+Txt;
+       // Txt = Txt;
         String msg = "<FONT face="+htmlfont+" color="+htmlcolor+" size="+size+"><b>"
                 +message.getSenderName()+" : "+message.getMessage()+"</b><p align = right>"+message.getTime()
-                +"</p></FONT></body></html>";
+                +"</p></FONT>";
         Txt += msg;
         this.setText(Txt);
         this.setEditable(false);
