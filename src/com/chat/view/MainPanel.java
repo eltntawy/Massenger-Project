@@ -13,6 +13,7 @@ import com.chat.view.renderer.ContactListCellRender;
 import com.chat.view.renderer.StatusListCellRender;
 import com.chat.view.resource.Resource;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JDialog;
 
 /**
  *
@@ -167,7 +168,7 @@ public class MainPanel extends javax.swing.JPanel {
         add(adPanel, java.awt.BorderLayout.NORTH);
     }// </editor-fold>//GEN-END:initComponents
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel adPanel;
     private javax.swing.JButton btnAddContact;
