@@ -5,14 +5,16 @@
  */
 package com.chat.view;
 
-import com.chat.view.renderer.EditorPanelColorRenderer;
-import com.chat.view.renderer.EditorPanelRenderer;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
+
+import com.chat.view.renderer.EditorPanelColorRenderer;
+import com.chat.view.renderer.EditorPanelRenderer;
 
 /**
  *
