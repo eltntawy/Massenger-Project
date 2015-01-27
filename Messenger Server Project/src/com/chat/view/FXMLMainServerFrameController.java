@@ -25,10 +25,14 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
 
@@ -61,19 +65,36 @@ public class FXMLMainServerFrameController implements Initializable {
         try {
             // TODO
             Map<String, Integer> contactStatusMap = ContactService.getAllContactStatus();
-            
+
             List<PieChart.Data> pieDataList = new ArrayList<PieChart.Data>();
             for (String key : contactStatusMap.keySet()) {
                 pieDataList.add(new PieChart.Data(key, contactStatusMap.get(key)));
             }
-            
+
             ObservableList<PieChart.Data> pieChartData
                     = FXCollections.observableArrayList(pieDataList);
-            
+
+            final Label caption = new Label("");
+            caption.setTextFill(Color.DARKORANGE);
+            //caption.setStyle("-fx-font: 24 arial;");
+
+            for (final PieChart.Data data : onlineContactChart.getData()) {
+                data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                        new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent e) {
+                                caption.setTranslateX(e.getSceneX());
+                                caption.setTranslateY(e.getSceneY());
+                                caption.setText(String.valueOf(data.getPieValue()) + "%");
+                            }
+                        });
+            }
+
             onlineContactChart.setAnimated(true);
             onlineContactChart.setData(pieChartData);
             serverStatusIndecator.setFill(Paint.valueOf("Red"));
             onlineContactChart.setTitle("Online Contact Chart");
+            btnStop.setDisable(true);
         } catch (SQLException ex) {
             Logger.getLogger(FXMLMainServerFrameController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -86,8 +107,9 @@ public class FXMLMainServerFrameController implements Initializable {
 
     public void btnStartAction(ActionEvent e) {
         try {
-            
-            reg = LocateRegistry.getRegistry(8888);
+            if (reg == null) {
+                reg = LocateRegistry.createRegistry(8888);
+            }
 
             ServerController serverController = new ServerController();
 
@@ -100,10 +122,12 @@ public class FXMLMainServerFrameController implements Initializable {
 
             serverStatusIndecator.setFill(Paint.valueOf("Green"));
             System.out.println("Server Started");
+            btnStart.setDisable(true);
+            btnStop.setDisable(false);
         } catch (RemoteException ex) {
             ex.printStackTrace();
-            System.out.println("Server Started");
-            
+            System.err.println("Server error");
+
         }
     }
 
@@ -113,6 +137,8 @@ public class FXMLMainServerFrameController implements Initializable {
                 reg.unbind("ChatService");
                 serverStatusIndecator.setFill(Paint.valueOf("Red"));
                 System.out.println("Server Stopped");
+                btnStart.setDisable(false);
+                btnStop.setDisable(true);
             } catch (RemoteException ex) {
                 ex.printStackTrace();
             } catch (NotBoundException ex) {
