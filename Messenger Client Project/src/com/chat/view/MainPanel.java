@@ -84,15 +84,37 @@ public class MainPanel extends javax.swing.JPanel {
             parentFrame.setJMenuBar(new AppMenuBarMenuBar(parentFrame, messengerController));
 
             jLabel1.setText(messengerController.getUser().getUserName());
-
             Icon imgicon = messengerController.getUser().getUserPicture();
-
+            cbBoxUserStatus.setSelectedIndex(changeStatusCbBox());
             lblUserImage.setIcon(imgicon);
             System.out.println(lblUserImage.getWidth() + "     " + lblUserImage.getHeight());
         } catch (RemoteException ex) {
             Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    private int changeStatusCbBox() {
+        try {
+            switch (messengerController.getUser().getStatus()) {
+
+                case 1:
+                    return 0;
+
+                case 2:
+                    return 2;
+
+                case 3:
+                    return 1;
+
+                case 0:
+                    return 3;
+            }
+        } catch (RemoteException ex) {
+            Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return 0;
     }
 
     private Image getScaledImage(Image srcImg, int w, int h) {
@@ -314,6 +336,7 @@ public class MainPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             messengerController.doChangeStaus((Status) cbBoxUserStatus.getSelectedItem());
+
             if (((Status) evt.getItem()).getStatus() == User.SIGNOUT) {
                 messengerController.doSignOut();
                 parentFrame.setJMenuBar(null);
