@@ -23,7 +23,7 @@ public abstract class ContactService {
             Connection conn = DBConnection.getConnection();
             String sql = "UPDATE messenger_project.user set image=? where user_id=?;";
             PreparedStatement ps = conn.prepareStatement(sql);
-          //  File x=File.createTempFile(Path, "");
+            //  File x=File.createTempFile(Path, "");
             ps.setString(1, Path);
             ps.setInt(2, user.getUserId());
 
@@ -76,13 +76,13 @@ public abstract class ContactService {
     public static List<User> getContactByNameOrEmailOrUseName(String searchText) throws SQLException {
         Connection conn = DBConnection.getConnection();
 
-        String sql = "SELECT * FROM user WHERE User_Name like ? OR First_Name like ? OR Second_Name like ?";
+        String sql = "SELECT * FROM user WHERE User_Name like ? OR First_Name like ? OR Second_Name like ? OR mail like ? ;";
         PreparedStatement ps = conn.prepareStatement(sql);
 
         ps.setString(1, "%" + searchText + "%");
         ps.setString(2, "%" + searchText + "%");
         ps.setString(3, "%" + searchText + "%");
-
+        ps.setString(4, "%" + searchText + "%");
         ResultSet rs = ps.executeQuery();
         List<User> list = new ArrayList<User>();
         while (rs.next()) {
@@ -90,6 +90,7 @@ public abstract class ContactService {
             String userName = rs.getString("User_Name");
             String password = rs.getString("password");
             String FullName = rs.getString("first_name");
+            String Mail = rs.getString("mail");
             int status = rs.getInt("status");
             String img = rs.getString("image");
             ImageIcon imgicon;
@@ -147,9 +148,8 @@ public abstract class ContactService {
         return list;
     }
 
-    
     public static boolean isFriendOfUser(User user, User Friend) throws SQLException {
-	Connection conn = DBConnection.getConnection();
+        Connection conn = DBConnection.getConnection();
 
         // TODO create currect select querey
         String sql = " select count(*) from friend_list where user_id = ? and friend_id = ?";
@@ -158,7 +158,7 @@ public abstract class ContactService {
         ps.setInt(1, user.getUserId());
         ps.setInt(2, Friend.getUserId());
         ResultSet rs = ps.executeQuery();
-        
+
         while (rs.next()) {
             return true;
         }
