@@ -1,10 +1,7 @@
 package com.chat.rmi;
 
 
-import com.chat.controller.ChatClientController;
 import com.chat.model.Message;
-import com.chat.model.User;
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 

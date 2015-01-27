@@ -5,18 +5,12 @@
  */
 package com.test.chat;
 
-import com.chat.model.User;
-import com.chat.view.ContactPanel;
 import com.chat.view.resource.Resource;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.FlowLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 
 /**

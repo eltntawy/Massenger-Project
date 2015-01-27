@@ -1,10 +1,8 @@
 package com.chat.controller;
 
-import java.awt.Component;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.chat.model.User;
@@ -13,7 +11,6 @@ import com.chat.rmi.ChatClientServiceImpl;
 import com.chat.rmi.ChatServerService;
 import com.chat.view.MainFrame;
 import com.chat.view.SignInPanel;
-import com.chat.view.SignUpPanel;
 
 public class AuthenticationClientController {
 
