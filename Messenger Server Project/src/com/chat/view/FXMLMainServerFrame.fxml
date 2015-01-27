@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.chart.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -13,5 +15,6 @@
       <Button fx:id="btnStop" layoutX="538.0" layoutY="386.0" mnemonicParsing="false" onAction="#btnStopAction" text="Stop" />
       <Button fx:id="btnStart" layoutX="480.0" layoutY="386.0" mnemonicParsing="false" onAction="#btnStartAction" text="Start" />
       <PieChart fx:id="onlineContactChart" layoutX="14.0" layoutY="12.0" prefHeight="363.0" prefWidth="572.0" />
+      <Ellipse fx:id="serverStatusIndecator" fill="#ff281f" layoutX="408.0" layoutY="399.0" radiusX="20.0" radiusY="20.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </AnchorPane>

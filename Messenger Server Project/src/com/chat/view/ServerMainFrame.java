@@ -28,10 +28,9 @@ public class ServerMainFrame extends Application {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
-        Scene fristScene = new Scene(root);
-
-        primaryStage.setScene(fristScene);
+        Scene firstScene = new Scene(root);
+        primaryStage.setResizable(false);
+        primaryStage.setScene(firstScene);
         primaryStage.show();
     }
 }

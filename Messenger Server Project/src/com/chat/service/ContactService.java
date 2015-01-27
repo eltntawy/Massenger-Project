@@ -11,7 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -23,7 +25,7 @@ public abstract class ContactService {
             Connection conn = DBConnection.getConnection();
             String sql = "UPDATE messenger_project.user set image=? where user_id=?;";
             PreparedStatement ps = conn.prepareStatement(sql);
-          //  File x=File.createTempFile(Path, "");
+            //  File x=File.createTempFile(Path, "");
             ps.setString(1, Path);
             ps.setInt(2, user.getUserId());
 
@@ -33,6 +35,27 @@ public abstract class ContactService {
             ex.printStackTrace();
             // Logger.getLogger(ContactService.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public static Map<String, Integer> getAllContactStatus() throws SQLException {
+        Connection conn = DBConnection.getConnection();
+        String sql = " select  case status "
+                + " when -1 then 'Offline' "
+                + " when 0 then 'Offline' "
+                + " when 1 then 'Available'"
+                + " when 2 then 'Busy'"
+                + " when 3 then 'Away' end  as 'Status', count(*) "
+                + " from user group by status";
+        PreparedStatement ps = conn.prepareStatement(sql);
+
+        ResultSet rs = ps.executeQuery();
+        
+        Map<String,Integer> retMap = new HashMap<String,Integer>();
+        while (rs.next()) {
+            retMap.put(rs.getString(1), rs.getInt(2));
+        }
+        
+        return retMap;
     }
 
     /**
@@ -147,9 +170,8 @@ public abstract class ContactService {
         return list;
     }
 
-    
     public static boolean isFriendOfUser(User user, User Friend) throws SQLException {
-	Connection conn = DBConnection.getConnection();
+        Connection conn = DBConnection.getConnection();
 
         // TODO create currect select querey
         String sql = " select count(*) from friend_list where user_id = ? and friend_id = ?";
@@ -158,7 +180,7 @@ public abstract class ContactService {
         ps.setInt(1, user.getUserId());
         ps.setInt(2, Friend.getUserId());
         ResultSet rs = ps.executeQuery();
-        
+
         while (rs.next()) {
             return true;
         }
