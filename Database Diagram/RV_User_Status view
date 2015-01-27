@@ -1,0 +1,10 @@
+alter view RV_User_Status as select user_name , first_name, second_name,mail,phone,
+case status 
+when -1 then 'Offline' 
+when 0 then 'Offline' 
+when 1 then 'Available'
+when 2 then 'Busy'
+when 3 then 'Away' end  as 'Status' from user
+
+
+

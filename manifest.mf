@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Class-Path: .
-SplashScreen-Image: com/chat/view/resource/img/Splash-Screen.png
-Main-Class: com.chat.controller.Main

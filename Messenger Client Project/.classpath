@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Messenger Common Project"/>
+	<classpathentry kind="lib" path="lib/laffy-seaglass.jar"/>
+	<classpathentry kind="lib" path="lib/seaglass-demo.jar"/>
+	<classpathentry kind="lib" path="lib/seaglasslookandfeel-0.1.5.jar"/>
+	<classpathentry kind="lib" path="lib/swingx-1.6-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/swingx-1.6.jar"/>
+	<classpathentry kind="lib" path="lib/swingx-2007_08_19.jar"/>
+	<classpathentry kind="lib" path="lib/synthetica.jar"/>
+	<classpathentry kind="lib" path="lib/syntheticaBatik.jar"/>
+	<classpathentry kind="lib" path="lib/syntheticaBlackEye.jar"/>
+	<classpathentry kind="lib" path="lib/syntheticaBlackMoon.jar"/>
+	<classpathentry kind="lib" path="lib/syntheticaBlackStar.jar"/>
+	<classpathentry kind="lib" path="lib/syntheticaBlueIce.jar"/>
+	<classpathentry kind="lib" path="lib/syntheticaBlueLight.jar"/>
+	<classpathentry kind="lib" path="lib/syntheticaBlueMoon.jar"/>
+	<classpathentry kind="lib" path="lib/syntheticaBlueSteel.jar"/>
+	<classpathentry kind="lib" path="lib/syntheticaGreenDream.jar"/>
+	<classpathentry kind="lib" path="lib/syntheticaMauveMetallic.jar"/>
+	<classpathentry kind="lib" path="lib/syntheticaOrangeMetallic.jar"/>
+	<classpathentry kind="lib" path="lib/syntheticaSilverMoon.jar"/>
+	<classpathentry kind="lib" path="lib/syntheticaSimple2D.jar"/>
+	<classpathentry kind="lib" path="lib/syntheticaSkyMetallic.jar"/>
+	<classpathentry kind="lib" path="lib/syntheticaWhiteVision.jar"/>
+	<classpathentry kind="lib" path="lib/weblaf-complete-1.28.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
