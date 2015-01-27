@@ -29,7 +29,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.Dialogs;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
 
@@ -104,7 +103,7 @@ public class FXMLMainServerFrameController implements Initializable {
         } catch (RemoteException ex) {
             ex.printStackTrace();
             System.out.println("Server Started");
-            Dialogs.showErrorDialog(null, "Server is already Running!", "Error", "Start Server");
+            
         }
     }
 
@@ -115,9 +114,9 @@ public class FXMLMainServerFrameController implements Initializable {
                 serverStatusIndecator.setFill(Paint.valueOf("Red"));
                 System.out.println("Server Stopped");
             } catch (RemoteException ex) {
-                Dialogs.showErrorDialog(null, "Error while stopping the server!", "Error", "Stop Server");
+                ex.printStackTrace();
             } catch (NotBoundException ex) {
-                Dialogs.showErrorDialog(null, "Error while stopping the server!", "Error", "Stop Server");
+                ex.printStackTrace();
             }
         }
     }
