@@ -127,4 +127,10 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
         serverController.unregisterAllClient();
     }
 
+    @Override
+    public void DeleteContactFromUser(User user, User Mainuser) throws SQLException, RemoteException {
+        AddFriendController remove=new AddFriendController();
+        remove.DeleteContactFromUser(user, Mainuser);
+    }
+
 }

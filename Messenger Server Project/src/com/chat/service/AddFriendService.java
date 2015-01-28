@@ -63,4 +63,22 @@ public class AddFriendService {
         }
     }
 
+    public static void DeleteContactFromUser(User user, User Mainuser) {
+        try {
+            Connection conn = DBConnection.getConnection();
+            String sql = "Delete from messenger_project.friend_list where (user_id=? and friend_id=?) OR (user_id=? and friend_id=?);";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            //modified
+            
+            ps.setInt(1, Mainuser.getUserId());
+            ps.setInt(2, user.getUserId());
+            ps.setInt(3, user.getUserId());
+            ps.setInt(4, Mainuser.getUserId());
+            ps.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(addFriendRequestService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

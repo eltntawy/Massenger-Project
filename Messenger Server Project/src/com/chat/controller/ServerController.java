@@ -6,6 +6,7 @@
 package com.chat.controller;
 
 import com.chat.db.DBConnection;
+import com.chat.model.User;
 import com.chat.rmi.ChatClientService;
 import java.rmi.RemoteException;
 import java.sql.Connection;
@@ -72,4 +73,5 @@ public class ServerController {
 
         //clientVector.removeAllElements();
     }
+
 }

@@ -15,6 +15,10 @@ import com.chat.service.AddFriendService;
  */
 public class AddFriendController {
 
+    public  void DeleteContactFromUser(User user, User Mainuser) {
+        AddFriendService.DeleteContactFromUser(user,Mainuser);
+    }
+
     public void addFriend(User user, User mainUser) {
         AddFriendService.addFriend(user, mainUser);
     }
