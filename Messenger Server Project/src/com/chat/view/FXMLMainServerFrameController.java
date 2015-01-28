@@ -15,6 +15,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -107,9 +108,8 @@ public class FXMLMainServerFrameController implements Initializable {
 
     public void btnStartAction(ActionEvent e) {
         try {
-            if (reg == null) {
-                reg = LocateRegistry.createRegistry(8888);
-            }
+
+            reg = LocateRegistry.createRegistry(8888);
 
             ServerController serverController = new ServerController();
 
@@ -135,6 +135,9 @@ public class FXMLMainServerFrameController implements Initializable {
         if (reg != null) {
             try {
                 reg.unbind("ChatService");
+
+                UnicastRemoteObject.unexportObject(reg, true);
+
                 serverStatusIndecator.setFill(Paint.valueOf("Red"));
                 System.out.println("Server Stopped");
                 btnStart.setDisable(false);
