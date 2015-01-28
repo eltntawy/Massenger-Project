@@ -99,13 +99,13 @@ public abstract class ContactService {
     public static List<User> getContactByNameOrEmailOrUseName(String searchText) throws SQLException {
         Connection conn = DBConnection.getConnection();
 
-        String sql = "SELECT * FROM user WHERE User_Name like ? OR First_Name like ? OR Second_Name like ?";
+        String sql = "SELECT * FROM user WHERE User_Name like ? OR First_Name like ? OR Second_Name like ? OR mail like ? ;";
         PreparedStatement ps = conn.prepareStatement(sql);
 
         ps.setString(1, "%" + searchText + "%");
         ps.setString(2, "%" + searchText + "%");
         ps.setString(3, "%" + searchText + "%");
-
+        ps.setString(4, "%" + searchText + "%");
         ResultSet rs = ps.executeQuery();
         List<User> list = new ArrayList<User>();
         while (rs.next()) {
@@ -113,6 +113,7 @@ public abstract class ContactService {
             String userName = rs.getString("User_Name");
             String password = rs.getString("password");
             String FullName = rs.getString("first_name");
+            String Mail = rs.getString("mail");
             int status = rs.getInt("status");
             String img = rs.getString("image");
             ImageIcon imgicon;
