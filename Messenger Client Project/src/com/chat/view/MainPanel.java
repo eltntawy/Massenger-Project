@@ -359,6 +359,37 @@ public class MainPanel extends javax.swing.JPanel {
             User reciever = (User) listContact.getSelectedValue();
             messengerController.showChatFrameWith(reciever);
         }
+
+        if (evt.getClickCount() == 1) {
+            try {
+                if (messengerController.checkUserId((User) listContact.getSelectedValue())) {
+                    ConfirmRemoveFriendDialoge1 confirm = new ConfirmRemoveFriendDialoge1(parentFrame, true, (User) listContact.getSelectedValue());
+                    confirm.setVisible(true);
+
+                    boolean flag = confirm.getPressedbutton();
+
+                    if (flag) {
+                        try {
+                            User user = (User) listContact.getSelectedValue();
+                            messengerController.DeleteContactFromUser(user);
+                            initContactList();
+                        } catch (RemoteException ex) {
+                            Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
+
+                    }
+                } else {
+                    errMessage();
+                    txtContactSearch.setText("");
+                }
+
+            } catch (RemoteException ex) {
+                Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }// GEN-LAST:event_listContactMousePressed
 
     private void btnAddSearchContactActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAddSearchContactActionPerformed

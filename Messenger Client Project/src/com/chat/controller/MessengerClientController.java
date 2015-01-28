@@ -132,4 +132,8 @@ public class MessengerClientController {
         mainPanel.initContactList();
 
     }
+
+    public void DeleteContactFromUser(User user) throws RemoteException, SQLException {
+        chatServerService.DeleteContactFromUser(user, ((ChatClientServiceImpl)chatClientService).getUser());
+    }
 }

@@ -61,17 +61,15 @@ public class ConfirmAddFriendDialoge extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         btnCancel = new javax.swing.JButton();
         btnConfirm = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(280, 215));
-        setMinimumSize(new java.awt.Dimension(280, 215));
-        setPreferredSize(new java.awt.Dimension(280, 215));
+        setMaximumSize(new java.awt.Dimension(290, 215));
+        setMinimumSize(new java.awt.Dimension(290, 215));
+        setPreferredSize(new java.awt.Dimension(290, 215));
         setResizable(false);
-
-        jLabel1.setText("           Are you sure you want to add this Person ?");
 
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -80,31 +78,37 @@ public class ConfirmAddFriendDialoge extends javax.swing.JDialog {
             }
         });
 
-        btnConfirm.setText("Confirm");
+        btnConfirm.setText("Add");
         btnConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmActionPerformed(evt);
             }
         });
 
+        jLabel1.setText("Are You Sure You Want To Add this Friend ?");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnConfirm)
-                .addGap(26, 26, 26)
-                .addComponent(btnCancel)
-                .addGap(65, 65, 65))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(119, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnCancel)
+                        .addGap(61, 61, 61))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(38, 38, 38))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(81, 81, 81)
+                .addComponent(jLabel1)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConfirm)
                     .addComponent(btnCancel))
@@ -156,7 +160,7 @@ public class ConfirmAddFriendDialoge extends javax.swing.JDialog {
 //        /* Create and display the dialog */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                ConfirmAddFriendDialoge dialog = new ConfirmAddFriendDialoge(new javax.swing.JFrame(), true);
+//                ConfirmAddFriendDialoge dialog = new ConfirmAddFriendDialoge(new javax.swing.JFrame(), true,null);
 //                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 //                    @Override
 //                    public void windowClosing(java.awt.event.WindowEvent e) {

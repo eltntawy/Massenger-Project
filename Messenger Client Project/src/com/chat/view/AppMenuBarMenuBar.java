@@ -94,7 +94,14 @@ public class AppMenuBarMenuBar extends JMenuBar implements ActionListener {
         });
         EditMenuItem.addActionListener(this);
         viewMenuItem.addActionListener(this);
-        RemoveMenuItem.addActionListener(this);
+        RemoveMenuItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JTextField txt = messengerController.getItemfocus();
+                txt.requestFocusInWindow();
+            }
+        } );
         themesMenu.addActionListener(this);
 
         // get system available lookAndFeel
