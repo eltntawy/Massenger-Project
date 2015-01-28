@@ -32,17 +32,11 @@ import de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel;
  */
 public class MainFrame extends JFrame implements WindowListener {
 
-    private ChatServerService chatServerService;
-    private ChatClientService chatClientService;
-
     private JPanel currentPane;
 
-    public MainFrame(ChatClientService chatClientService, ChatServerService chatServerService) {
+    public MainFrame() {
 
 	super("Messenger");
-
-	this.chatClientService = chatClientService;
-	this.chatServerService = chatServerService;
 
 	setSize(315, 700);
 	setMinimumSize(new Dimension(315, 600));

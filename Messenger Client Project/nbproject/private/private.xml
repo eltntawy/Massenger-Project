@@ -11,8 +11,6 @@
             <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Client%20Project/src/com/chat/rmi/ChatClientServiceImpl.java</file>
             <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Client%20Project/src/com/chat/controller/AuthenticationClientController.java</file>
         </group>
-        <group name="Messenger Project">
-            <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Client%20Project/src/com/chat/controller/StatusCLientController.java</file>
-        </group>
+        <group name="Messenger Project"/>
     </open-files>
 </project-private>
