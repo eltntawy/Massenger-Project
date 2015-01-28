@@ -17,4 +17,6 @@ public interface ChatClientService extends Remote {
 
     public void fitchContactList() throws RemoteException;
 
+    public void doFourceSignOut() throws RemoteException ;
+
 }

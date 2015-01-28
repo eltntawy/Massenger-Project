@@ -8,6 +8,7 @@ import com.chat.model.User;
 import com.chat.rmi.ChatClientService;
 import com.chat.service.ContactService;
 import com.chat.service.StatusService;
+import com.chat.view.FXMLMainServerFrameController;
 
 public class StatusServerController {
 
@@ -24,7 +25,6 @@ public class StatusServerController {
 		client.fitchContactList();
 	    }
 	}
-	
 	return ret;
     }
 }

@@ -1,6 +1,5 @@
 package com.chat.rmi;
 
-
 import com.chat.model.Message;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -12,6 +11,8 @@ import com.chat.controller.MessengerClientController;
 import com.chat.controller.SignUpClientController;
 import com.chat.controller.StatusCLientController;
 import com.chat.model.User;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ChatClientServiceImpl extends UnicastRemoteObject implements ChatClientService {
 
@@ -25,98 +26,85 @@ public class ChatClientServiceImpl extends UnicastRemoteObject implements ChatCl
     private StatusCLientController statusController;
     private ContactClientController contactController;
 
-
-
     public ChatClientServiceImpl(User user) throws RemoteException {
         this.user = user;
-        
 
     }
 
-    
     public User getUser() throws RemoteException {
-	return user;
+        return user;
     }
 
-    
     public void setUser(User user) throws RemoteException {
-	this.user = user;
+        this.user = user;
     }
 
-    
     public MessengerClientController getMessengerController() {
-	return messengerController;
+        return messengerController;
     }
 
-    
     public void setMessengerController(MessengerClientController messengerController) {
-	this.messengerController = messengerController;
+        this.messengerController = messengerController;
     }
 
-    
     public AuthenticationClientController getAuthenticationController() {
-	return authenticationController;
+        return authenticationController;
     }
 
-    
     public void setAuthenticationController(AuthenticationClientController authenticationController) {
-	this.authenticationController = authenticationController;
+        this.authenticationController = authenticationController;
     }
 
-    
     public ChatClientController getChatController() {
-	return chatController;
+        return chatController;
     }
 
-    
     public void setChatController(ChatClientController chatController) {
-	this.chatController = chatController;
+        this.chatController = chatController;
     }
 
-    
     public SignUpClientController getSignUpController() {
-	return signUpController;
+        return signUpController;
     }
 
-    
     public void setSignUpController(SignUpClientController signUpController) {
-	this.signUpController = signUpController;
+        this.signUpController = signUpController;
     }
 
-    
     public StatusCLientController getStatusController() {
-	return statusController;
+        return statusController;
     }
 
-    
     public void setStatusController(StatusCLientController statusController) {
-	this.statusController = statusController;
+        this.statusController = statusController;
     }
 
-    
     public ContactClientController getContactController() {
-	return contactController;
+        return contactController;
     }
 
-    
     public void setContactController(ContactClientController contactController) {
-	this.contactController = contactController;
+        this.contactController = contactController;
     }
 
-    
     public void fitchContactList() throws RemoteException {
-	// TODO Auto-generated method stub
-	if (messengerController != null) {
-	    messengerController.fitchContactList();
-	}
+        // TODO Auto-generated method stub
+        if (messengerController != null) {
+            messengerController.fitchContactList();
+        }
     }
-    
-    public void receiveMessage (Message message) throws RemoteException{
-        
+
+    public void receiveMessage(Message message) throws RemoteException {
+
         System.out.println("Message Received");
         chatController.receiveMessage(message);
-        
+
     }
-    
-    
+
+    @Override
+    public void doFourceSignOut() throws RemoteException {
+        authenticationController.showSignIn();
+
+    }
+
 }

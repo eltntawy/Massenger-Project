@@ -26,13 +26,11 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
@@ -58,6 +56,8 @@ public class FXMLMainServerFrameController implements Initializable {
 
     ContactServerController contactServerController;
 
+    ChatServerServiceImpl server;
+
     /**
      * Initializes the controller class.
      */
@@ -77,28 +77,31 @@ public class FXMLMainServerFrameController implements Initializable {
 
             final Label caption = new Label("");
             caption.setTextFill(Color.DARKORANGE);
-            //caption.setStyle("-fx-font: 24 arial;");
-
-            for (final PieChart.Data data : onlineContactChart.getData()) {
-                data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
-                        new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent e) {
-                                caption.setTranslateX(e.getSceneX());
-                                caption.setTranslateY(e.getSceneY());
-                                caption.setText(String.valueOf(data.getPieValue()) + "%");
-                            }
-                        });
-            }
+            caption.setStyle("-fx-font: 24 arial;");
 
             onlineContactChart.setAnimated(true);
-            onlineContactChart.setData(pieChartData);
+            //onlineContactChart.setData(pieChartData);
             serverStatusIndecator.setFill(Paint.valueOf("Red"));
             onlineContactChart.setTitle("Online Contact Chart");
             btnStop.setDisable(true);
+
         } catch (SQLException ex) {
             Logger.getLogger(FXMLMainServerFrameController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+    }
+
+    public  void initPieChart() throws SQLException {
+
+        Map<String, Integer> contactStatusMap = ContactService.getAllContactStatus();
+        List<PieChart.Data> pieDataList = new ArrayList<PieChart.Data>();
+        for (String key : contactStatusMap.keySet()) {
+            pieDataList.add(new PieChart.Data(key, contactStatusMap.get(key)));
+        }
+
+        ObservableList<PieChart.Data> pieChartData
+                = FXCollections.observableArrayList(pieDataList);
+        onlineContactChart.setData(pieChartData);
 
     }
 
@@ -106,14 +109,14 @@ public class FXMLMainServerFrameController implements Initializable {
         this.contactServerController = contactServerController;
     }
 
-    public void btnStartAction(ActionEvent e) {
+    public void btnStartAction(ActionEvent e) throws SQLException {
         try {
 
             reg = LocateRegistry.createRegistry(8888);
 
             ServerController serverController = new ServerController();
 
-            ChatServerServiceImpl server = new ChatServerServiceImpl(serverController);
+            server = new ChatServerServiceImpl(serverController);
 
             ChatServerController chatController2 = new ChatServerController();
 
@@ -124,6 +127,9 @@ public class FXMLMainServerFrameController implements Initializable {
             System.out.println("Server Started");
             btnStart.setDisable(true);
             btnStop.setDisable(false);
+
+            initPieChart();
+
         } catch (RemoteException ex) {
             ex.printStackTrace();
             System.err.println("Server error");
@@ -134,14 +140,15 @@ public class FXMLMainServerFrameController implements Initializable {
     public void btnStopAction(ActionEvent e) {
         if (reg != null) {
             try {
+                server.unregisterAllClient();
                 reg.unbind("ChatService");
-
                 UnicastRemoteObject.unexportObject(reg, true);
 
                 serverStatusIndecator.setFill(Paint.valueOf("Red"));
-                System.out.println("Server Stopped");
+
                 btnStart.setDisable(false);
                 btnStop.setDisable(true);
+                System.out.println("Server Stopped");
             } catch (RemoteException ex) {
                 ex.printStackTrace();
             } catch (NotBoundException ex) {

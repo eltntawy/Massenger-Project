@@ -123,4 +123,8 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
 
     }
 
+    public void unregisterAllClient() {
+        serverController.unregisterAllClient();
+    }
+
 }
