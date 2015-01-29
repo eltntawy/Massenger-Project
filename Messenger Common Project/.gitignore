@@ -3,5 +3,5 @@
 /bulid/
 /build/
 /dist/
-private.properties
+*.properties
 

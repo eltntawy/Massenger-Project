@@ -71,7 +71,7 @@ public class ServerController {
             }
         }
 
-        //clientVector.removeAllElements();
+        clientVector.removeAllElements();
     }
 
 }
