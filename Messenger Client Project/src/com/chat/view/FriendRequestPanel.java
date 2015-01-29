@@ -6,6 +6,7 @@
 
 package com.chat.view;
 
+import com.chat.model.User;
 import com.test.chat.*;
 
 /**
@@ -17,7 +18,7 @@ public class FriendRequestPanel extends javax.swing.JPanel {
     /**
      * Creates new form FriendRequestPanel
      */
-    public FriendRequestPanel() {
+    public FriendRequestPanel(User user) {
         initComponents();
     }
     

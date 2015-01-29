@@ -5,23 +5,27 @@
  */
 package com.chat.view;
 
-import com.test.chat.*;
+import com.chat.model.User;
 import com.chat.view.ContactPanel;
+import com.test.chat.*;
 import com.test.chat.RequestListRenderer;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -37,37 +41,43 @@ public class getFriendRequestList extends javax.swing.JDialog {
      */
     JScrollPane pane = new JScrollPane();
     JList list = new JList();
-    JPanel panel = new JPanel();
+    JPanel panel = new JPanel(new BorderLayout());
     JPanel label = new JPanel();
     JLabel lab = new JLabel();
-    ArrayList<JPanel> arr = new ArrayList<>();
+    ArrayList<User> arr = new ArrayList<>();
+    FriendRequestPanel pan;
 
-    public getFriendRequestList(java.awt.Frame parent, boolean modal) {
+    public getFriendRequestList() {
+        
+        initComponents();
+    }
+
+    public getFriendRequestList(java.awt.Frame parent, boolean modal,List<User> userList) {
         super(parent, modal);
         initComponents();
+        this.getContentPane().setLayout(new FlowLayout());
         panel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-        FriendRequestPanel pan = new FriendRequestPanel();
         this.setLayout(new CardLayout());
         c.gridx = 0;
         c.gridy = 0;
         lab.setText("Friend List");
-        lab.setBackground(Color.WHITE);
         lab.setFont(new Font(Font.DIALOG, Font.LAYOUT_LEFT_TO_RIGHT, 20));
-//        lab.setHorizontalTextPosition(SwingConstants.NORTH);
+        panel.setBackground(Color.WHITE);
         panel.add(lab, c);
+        panel.add(new JSeparator(SwingConstants.HORIZONTAL));
+
         panel.setSize(parent.getWidth() * 2, parent.getHeight() * 2);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < userList.size(); i++) {
             c.gridx = 0;
             c.gridy = i + 2;
-            pan = new FriendRequestPanel();
-            pan.setLabel(i + "");
+            pan = new FriendRequestPanel(userList.get(i));
+            pan.setLabel(userList.get(i).getFullName());
             pan.setSize(parent.getWidth(), parent.getHeight());
             pan.revalidate();
             pan.repaint();
             panel.add(pan, c);
-
             System.out.println("i" + i);
             pane.setViewportView(panel);
             this.getContentPane().add(pane);
@@ -75,10 +85,7 @@ public class getFriendRequestList extends javax.swing.JDialog {
             this.getContentPane().repaint();
             pack();
         }
-//        this.setLayout(new CardLayout());
-//        setSize(345, 222);
-//        pan.setSize(parent.getWidth() * 2, parent.getHeight() * 2);
-//        this.getContentPane().add(pan);
+
         this.setLocationRelativeTo(parent);
         this.pack();
 
@@ -117,44 +124,44 @@ public class getFriendRequestList extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(getFriendRequestList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(getFriendRequestList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(getFriendRequestList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(getFriendRequestList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                getFriendRequestList dialog = new getFriendRequestList(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(getFriendRequestList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(getFriendRequestList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(getFriendRequestList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(getFriendRequestList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the dialog */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                getFriendRequestList dialog = new getFriendRequestList(new javax.swing.JFrame(), true);
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                dialog.setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
