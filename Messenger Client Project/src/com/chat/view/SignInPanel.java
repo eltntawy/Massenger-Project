@@ -15,8 +15,6 @@ import javax.swing.JOptionPane;
 
 import com.chat.controller.AuthenticationClientController;
 import com.chat.model.User;
-import com.chat.rmi.ChatClientService;
-import com.chat.rmi.ChatServerService;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

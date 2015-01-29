@@ -48,11 +48,11 @@ public class getFriendRequestList extends javax.swing.JDialog {
     FriendRequestPanel pan;
 
     public getFriendRequestList() {
-        
+
         initComponents();
     }
 
-    public getFriendRequestList(java.awt.Frame parent, boolean modal,List<User> userList) {
+    public getFriendRequestList(java.awt.Frame parent, boolean modal, List<User> userList) {
         super(parent, modal);
         initComponents();
         this.getContentPane().setLayout(new FlowLayout());
@@ -67,8 +67,7 @@ public class getFriendRequestList extends javax.swing.JDialog {
         panel.add(lab, c);
         panel.add(new JSeparator(SwingConstants.HORIZONTAL));
 
-        panel.setSize(parent.getWidth() * 2, parent.getHeight() * 2);
-
+        //panel.setSize(parent.getWidth() * 2, parent.getHeight() * 2);
         for (int i = 0; i < userList.size(); i++) {
             c.gridx = 0;
             c.gridy = i + 2;
@@ -88,6 +87,8 @@ public class getFriendRequestList extends javax.swing.JDialog {
 
         this.setLocationRelativeTo(parent);
         this.pack();
+        this.setSize(this.getContentPane().getWidth(), this.getContentPane().getHeight());
+        this.validate();
 
     }
 
