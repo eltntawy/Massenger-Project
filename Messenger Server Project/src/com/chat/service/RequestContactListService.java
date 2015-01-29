@@ -8,6 +8,7 @@ package com.chat.service;
 import com.chat.db.DBConnection;
 import com.chat.model.User;
 import com.chat.view.resource.Resource;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -51,7 +52,7 @@ public class RequestContactListService {
                     //image default
                     imgicon = Resource.IMAGE_DEFAULT_USER;
                 } else {
-                    imgicon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(rs.getString("image")));
+                    imgicon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(rs.getString("image")).getScaledInstance(40, 40, Image.SCALE_SMOOTH));
                 }
                 User userR = new User(userId, userName, password, FullName, imgicon, status);
                 list.add(userR);
