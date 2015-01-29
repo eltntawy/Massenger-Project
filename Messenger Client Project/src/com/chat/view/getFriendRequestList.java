@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.test.chat;
+package com.chat.view;
 
+import com.test.chat.*;
 import com.chat.view.ContactPanel;
 import com.test.chat.RequestListRenderer;
 import java.awt.BorderLayout;
@@ -44,7 +45,6 @@ public class getFriendRequestList extends javax.swing.JDialog {
     public getFriendRequestList(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setSize(new Dimension(300,150));
         panel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         FriendRequestPanel pan = new FriendRequestPanel();
@@ -52,6 +52,7 @@ public class getFriendRequestList extends javax.swing.JDialog {
         c.gridx = 0;
         c.gridy = 0;
         lab.setText("Friend List");
+        lab.setBackground(Color.WHITE);
         lab.setFont(new Font(Font.DIALOG, Font.LAYOUT_LEFT_TO_RIGHT, 20));
 //        lab.setHorizontalTextPosition(SwingConstants.NORTH);
         panel.add(lab, c);

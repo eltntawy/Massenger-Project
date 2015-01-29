@@ -172,6 +172,8 @@ public class SignInPanel extends javax.swing.JPanel {
         } finally {
             if (user == null) {
                 JOptionPane.showMessageDialog(this, "Invalid User Name or Password !!");
+                txtUserName.setText("");
+                TxtUserPassword.setText("");
             }
         }
 

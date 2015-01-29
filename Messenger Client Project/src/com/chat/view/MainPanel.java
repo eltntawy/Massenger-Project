@@ -360,7 +360,7 @@ public class MainPanel extends javax.swing.JPanel {
             messengerController.showChatFrameWith(reciever);
         }
 
-        if (evt.getClickCount() == 1) {
+        if (evt.getClickCount() == 3) {
             try {
                 if (messengerController.checkUserId((User) listContact.getSelectedValue())) {
                     ConfirmRemoveFriendDialoge1 confirm = new ConfirmRemoveFriendDialoge1(parentFrame, true, (User) listContact.getSelectedValue());
