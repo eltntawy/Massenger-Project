@@ -6,6 +6,7 @@
 package com.chat.view;
 
 import java.awt.Color;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
@@ -16,6 +17,7 @@ import com.chat.controller.AuthenticationClientController;
 import com.chat.model.User;
 import com.chat.rmi.ChatClientService;
 import com.chat.rmi.ChatServerService;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,29 +34,29 @@ public class SignInPanel extends javax.swing.JPanel {
      * Creates new form TempletePanel
      */
     public SignInPanel(JFrame parentFrame, AuthenticationClientController signInController) {
-        this.parentFrame = parentFrame;
-        this.signInController = signInController;
+	this.parentFrame = parentFrame;
+	this.signInController = signInController;
 
-        initComponents();
-        setVisible(true);
-        //  parentFrame.remove(parentFrame.getJMenuBar());
+	initComponents();
+	setVisible(true);
+	// parentFrame.remove(parentFrame.getJMenuBar());
 
-        txtUserName.addActionListener(new ActionListener() {
+	txtUserName.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                TxtUserPassword.requestFocusInWindow();
-                // btnLoginActionPerformed(e);
-            }
-        });
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		TxtUserPassword.requestFocusInWindow();
+		// btnLoginActionPerformed(e);
+	    }
+	});
 
-        TxtUserPassword.addActionListener(new ActionListener() {
+	TxtUserPassword.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                btnLoginActionPerformed(e);
-            }
-        });
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		btnLoginActionPerformed(e);
+	    }
+	});
 
     }
 
@@ -143,42 +145,44 @@ public class SignInPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblForgetPassWordMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_lblForgetPassWordMouseClicked
-        // TODO add your handling code here:
-        lblForgetPassWord.setFont(lblForgetPassWord.getFont().deriveFont(14f));
-        lblForgetPassWord.setForeground(Color.DARK_GRAY);
+	// TODO add your handling code here:
+	lblForgetPassWord.setFont(lblForgetPassWord.getFont().deriveFont(14f));
+	lblForgetPassWord.setForeground(Color.DARK_GRAY);
     }// GEN-LAST:event_lblForgetPassWordMouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jLabel5MouseClicked
-        // TODO add your handling code here:
-        try {
-            signInController.doSignUp();
-        } catch (RemoteException e) {
-            // TODO Auto-generated catch block
-            JOptionPane.showMessageDialog(this, " cannot sign up!!");
-            e.printStackTrace();
-        }
+	// TODO add your handling code here:
+	try {
+	    signInController.doSignUp();
+	} catch (RemoteException e) {
+	    // TODO Auto-generated catch block
+	    JOptionPane.showMessageDialog(this, " cannot sign up!!");
+	    e.printStackTrace();
+	}
     }// GEN-LAST:event_jLabel5MouseClicked
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-        User user = null;
-        try {
-            user = signInController.doSignIn(txtUserName.getText(), new String(TxtUserPassword.getPassword()));
+	// TODO add your handling code here:
+	User user = null;
+	boolean isError = false;
+	try {
+	    user = signInController.doSignIn(txtUserName.getText(), new String(TxtUserPassword.getPassword()));
 
-        } catch (RemoteException | SQLException e) {
-            // TODO Auto-generated catch block
-
-            e.printStackTrace();
-        } finally {
-            if (user == null) {
-                JOptionPane.showMessageDialog(this, "Invalid User Name or Password !!");
-                txtUserName.setText("");
-                TxtUserPassword.setText("");
-            }
-        }
+	} catch (RemoteException | SQLException e) {
+	    // TODO Auto-generated catch block
+	    JOptionPane.showMessageDialog(this, "Sorry server may be not started yet !!");
+	    isError =true;
+	    e.printStackTrace();
+	} catch (NotBoundException e) {
+	    // TODO Auto-generated catch block
+	    JOptionPane.showMessageDialog(this, "Sorry server may be not started yet !!");
+	    e.printStackTrace();
+	}
+	if (user == null && !isError) {
+	    JOptionPane.showMessageDialog(this, "Invalid User Name or Password !!");
+	}
 
     }// GEN-LAST:event_btnLoginActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField TxtUserPassword;

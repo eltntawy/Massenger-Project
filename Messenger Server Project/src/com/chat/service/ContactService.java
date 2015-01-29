@@ -52,7 +52,7 @@ public abstract class ContactService {
         
         Map<String,Integer> retMap = new HashMap<String,Integer>();
         while (rs.next()) {
-            retMap.put(rs.getString(1), rs.getInt(2));
+            retMap.put(rs.getInt(2)+ " "+rs.getString(1), rs.getInt(2));
         }
         
         return retMap;
