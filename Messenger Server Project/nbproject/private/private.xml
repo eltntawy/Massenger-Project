@@ -2,9 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="Group 20150127-09:44:52">
-            <file>file:/C:/Users/Marwa/Desktop/Messenger-Project/Messenger%20Server%20Project/src/com/chat/service/StatusService.java</file>
-        </group>
         <group>
             <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Server%20Project/src/com/chat/view/FXMLMainServerFrameController.java</file>
             <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Server%20Project/src/com/chat/controller/ServerController.java</file>
@@ -13,6 +10,14 @@
         <group name="Messenger Project">
             <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Server%20Project/src/com/chat/view/FXMLMainServerFrameController.java</file>
             <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Server%20Project/src/com/chat/service/ContactService.java</file>
+        </group>
+        <group name="Group 20150127-09:44:52">
+            <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/rmi/ChatServerServiceImpl.java</file>
+            <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/controller/ChatServerController.java</file>
+            <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/controller/AddFriendController.java</file>
+            <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/service/ContactService.java</file>
+            <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/controller/ServerController.java</file>
+            <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/service/AddFriendService.java</file>
         </group>
     </open-files>
 </project-private>

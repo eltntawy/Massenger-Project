@@ -72,9 +72,8 @@ public class AuthenticationClientController {
 
     }
 
-    public User doSignIn(String userName, String password) throws RemoteException, SQLException {
+    public User doSignIn(String userName, String password) throws RemoteException, SQLException, NotBoundException {
         // TODO Auto-generated method stub
-        try {
             initRMIService();
 
             if (chatClientService != null && chatServerService != null) {
@@ -94,11 +93,6 @@ public class AuthenticationClientController {
                 
 
             }
-        } catch (RemoteException ex) {
-            ex.printStackTrace();
-        } catch (NotBoundException ex) {
-            ex.printStackTrace();
-        }
         User user = userAuthentication(userName, password);
         if (user != null) {
 
