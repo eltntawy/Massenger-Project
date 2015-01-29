@@ -23,7 +23,12 @@ public class UserService {
      *
      *
      */
-    public static int insertUser(User user) {
+    public static int insertUser(User user) throws SQLException {
+        Connection conn = DBConnection.getConnection();
+
+        String sql = "INSERT INTO user VALUES (('" + user.getUserFirstName() + "','" + user.getUserSecondName() + "','" + user.getUserName() + "','" + user.getPassword() + "','" + user.getUserEmail() + "')";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
         return 0;
     }
 
@@ -88,7 +93,7 @@ public class UserService {
             } else {
                 imgicon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(rs.getString("image")).getScaledInstance(65, 65, Image.SCALE_SMOOTH));
             }
-	  //  ImageIcon userPicture = "".equals(rs.getString("image")) ? Resource.IMAGE_DEFAULT_USER : new ImageIcon(Toolkit.getDefaultToolkit().getImage(rs.getString("image")));
+            //  ImageIcon userPicture = "".equals(rs.getString("image")) ? Resource.IMAGE_DEFAULT_USER : new ImageIcon(Toolkit.getDefaultToolkit().getImage(rs.getString("image")));
 
             user = new User(userId, userName, password, FullName, imgicon, status);
             break;

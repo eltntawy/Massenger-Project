@@ -35,5 +35,8 @@ public interface ChatServerService extends Remote {
     public void updateUserImage(String Path, User user) throws SQLException, RemoteException;
 
     public void DeleteContactFromUser(User user, User user0)throws SQLException, RemoteException;
+    
+   
+    public void doSignup(User user)throws  RemoteException;
 
 }
