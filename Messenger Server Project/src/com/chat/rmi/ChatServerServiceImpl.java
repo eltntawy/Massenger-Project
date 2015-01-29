@@ -1,4 +1,4 @@
-package com.chat.rmi;
+ package com.chat.rmi;
 
 import com.chat.controller.ChatServerController;
 import com.chat.controller.AddFriendController;
@@ -15,7 +15,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.List;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatServerService {
 
@@ -30,7 +31,6 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
         this.chatController = chatController;
     }
 
-    
     public ChatServerServiceImpl(ServerController serverController) throws RemoteException {
         this.serverController = serverController;
 
@@ -129,8 +129,19 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
 
     @Override
     public void DeleteContactFromUser(User user, User Mainuser) throws SQLException, RemoteException {
-        AddFriendController remove=new AddFriendController();
+        AddFriendController remove = new AddFriendController();
         remove.DeleteContactFromUser(user, Mainuser);
+    }
+
+    @Override
+    public void doSignup(User user) {
+        try {
+            // throw new UnsupportedOpera tionException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            UserService.insertUser(user);                                      
+        } catch (SQLException ex) {
+            Logger.getLogger(ChatServerServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }
