@@ -45,7 +45,7 @@ public class SignUpClientController {
 
         ChatClientService clientService = new ChatClientServiceImpl(null);
 
-        serverService.doSignup(user);
+       
 
         this.chatServerService = serverService;
         this.chatClientService = clientService;
@@ -92,16 +92,17 @@ public class SignUpClientController {
     }
 
     public void signUp() throws RemoteException {
+        AuthenticationClientController signInController = new AuthenticationClientController(parentFrame, chatClientService, chatServerService);
+
         try {
             initRMIService();
-
+            
             if (chatClientService != null && chatServerService != null) {
-                AuthenticationClientController signInController = new AuthenticationClientController(parentFrame, chatClientService, chatServerService);
-
+                
                 ChatClientController chatController = new ChatClientController(chatClientService, chatServerService);
                 ContactClientController contactController = new ContactClientController(chatClientService, chatServerService);
 
-                SignUpClientController signUpController = new SignUpClientController(parentFrame, chatClientService, chatServerService);
+                SignUpClientController signUpController = this;
                 StatusCLientController statusController = new StatusCLientController(parentFrame, chatClientService, chatServerService);
 
                 ((ChatClientServiceImpl) chatClientService).setAuthenticationController(signInController);
@@ -117,6 +118,14 @@ public class SignUpClientController {
         } catch (NotBoundException ex) {
             ex.printStackTrace();
         }
+   
+         chatServerService.doSignup(user);
+         signInController.showSignIn();
+    
+    
+    
+    
+    
     }
 
 }
