@@ -1,6 +1,7 @@
 package com.chat.rmi;
 
 import com.chat.model.Message;
+import com.chat.model.MessageFile;
 import com.chat.model.User;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -10,6 +11,10 @@ import java.util.List;
 public interface ChatServerService extends Remote {
 
     public void sendMessage(Message message) throws RemoteException;
+    
+    public void sendFile(MessageFile messageFile) throws RemoteException;
+    
+    public boolean requestSend (String fileName,User sender, User receiver, String sessionId) throws RemoteException;
 
     public void registerClient(ChatClientService chatClientService) throws RemoteException;
 

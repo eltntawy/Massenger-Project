@@ -5,22 +5,32 @@
  */
 package com.chat.view;
 
+import com.chat.controller.ChatClientController;
+import com.chat.model.Message;
+import com.chat.model.MessageFile;
+import com.chat.model.User;
+import com.chat.view.resource.Resource;
+import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-
-import com.chat.controller.ChatClientController;
-import com.chat.model.Message;
-import com.chat.model.User;
-import com.chat.view.resource.Resource;
-
-import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
 
 /**
  *
@@ -34,34 +44,19 @@ public class ChatFrame extends javax.swing.JFrame {
     private User Sender;
     private User Receiver;
     private ChatClientController chatController;
-    EditorPanel toolbar;
-    Font font;
-    ConversationEditorPane convEditorPane;
+    private EditorPanel toolbar;
+    private Font font;
+    private ConversationEditorPane convEditorPane;
     private String sessionId;
-   
+    private String fileName;
+    private byte[] filePart;
+    private WindowAdapter windowClose = null;
 
     public ChatFrame() {
         initComponents();
-        sessionId = new String("");
- /*       Message m = new Message("Yasmeen", "Marwa", "dfgdfgdfgdfg");
-        Message m2 = new Message("Mohammed", "Marwa", "hhhhhhhh");
-        Font f = new Font(Font.SERIF, Font.BOLD, 5);
-        ConversationEditorPane sec = new ConversationEditorPane(f, Color.GREEN);
-        jScrollPane1.add(sec, BorderLayout.CENTER);
-        SenderPanel panel = new SenderPanel();
-        panel.setSenderImagelbl(Resource.IMAGE_DEFAULT_USER);
-        panel.setSenderNamelbl(m.getSenderName());
-        jPanel3.add(panel);
-        SenderPanel Rpanel = new SenderPanel();
-        Rpanel.setSenderImagelbl(Resource.IMAGE_DEFAULT_USER);
-        Rpanel.setSenderNamelbl(m.getReceiverName());
-        jPanel3.add(Rpanel);
-        EditorPanel toolbar = new EditorPanel();
-        jPanel4.add(toolbar);
-        /*DefaultListModel<User> listModel = new DefaultListModel<User>();
-         listModel.addElement(new User("user name","name","",Resource.IMAGE_DEFAULT_USER,User.AVAILABLE));
-         jList1.setCellRenderer(new ContactListCellRender());
-         jList1.setModel(listModel);*/
+        sessionId = new String();
+        fileName = new String();
+        filePart = new byte[1024];
         this.pack();
     }
 
@@ -71,6 +66,8 @@ public class ChatFrame extends javax.swing.JFrame {
         this.Receiver = Receiver;
         this.chatController = chatController;
         this.sessionId = sessionId;
+        fileName = new String();
+        filePart = new byte[1024];
         
         initComponents();
 
@@ -97,6 +94,12 @@ public class ChatFrame extends javax.swing.JFrame {
         jPanel3.add(Rpanel);
         convEditorPane.setEditable(false);
         this.pack();
+        this.windowClose = new WindowAdapter() {
+          public void windowClosed(WindowEvent e){
+              ChatFrame.this.chatController.removeChatFrame(ChatFrame.this.sessionId);
+          }  
+        };
+        this.addWindowListener(this.windowClose);
 
     }
     
@@ -139,6 +142,62 @@ public class ChatFrame extends javax.swing.JFrame {
         convEditorPane.AppendText(message, toolbar.getSelectedFont(), toolbar.getSelectedColor());
     
     }
+    
+    public boolean requestSend(String fileName){
+        return chatController.requestSend(fileName, Receiver);
+    }
+    
+    public boolean confirmRequest(String fileName){
+        
+        int option = JOptionPane.showConfirmDialog(this, "Do you want to receive this file: "+fileName, "Confirm", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (option == JOptionPane.OK_OPTION){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    public void readFile(File file){
+       
+        try {
+            FileInputStream readFile = new FileInputStream(file);
+            readFile.read(filePart);
+            MessageFile messageFile = new MessageFile(filePart, Sender, Receiver, sessionId);
+            sendFile(messageFile);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ChatFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ChatFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void sendFile(MessageFile messageFile){
+        chatController.sendFile(messageFile);
+    }
+    
+    public void receiveFile (MessageFile messageFile){
+        JFileChooser saveFile = new JFileChooser ();
+        saveFile.showSaveDialog(this);
+        File receivedFile = new File(saveFile.getSelectedFile().getAbsolutePath());
+        if (!receivedFile.exists()){
+            try {
+                receivedFile.createNewFile();
+            } catch (IOException ex) {
+                Logger.getLogger(ChatFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try {
+            FileOutputStream received = new FileOutputStream(receivedFile,true);
+            received.write(messageFile.getFile());
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ChatFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ChatFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -158,6 +217,7 @@ public class ChatFrame extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         txtChat = new javax.swing.JTextField();
         btnSend = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -216,6 +276,13 @@ public class ChatFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Attatch File");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -223,21 +290,24 @@ public class ChatFrame extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(txtChat)
+                        .addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSend)))
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1)
+                    .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -270,6 +340,22 @@ public class ChatFrame extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_txtChatKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        //attatch file
+        JFileChooser attachFileChooser = new JFileChooser();
+        attachFileChooser.showOpenDialog(this);
+        fileName = attachFileChooser.getSelectedFile().getName();
+        boolean option = requestSend(fileName);
+        if (option == true){
+            //call send file
+            readFile(attachFileChooser.getSelectedFile());
+        }
+        else {
+            //show refused message
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
    
 
@@ -318,6 +404,7 @@ public class ChatFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSend;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
