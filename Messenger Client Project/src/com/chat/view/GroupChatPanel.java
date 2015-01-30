@@ -29,7 +29,7 @@ public class GroupChatPanel extends javax.swing.JPanel {
      */
     public GroupChatPanel() {
         initComponents();
-        DefaultListModel<User> chatList = new DefaultListModel<User>();
+/*        DefaultListModel<User> chatList = new DefaultListModel<User>();
         chatList.addElement(new User(10,"user name", "", "name", Resource.IMAGE_AVAILABLE, User.AVAILABLE));
         chatList.addElement(new User(11,"user name", "", "name", Resource.IMAGE_AVAILABLE, User.AVAILABLE));
         chatList.addElement(new User(12,"user name", "", "name", Resource.IMAGE_AVAILABLE, User.AVAILABLE));
@@ -44,7 +44,7 @@ public class GroupChatPanel extends javax.swing.JPanel {
         jTextArea1.append("  "+m.getMessage()+"\n");
         jTextArea1.setAlignmentX(RIGHT_ALIGNMENT);
         jTextArea1.append(m.getTime());
-        
+  */      
         
     }
 

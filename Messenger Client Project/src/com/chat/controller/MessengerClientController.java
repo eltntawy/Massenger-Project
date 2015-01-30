@@ -2,11 +2,11 @@ package com.chat.controller;
 
 
 import com.chat.model.Status;
-
 import com.chat.model.User;
 import com.chat.rmi.ChatClientService;
 import com.chat.rmi.ChatClientServiceImpl;
 import com.chat.rmi.ChatServerService;
+import com.chat.view.ChatFrame;
 import com.chat.view.MainFrame;
 import com.chat.view.MainPanel;
 import java.rmi.RemoteException;
@@ -58,8 +58,21 @@ public class MessengerClientController {
 
     public void showChatFrameWith(User reciever) {
 
-        ChatClientController chatController = new ChatClientController(chatClientService, chatServerService);
-        chatController.showChatFrame(reciever);
+        int counter = 0;
+        ChatClientController chatController = ((ChatClientServiceImpl)chatClientService).getChatController();
+        //check if chat frame is opened with this user
+        if (chatController.getChatFrame().size() == 0){
+            chatController.showChatFrame(reciever);
+        }
+        for (int i = 0; i < chatController.getChatFrame().size(); i++){
+            ChatFrame chatFrame = chatController.getChatFrame().elementAt(i);
+            if (!(chatFrame.getReceiver().getUserName().equals(reciever.getUserName())) ){
+                counter++;
+            }
+        }
+        if (counter == chatController.getChatFrame().size()){
+            chatController.showChatFrame(reciever);
+        }
     }
 
     public List<User> getContactListOfCurrentUser() throws RemoteException, SQLException {

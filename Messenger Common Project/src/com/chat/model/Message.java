@@ -17,32 +17,37 @@ import java.util.Date;
  */
 public class Message implements Serializable{
     
-    private String senderName;
-    private String receiverName;
+    private User senderName;
+    private User receiverName;
     private String message;
     private String time;
+    private String sessionId;
     
-    public Message (String senderName, String receiverName, String message){
+    public Message (User senderName, User receiverName, String message, String sessionId){
         this.senderName = senderName;
         this.receiverName = receiverName;
         this.message = message;
+        this.sessionId = sessionId;
     }
     public void setMessage(String message){
         this.message = message;
     }
-    public void setSenderName (String senderName){
+    public void setSenderName (User senderName){
         this.senderName = senderName;
     }
-    public void setReceiverName (String receiverName){
+    public void setReceiverName (User receiverName){
         this.receiverName = receiverName;
+    }
+    public void setSessionId (String sessionId){
+        this.sessionId = sessionId;
     }
     public String getMessage(){
         return message;
     }
-    public String getSenderName(){
+    public User getSenderName(){
         return senderName;
     }
-    public String getReceiverName(){
+    public User getReceiverName(){
         return receiverName;
     }
     public String getTime(){
@@ -50,5 +55,8 @@ public class Message implements Serializable{
         DateFormat date = DateFormat.getTimeInstance();
         time = date.format(cal.getTime());
         return time;
+    }
+    public String getSessionId(){
+        return sessionId;
     }
 }

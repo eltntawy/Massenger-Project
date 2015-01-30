@@ -37,10 +37,12 @@ public class ChatFrame extends javax.swing.JFrame {
     EditorPanel toolbar;
     Font font;
     ConversationEditorPane convEditorPane;
+    private String sessionId;
    
 
     public ChatFrame() {
         initComponents();
+        sessionId = new String("");
  /*       Message m = new Message("Yasmeen", "Marwa", "dfgdfgdfgdfg");
         Message m2 = new Message("Mohammed", "Marwa", "hhhhhhhh");
         Font f = new Font(Font.SERIF, Font.BOLD, 5);
@@ -63,11 +65,12 @@ public class ChatFrame extends javax.swing.JFrame {
         this.pack();
     }
 
-    public ChatFrame(User Sender, User Receiver, ChatClientController chatController) {
+    public ChatFrame(User Sender, User Receiver, ChatClientController chatController, String sessionId) {
         
         this.Sender = Sender;
         this.Receiver = Receiver;
         this.chatController = chatController;
+        this.sessionId = sessionId;
         
         initComponents();
 
@@ -92,8 +95,49 @@ public class ChatFrame extends javax.swing.JFrame {
             Rpanel.setSenderNamelbl(Receiver.getUserName());
         }
         jPanel3.add(Rpanel);
+        convEditorPane.setEditable(false);
         this.pack();
 
+    }
+    
+    public void setSender (User sender){
+        this.Sender = sender;
+    }
+    public void setReceiver (User receiver){
+        this.Receiver = receiver;
+    }
+    public User getSender(){
+        return Sender;
+    }
+    public User getReceiver(){
+        return Receiver;
+    }
+    public void setSessionId (String sessionId){
+        this.sessionId = sessionId;
+    }
+    
+    public String getSessionId (){
+        return sessionId;
+    }
+    
+     public void sendMessage() {
+
+        if (!txtChat.getText().equals("")) {
+            Message message = new Message(Sender, Receiver, txtChat.getText(), sessionId);
+            convEditorPane.AppendText(message, toolbar.getSelectedFont(), toolbar.getSelectedColor());
+            txtChat.setText("");
+            System.out.println(message.getSenderName());
+            System.out.println(message.getReceiverName());
+            System.out.println(message.getMessage());
+            chatController.sendMessage(message);
+        }
+    }
+    
+    public void receiveMessage(Message message) {
+        System.out.println("||||||||");
+        System.out.println(message.getMessage());
+        convEditorPane.AppendText(message, toolbar.getSelectedFont(), toolbar.getSelectedColor());
+    
     }
 
     /**
@@ -227,25 +271,7 @@ public class ChatFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txtChatKeyReleased
 
-    public void sendMessage() {
-
-        if (!txtChat.getText().equals("")) {
-            Message message = new Message(Sender.getUserName(), Receiver.getUserName(), txtChat.getText());
-            convEditorPane.AppendText(message, toolbar.getSelectedFont(), toolbar.getSelectedColor());
-            txtChat.setText("");
-            System.out.println(message.getSenderName());
-            System.out.println(message.getReceiverName());
-            System.out.println(message.getMessage());
-            chatController.sendMessage(message);
-        }
-    }
-    
-    public void receiveMessage(Message message) {
-        System.out.println("||||||||");
-        System.out.println(message.getMessage());
-        convEditorPane.AppendText(message, toolbar.getSelectedFont(), toolbar.getSelectedColor());
-    
-    }
+   
 
     /**
      * @param args the command line arguments
