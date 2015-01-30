@@ -30,8 +30,8 @@ public class UserService {
 
 	String sql = "INSERT INTO user VALUES (('" + user.getUserFirstName() + "','" + user.getUserSecondName() + "','" + user.getUserName() + "','" + user.getPassword() + "','" + user.getUserEmail() + "')";
 	PreparedStatement ps = conn.prepareStatement(sql);
-	ResultSet rs = ps.executeQuery();
-	return 0;
+	return ps.executeUpdate();
+	
     }
 
     /**

@@ -10,6 +10,8 @@ import com.chat.controller.ContactServerController;
 import com.chat.controller.ServerController;
 import com.chat.rmi.ChatServerServiceImpl;
 import com.chat.service.ContactService;
+
+import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -23,17 +25,23 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -61,6 +69,9 @@ public class FXMLMainServerFrameController implements Initializable {
 
     ChatServerServiceImpl server;
 
+    private Stage primaryStage;
+
+    private Scene mainScene;
     /**
      * Initializes the controller class.
      */
@@ -146,7 +157,7 @@ public class FXMLMainServerFrameController implements Initializable {
                 server.unregisterAllClient();
                 reg.unbind("ChatService");
                 UnicastRemoteObject.unexportObject(reg, true);
-
+                UnicastRemoteObject.unexportObject(server, true);
                 serverStatusIndecator.setFill(Paint.valueOf("Red"));
 
                 btnStart.setDisable(false);
@@ -158,5 +169,31 @@ public class FXMLMainServerFrameController implements Initializable {
                 ex.printStackTrace();
             }
         }
+    }
+    
+    public void btnAddUserAction(ActionEvent e) throws SQLException {
+
+	FXMLLoader fxmlLoader = new FXMLLoader();
+	Parent root = null;
+	try {
+	    root = fxmlLoader.load(getClass().getResource("FXMLCreateUser.fxml").openStream());
+	} catch (IOException e1) {
+	    // TODO Auto-generated catch block
+	    e1.printStackTrace();
+	}
+	FXMLCreateUserController fxmlCreateUserController = (FXMLCreateUserController)fxmlLoader.getController();
+	fxmlCreateUserController.setStage(primaryStage);
+	fxmlCreateUserController.setMainScene(mainScene);
+	
+	primaryStage.setScene(new Scene(root));
+    }
+
+    public void setStage(Stage primaryStage) {
+	// TODO Auto-generated method stub
+	this.primaryStage = primaryStage;
+    }
+    
+    public void setMainScene(Scene mainScene) {
+	this.mainScene = mainScene;
     }
 }

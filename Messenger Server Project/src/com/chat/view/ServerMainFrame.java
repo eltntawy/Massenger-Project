@@ -6,7 +6,6 @@
 package com.chat.view;
 
 import java.io.IOException;
-import java.net.URL;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -16,11 +15,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import javax.swing.JOptionPane;
-
+import com.chat.controller.MainServerController;
 import com.chat.controller.ServerController;
 
 /**
@@ -31,19 +30,34 @@ public class ServerMainFrame extends Application {
 
     @Override
     public void start(final Stage primaryStage) {
+	/*Parent root = null;
+	
+	try {
+	    root = FXMLLoader.load(getClass().getResource("FXMLMainServerFrame.fxml"));
+	} catch (IOException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}*/
+	
+	FXMLLoader fxmlLoader = new FXMLLoader();
 	Parent root = null;
 	try {
-	    URL url = getClass().getResource("FXMLMainServerFrame.fxml");
-	    root = FXMLLoader.load(url);
-	} catch (IOException ex) {
-	    ex.printStackTrace();
+	    root = fxmlLoader.load(getClass().getResource("FXMLMainServerFrame.fxml").openStream());
+	} catch (IOException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
 	}
+	FXMLMainServerFrameController fxmlMainServerFrameController = (FXMLMainServerFrameController) fxmlLoader.getController();
+	fxmlMainServerFrameController.setStage(primaryStage);
+	
+	
 	Scene firstScene = new Scene(root);
+	fxmlMainServerFrameController.setMainScene(firstScene);
 	primaryStage.setResizable(false);
 	primaryStage.setScene(firstScene);
 	primaryStage.show();
 	// primaryStage.setFullScreen(true);
-	
+
 	primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 
 	    @Override
@@ -56,7 +70,6 @@ public class ServerMainFrame extends Application {
 		    alert.setContentText("Please stop server first !!");
 
 		    alert.showAndWait();
-		    //JOptionPane.showMessageDialog(null, "Please stop server frist");
 		} else {
 		    primaryStage.close();
 		    Platform.exit();

@@ -6,7 +6,6 @@
             <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Client%20Project/src/com/chat/rmi/ChatClientServiceImpl.java</file>
             <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Client%20Project/src/com/chat/controller/AuthenticationClientController.java</file>
         </group>
-        <group name="Messenger Project"/>
         <group name="Group 20150127-09:44:52">
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/NotifyFriendRequestJDialoge.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/TestSchema.xsd</file>
@@ -29,5 +28,6 @@
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/ChatHistory.xml</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/AppMenuBarMenuBar.java</file>
         </group>
+        <group name="Messenger Project"/>
     </open-files>
 </project-private>
