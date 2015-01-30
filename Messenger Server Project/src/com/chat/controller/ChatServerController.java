@@ -31,12 +31,12 @@ public class ChatServerController {
         System.out.println("Message Received at serve");
         Vector<ChatClientService> clientVector = ServerController.getChatClientVector();
         
-        for (int i = 0; i < clientVector.capacity(); i++){
+        for (int i = 0; i < clientVector.size(); i++){
             
             ChatClientService client = clientVector.elementAt(i);
             try {
                 User Receiver = client.getUser();
-                if (Receiver.getUserName().equals(message.getReceiverName())){
+                if (Receiver.getUserName().equals(message.getReceiverName().getUserName())){
                     //receiver is online
                     client.receiveMessage(message);
                 }
