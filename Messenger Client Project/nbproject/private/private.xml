@@ -8,9 +8,11 @@
         </group>
         <group name="Messenger Project"/>
         <group name="Group 20150127-09:44:52">
+            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/NotifyFriendRequestJDialoge.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/TestSchema.xsd</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/test/chat/FriendRequestPanel.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/FriendRequestPanel.java</file>
+            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/xml/XML.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/getFriendRequestList.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/ContactPanel.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/test/chat/getFriendRequestList.java</file>
@@ -22,6 +24,7 @@
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/ConfirmAddFriendDialoge.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/AppMenuBar.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/SignUpPanel.java</file>
+            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/controller/AuthenticationClientController.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/MainPanel.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/ChatHistory.xml</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/AppMenuBarMenuBar.java</file>
