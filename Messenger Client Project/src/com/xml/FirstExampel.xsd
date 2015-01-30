@@ -19,7 +19,7 @@ and open the template in the editor.
     
     <xs:complexType name="MsgBody" >
         <xs:sequence>
-            <xs:element name="Text" type="xs:string"/>
+            <xs:element name="Text" type="xs:string"  minOccurs="1" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attribute name="font" type="xs:string"/>
         <xs:attribute name="size" type="xs:int"/>

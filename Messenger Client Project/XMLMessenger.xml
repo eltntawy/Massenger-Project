@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><MessageHistory>
+    <Login userName="mohamed" userID="20">
+        <UserTo userName="aya" userID="25">
+            <Body font="" size="0" Color="">
+                <Text>dsgdfg</Text>
+                <Text>sdfsd</Text>
+                <Text>sdfsdf</Text>
+                <Text>My Message Mohamed </Text>
+                <Text>My Message Mohamed </Text>
+                <Text>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</Text>
+            </Body>
+        </UserTo>
+        <UserTo userName="marwa" userID="1">
+            <Body>
+                <Text>Third</Text>
+            </Body>
+        </UserTo>
+        <UserTo userName="marwa" userID="1">
+            <Body>
+                <Text>Third</Text>
+            </Body>
+        </UserTo>
+    </Login>
+    <Login userName="aya" userID="2">
+        <UserTo userName="marwa" userID="4">
+            <Body>
+                <Text>xyz</Text>
+            </Body>
+        </UserTo>
+    </Login>
+</MessageHistory>

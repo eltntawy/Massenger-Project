@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?><MessageHistory>
-    <Login userName="Marwa" userID="0">
-        <UserTo userName="aya" userID="1">
+    <Login userName="aya" userID="20">
+        <UserTo userName="aya" userID="20">
             <Body>
-                <Text>Hello My Friend</Text>
+                <Text>Third</Text>
+            </Body>
+        </UserTo>
+        <UserTo userName="aya" userID="25">
+            <Body>
+                <Text>Third</Text>
             </Body>
         </UserTo>
     </Login>
