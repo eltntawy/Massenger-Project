@@ -26,9 +26,10 @@ public class UserService {
     public static int insertUser(User user) throws SQLException {
         Connection conn = DBConnection.getConnection();
 
-        String sql = "INSERT INTO user VALUES (('" + user.getUserFirstName() + "','" + user.getUserSecondName() + "','" + user.getUserName() + "','" + user.getPassword() + "','" + user.getUserEmail() + "')";
+        String sql = "INSERT INTO user (first_name,second_name,user_name,password,mail) VALUES ('" + user.getUserFirstName() + "','" + user.getUserSecondName() + "','" + user.getUserName() + "','" + user.getPassword() + "','" + user.getUserEmail() + "')";
         PreparedStatement ps = conn.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
+        int rs = ps.executeUpdate();
+        System.out.println(rs);
         return 0;
     }
 

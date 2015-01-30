@@ -40,6 +40,15 @@ public class User implements Serializable {
         this.status = status;
     }
 
+    public User() {
+        this.userId = -1;
+        this.userName = "user";
+        this.password = "user";
+        this.FullName = "user";
+        this.userPicture = null;
+        this.status = OFFLINE;
+    }
+
     public int getUserId() {
         return userId;
     }

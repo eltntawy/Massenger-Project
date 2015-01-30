@@ -65,33 +65,9 @@ public class SignUpClientController {
         parentFrame.addCurrentPanel(signUpPanel);
     }
 
-    public User getData() {
-        firstname = signupview.getFirstName();
-        user.setUserFirstName(firstname);
+   
 
-        secondname = signupview.getSecondName();
-        user.setUserSecondName(secondname);
-
-        gender = signupview.getGender();
-        if (gender == 1) {
-            user.setUserGender("male");
-        } else if (gender == 0) {
-            user.setUserGender("female");
-
-        }
-        email = signupview.getEmail();
-        user.setUserEmail(email);
-
-        username = signupview.getUserName();
-        user.setUserName(username);
-
-        password = signupview.getPassword();
-        user.setPassword(password);
-
-        return user;
-    }
-
-    public void signUp() throws RemoteException {
+    public void signUp(User user) throws RemoteException {
         AuthenticationClientController signInController = new AuthenticationClientController(parentFrame, chatClientService, chatServerService);
 
         try {

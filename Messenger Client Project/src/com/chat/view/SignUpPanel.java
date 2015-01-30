@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import com.chat.controller.SignUpClientController;
+import com.chat.model.User;
 
 /**
  *
@@ -21,6 +22,8 @@ public class SignUpPanel extends javax.swing.JPanel {
     private SignUpClientController signUpController ;  
      private int female;
     private int male;
+    private User user;
+    private int gender;
     /**
      * Creates new form TempletePanel
      */
@@ -28,6 +31,7 @@ public class SignUpPanel extends javax.swing.JPanel {
         this.parentFrame = parentFrame;
         this.signUpController = signUpController;
         initComponents();
+        
     }
 
     /**
@@ -272,6 +276,66 @@ public class SignUpPanel extends javax.swing.JPanel {
         add(jPanel2);
     }// </editor-fold>//GEN-END:initComponents
 
+  public String getFirstName() {
+        return txtFirstName.getText();
+    }
+
+    public String getSecondName() {
+        return txtSecondName.getText();
+    }
+
+    public int getGender() //return 1 if male and 0 if female
+    {
+        if (male == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public String getEmail() {
+        return TxtMail.getText();
+    }
+
+    public String getUserName() {
+        return TxtUserName.getText();
+    }
+
+    public String getPassword() {
+        return txtPassword.getText();
+    }  
+    public User getData() {
+        
+        
+        
+        user.setUserFirstName(getFirstName());
+
+        
+        user.setUserSecondName(getSecondName());
+
+        gender=getGender();
+        if (gender == 1) {
+            user.setUserGender("male");
+        } else if (gender == 0) {
+            user.setUserGender("female");
+
+        }
+        
+        user.setUserEmail(getEmail());
+
+        
+        user.setUserName(getUserName());
+
+        
+        user.setPassword(getPassword());
+
+        return user;
+    }
+    
+    
+    
+    
+    
     private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
         // TODO add your handling code here:
         
@@ -300,7 +364,9 @@ public class SignUpPanel extends javax.swing.JPanel {
         }
         
         try {
-	    signUpController.doSignup();
+            user = new User();
+            getData();
+	    signUpController.signUp(user);
 	} catch (RemoteException e) {
 	    // TODO Auto-generated catch block
 	    JOptionPane.showMessageDialog(this, "cannot sign up !!");
@@ -321,34 +387,7 @@ public class SignUpPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_radiobtnFemaleActionPerformed
 
-    public String getFirstName() {
-        return txtFirstName.getText();
-    }
-
-    public String getSecondName() {
-        return txtSecondName.getText();
-    }
-
-    public int getGender() //return 1 if male and 0 if female
-    {
-        if (male == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
-    public String getEmail() {
-        return TxtMail.getText();
-    }
-
-    public String getUserName() {
-        return TxtUserName.getText();
-    }
-
-    public String getPassword() {
-        return txtPassword.getText();
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TxtMail;
     private javax.swing.JTextField TxtUserName;
