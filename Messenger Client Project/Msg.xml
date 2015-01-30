@@ -1,1 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><MessageHistory><Login userName="" userID="0"><UserTo userName="" userID="0"><Body font="" size="0" Color=""><Text></Text></Body></UserTo><UserTo userName="" userID="0"><Body font="" size="0" Color=""><Text></Text></Body></UserTo><UserTo userName="" userID="0"><Body font="" size="0" Color=""><Text></Text></Body></UserTo></Login><Login userName="" userID="0"><UserTo userName="" userID="0"><Body font="" size="0" Color=""><Text></Text></Body></UserTo></Login><Login userName="" userID="0"><UserTo userName="" userID="0"><Body font="" size="0" Color=""><Text></Text></Body></UserTo></Login></MessageHistory>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><MessageHistory>
+    <Login userName="Marwa" userID="0">
+        <UserTo userName="aya" userID="1">
+            <Body>
+                <Text>Hello My Friend</Text>
+            </Body>
+        </UserTo>
+    </Login>
+</MessageHistory>
