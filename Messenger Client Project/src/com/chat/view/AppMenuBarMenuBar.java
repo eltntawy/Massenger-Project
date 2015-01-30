@@ -66,7 +66,7 @@ public class AppMenuBarMenuBar extends JMenuBar implements ActionListener {
                     messengerController.doSignOut();
                     parentFrame.setJMenuBar(null);
                     parentFrame.revalidate();
-                } catch (RemoteException ex) {
+                } catch (RemoteException | SQLException ex) {
                     //  Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
                     // JOptionPane.showMessageDialog(parentFrame, ex);
                     ex.printStackTrace();
@@ -83,7 +83,7 @@ public class AppMenuBarMenuBar extends JMenuBar implements ActionListener {
                         messengerController.doSignOut();
                         parentFrame.setJMenuBar(null);
                         parentFrame.revalidate();
-                    } catch (RemoteException ex) {
+                    } catch (RemoteException | SQLException ex) {
                         //  Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
                         // JOptionPane.showMessageDialog(parentFrame, ex);
                         ex.printStackTrace();

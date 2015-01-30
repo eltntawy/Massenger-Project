@@ -364,6 +364,8 @@ public class MainPanel extends javax.swing.JPanel {
             try {
                 if (messengerController.checkUserId((User) listContact.getSelectedValue())) {
                     ConfirmRemoveFriendDialoge1 confirm = new ConfirmRemoveFriendDialoge1(parentFrame, true, (User) listContact.getSelectedValue());
+                    
+                    
                     confirm.setVisible(true);
 
                     boolean flag = confirm.getPressedbutton();
@@ -372,6 +374,7 @@ public class MainPanel extends javax.swing.JPanel {
                         try {
                             User user = (User) listContact.getSelectedValue();
                             messengerController.DeleteContactFromUser(user);
+                            ((ListComboBoxModel<User>)listContact.getModel()).removeElement(listContact.getSelectedValue());
                             initContactList();
                         } catch (RemoteException ex) {
                             Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);

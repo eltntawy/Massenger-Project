@@ -8,6 +8,7 @@ package com.chat.controller;
 import com.chat.db.DBConnection;
 import com.chat.model.User;
 import com.chat.rmi.ChatClientService;
+import com.chat.service.UserService;
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -61,7 +62,7 @@ public class ServerController {
 
     public  void unregisterAllClient() {
 
-        
+        UserService.doOfflineAllUsers();
         for (ChatClientService client : clientVector) {
             try {
                 client.doFourceSignOut();

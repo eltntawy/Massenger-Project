@@ -47,6 +47,9 @@ public class FXMLMainServerFrameController implements Initializable {
 
     @FXML
     private Button btnStop;
+    
+    @FXML
+    private Button btnCreateUser;
     @FXML
     private PieChart onlineContactChart;
 

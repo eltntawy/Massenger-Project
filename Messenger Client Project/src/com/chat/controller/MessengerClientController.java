@@ -31,7 +31,7 @@ public class MessengerClientController {
 
     }
 
-    public void doSignOut() throws RemoteException {
+    public void doSignOut() throws RemoteException, SQLException {
         // TODO Auto-generated method stub
         AuthenticationClientController signInController = new AuthenticationClientController(parentFrame, chatClientService, chatServerService);
         signInController.doSignOut();
