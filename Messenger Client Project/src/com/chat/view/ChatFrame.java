@@ -178,7 +178,9 @@ public class ChatFrame extends javax.swing.JFrame {
     }
     
     public void receiveFile (MessageFile messageFile){
-        File receivedFile = new File("D:\\helloo.txt");
+        JFileChooser saveFile = new JFileChooser ();
+        saveFile.showSaveDialog(this);
+        File receivedFile = new File(saveFile.getSelectedFile().getAbsolutePath());
         if (!receivedFile.exists()){
             try {
                 receivedFile.createNewFile();
