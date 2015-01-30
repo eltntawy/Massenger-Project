@@ -12,12 +12,17 @@
             <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Server%20Project/src/com/chat/service/ContactService.java</file>
         </group>
         <group name="Group 20150127-09:44:52">
+            <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/service/StatusService.java</file>
+            <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/service/RequestContactListService.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/rmi/ChatServerServiceImpl.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/controller/ChatServerController.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/controller/AddFriendController.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/service/ContactService.java</file>
+            <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/controller/RequestContactListController.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/controller/ServerController.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/service/AddFriendService.java</file>
+            <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/service/UserService.java</file>
+            <file>file:/H:/Messenger-Project/Messenger%20Server%20Project/src/com/chat/view/FXMLMainServerFrameController.java</file>
         </group>
     </open-files>
 </project-private>
