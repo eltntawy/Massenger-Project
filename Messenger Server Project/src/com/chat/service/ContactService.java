@@ -40,11 +40,11 @@ public abstract class ContactService {
     public static Map<String, Integer> getAllContactStatus() throws SQLException {
         Connection conn = DBConnection.getConnection();
         String sql = " select  case status "
-                + " when -1 then 'Offline' "
-                + " when 0 then 'Offline' "
-                + " when 1 then 'Available'"
-                + " when 2 then 'Busy'"
-                + " when 3 then 'Away' end  as 'Status', count(*) "
+                + " when "+User.OFFLINE+" then 'Offline' "
+                + " when" +User.SIGNOUT +" then 'Signout' "
+                + " when "+User.AVAILABLE+" then 'Available'"
+                + " when "+User.BUSY+" then 'Busy'"
+                + " when "+User.AWAY+" then 'Away' end  as 'Status', count(*) "
                 + " from user group by status";
         PreparedStatement ps = conn.prepareStatement(sql);
 

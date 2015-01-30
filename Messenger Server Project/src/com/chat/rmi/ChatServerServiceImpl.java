@@ -144,4 +144,10 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
 
     }
 
+    @Override
+    public void doSignout(User user) throws RemoteException, SQLException {
+	// TODO Auto-generated method stub
+	UserService.doSignoutUser(user);
+    }
+
 }

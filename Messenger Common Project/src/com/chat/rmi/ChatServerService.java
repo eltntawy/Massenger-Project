@@ -39,4 +39,6 @@ public interface ChatServerService extends Remote {
    
     public void doSignup(User user)throws  RemoteException;
 
+    public void doSignout(User user) throws  RemoteException, SQLException;
+
 }

@@ -170,11 +170,11 @@ public class SignInPanel extends javax.swing.JPanel {
 	    // TODO Auto-generated catch block
 	    JOptionPane.showMessageDialog(this, "Sorry server may be not started yet !!");
 	    isError =true;
-	    e.printStackTrace();
+	    System.err.println(e.getMessage());
 	} catch (NotBoundException e) {
 	    // TODO Auto-generated catch block
 	    JOptionPane.showMessageDialog(this, "Sorry server may be not started yet !!");
-	    e.printStackTrace();
+	    System.err.println(e.getMessage());
 	}
 	if (user == null && !isError) {
 	    JOptionPane.showMessageDialog(this, "Invalid User Name or Password !!");
