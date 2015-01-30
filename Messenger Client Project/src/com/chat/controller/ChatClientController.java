@@ -1,6 +1,7 @@
 package com.chat.controller;
 
 import com.chat.model.Message;
+import com.chat.model.MessageFile;
 import com.chat.model.User;
 import com.chat.rmi.ChatClientService;
 import com.chat.rmi.ChatClientServiceImpl;
@@ -101,12 +102,86 @@ public class ChatClientController {
             showReceiverChatFrame(message.getSessionId(), message.getSenderName());
             receiverChatFrame.receiveMessage(message);
         }
-    }  
+    }
+    
+    public void sendFile (MessageFile messageFile){
+        
+        try {
+            chatServerService.sendFile(messageFile);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ChatClientController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void receiveFile (MessageFile messageFile){
+        ChatClientController chatController = ((ChatClientServiceImpl)chatClientService).getChatController();
+        for (int i = 0; i < chatController.getChatFrame().size(); i++){
+            ChatFrame chatFrame = chatController.getChatFrame().elementAt(i);
+            if (messageFile.getSessionID().equals(chatFrame.getSessionId())){
+                chatFrame.receiveFile(messageFile);
+                break;
+            }
+            else {
+                System.out.println("Chat farme not active !!!!!!!!!!!");
+                showReceiverChatFrame(messageFile.getSessionID(), messageFile.getSender());
+                chatFrame.receiveFile(messageFile);
+            }
+        }
+        
+        if (chatController.getChatFrame().size() == 0){
+            System.out.println("Chat farme not active !!!!!!!!!!!");
+            showReceiverChatFrame(messageFile.getSessionID(), messageFile.getSender());
+            receiverChatFrame.receiveFile(messageFile);
+        }
+    }
     public void setChatFrame (ChatFrame chatFrame){
         chatFrameVector.addElement(chatFrame);
     }
     
     public Vector<ChatFrame> getChatFrame (){
         return chatFrameVector;
+    }
+    
+    public void removeChatFrame(String sessionId){
+        for (int i = 0; i < chatFrameVector.size(); i++){
+            if (sessionId.equals(chatFrameVector.elementAt(i).getSessionId())){
+                chatFrameVector.removeElementAt(i);
+            }
+        }
+    }
+    
+    public boolean requestSend (String fileName, User receiver){
+        try {
+            if (receiverChatFrame == null){
+                return chatServerService.requestSend(fileName, loginUser,receiver, senderChatFrame.getSessionId());
+            }
+            else if (senderChatFrame == null){
+                return chatServerService.requestSend(fileName, loginUser,receiver, receiverChatFrame.getSessionId());
+            }
+        } catch (RemoteException ex) {
+            Logger.getLogger(ChatClientController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    public boolean confirmRequest (User sender, String fileName, String sessionId){
+        
+         ChatClientController chatController = ((ChatClientServiceImpl)chatClientService).getChatController();
+        for (int i = 0; i < chatController.getChatFrame().size(); i++){
+            ChatFrame chatFrame = chatController.getChatFrame().elementAt(i);
+            if (sessionId.equals(chatFrame.getSessionId())){
+                return chatFrame.confirmRequest(fileName);
+            }
+            else {
+                System.out.println("Chat farme not active !!!!!!!!!!!");
+                showReceiverChatFrame(sessionId, sender);
+                return chatFrame.confirmRequest(fileName);
+            }
+        }
+        
+        if (chatController.getChatFrame().size() == 0){
+            System.out.println("Chat farme not active !!!!!!!!!!!");
+            showReceiverChatFrame(sessionId, sender);
+            return receiverChatFrame.confirmRequest(fileName);
+        }
+        return false;
     }
 }

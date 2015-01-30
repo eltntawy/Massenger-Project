@@ -1,15 +1,15 @@
  package com.chat.rmi;
 
-import com.chat.controller.ChatServerController;
 import com.chat.controller.AddFriendController;
+import com.chat.controller.ChatServerController;
 import com.chat.controller.ContactServerController;
 import com.chat.controller.RequestContactListController;
 import com.chat.controller.ServerController;
 import com.chat.controller.StatusServerController;
 import com.chat.model.Message;
+import com.chat.model.MessageFile;
 import com.chat.model.User;
 import com.chat.service.UserService;
-
 import com.chat.service.addFriendRequestService;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -149,5 +149,11 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
 	// TODO Auto-generated method stub
 	UserService.doSignoutUser(user);
     }
-
+    public void sendFile (MessageFile messageFile){
+        chatController.sendFile(messageFile);
+    }
+    
+    public boolean requestSend (String fileName, User sender, User receiver, String sessionId){
+        return chatController.requestSend(fileName, sender, receiver, sessionId);
+    }
 }
