@@ -6,39 +6,32 @@
 package com.chat.view;
 
 import java.net.URL;
-import java.rmi.RemoteException;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.UUID;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
-import com.chat.controller.ChatServerController;
-import com.chat.model.Message;
-import com.chat.model.User;
-import com.chat.view.resource.Resource;
+import com.chat.service.ContactService;
 
 /**
  * FXML Controller class
  *
  * @author eltntawy
  */
-public class FXMLAnnouncementMessage implements Initializable {
+public class FXMLUserChartReport implements Initializable {
 
     @FXML
-    TextArea txtMessage;
+    BarChart<String, Integer> barChartReport;
 
-    
-
-    @FXML
-    Button btnSendMessage;
-   
     @FXML
     Button btnCancel;
 
@@ -51,27 +44,28 @@ public class FXMLAnnouncementMessage implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-	
+	Series<String, Integer> series = new Series<String, Integer>();
+	series.setName("User contact list chart");
 
-    }
-
-    public void btnSendMessageAction(ActionEvent e) throws SQLException {
-
-	User sender = new User(0, "Administrator", "", "Administrator", Resource.IMAGE_DEFAULT_USER, 0);
-	Message message = new Message(sender , null, txtMessage.getText(), UUID.randomUUID().toString());
+	Map<String, Integer> resultMap;
 	try {
-	    ChatServerController.sendMessageForAllClient(message);
-	} catch (RemoteException e1) {
+	    resultMap = ContactService.getContactCountOfAllUsers();
+	    for (String key : resultMap.keySet()) {
+		series.getData().add(new XYChart.Data(key, resultMap.get(key)));
+	    }
+	    barChartReport.getData().add(series);
+	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
-	    e1.printStackTrace();
+	    e.printStackTrace();
 	}
+
     }
 
+    
     public void btnCancelAction(ActionEvent e) throws SQLException {
 
 	primaryStage.setScene(mainScane);
     }
-    
 
     public void setStage(Stage primaryStage) {
 	// TODO Auto-generated method stub

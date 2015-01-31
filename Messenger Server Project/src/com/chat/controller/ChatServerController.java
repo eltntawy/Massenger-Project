@@ -96,7 +96,7 @@ public class ChatServerController {
     
     public static void sendMessageForAllClient(Message message) throws RemoteException {
 	
-	for(ChatClientService client : clientVector) {
+	for(ChatClientService client : ServerController.getChatClientVector()) {
 	    client.receiveMessage(message);
 	}
     }
