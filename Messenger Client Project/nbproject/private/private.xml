@@ -2,16 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Client%20Project/src/com/chat/rmi/ChatClientServiceImpl.java</file>
-            <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Client%20Project/src/com/chat/controller/AuthenticationClientController.java</file>
-        </group>
+        <group name="Messenger Project"/>
         <group name="Group 20150127-09:44:52">
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/NotifyFriendRequestJDialoge.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/TestSchema.xsd</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/test/chat/FriendRequestPanel.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/FriendRequestPanel.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/xml/XML.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/getFriendRequestList.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/ContactPanel.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/test/chat/getFriendRequestList.java</file>
@@ -23,11 +18,13 @@
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/ConfirmAddFriendDialoge.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/AppMenuBar.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/SignUpPanel.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/controller/AuthenticationClientController.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/MainPanel.java</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/ChatHistory.xml</file>
             <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/AppMenuBarMenuBar.java</file>
         </group>
-        <group name="Messenger Project"/>
+        <group>
+            <file>file:/D:/MY%20CAREER%20ISA/ITI/java/JAVA%20PROJECT/Team7/Messenger-Project/Messenger%20Client%20Project/src/com/chat/controller/SignUpClientController.java</file>
+            <file>file:/D:/MY%20CAREER%20ISA/ITI/java/JAVA%20PROJECT/Team7/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/SignUpPanel.java</file>
+        </group>
     </open-files>
 </project-private>

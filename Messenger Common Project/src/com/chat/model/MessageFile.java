@@ -7,27 +7,39 @@
 package com.chat.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
  * @author yomna
  */
 public class MessageFile implements Serializable{
-    byte[] file;
+    List<byte[]> file;
     User sender;
     User receiver;
     String sessionID;
+    String fileName="";
     
-    public MessageFile(byte[] file, User sender, User receiver, String sessionID) {
+    public MessageFile(List<byte []> file,String fileName, User sender, User receiver, String sessionID) {
         this.file = file;
+        this.fileName = fileName;
         this.sender = sender;
         this.receiver = receiver;
         this.sessionID = sessionID;
         
     }
 
-    public void setFile(byte[] file) {
+    public void setFile(List<byte[]> file) {
         this.file = file;
+    }
+
+    
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public void setReceiver(User receiver) {
@@ -43,7 +55,7 @@ public class MessageFile implements Serializable{
     }
     
 
-    public byte[] getFile() {
+    public List<byte[]> getFile() {
         return file;
     }
 

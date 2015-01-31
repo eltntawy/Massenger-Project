@@ -108,6 +108,7 @@ public class ChatClientController {
         
         try {
             chatServerService.sendFile(messageFile);
+            
         } catch (RemoteException ex) {
             Logger.getLogger(ChatClientController.class.getName()).log(Level.SEVERE, null, ex);
         }

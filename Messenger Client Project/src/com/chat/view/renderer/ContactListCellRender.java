@@ -33,6 +33,8 @@ public class ContactListCellRender implements ListCellRenderer<User> {
                 contact.setUserStatusImage(Resource.IMAGE_AWAY);
             } else if (value.getStatus() == User.OFFLINE) {
                 contact.setUserStatusImage(Resource.IMAGE_OFFLINE);
+            } else {
+        	contact.setUserStatusImage(Resource.IMAGE_OFFLINE);
             }
 
             if (isSelected) {
