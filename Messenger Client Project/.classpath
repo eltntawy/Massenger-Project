@@ -26,5 +26,6 @@
 	<classpathentry kind="lib" path="lib/syntheticaSkyMetallic.jar"/>
 	<classpathentry kind="lib" path="lib/syntheticaWhiteVision.jar"/>
 	<classpathentry kind="lib" path="lib/weblaf-complete-1.28.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Messenger Common Project"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

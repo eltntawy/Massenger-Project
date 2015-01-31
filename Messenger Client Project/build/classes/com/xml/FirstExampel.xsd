@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+    
+    
+    
+    <xs:attributeGroup  name="UserGroup">
+        <xs:attribute name="userName" type="xs:string"/>
+        <xs:attribute name="userID" type="xs:int"/>
+    </xs:attributeGroup>
+    
+    
+    <xs:complexType name="MsgBody" >
+        <xs:sequence>
+            <xs:element name="Text" type="xs:string"  minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="font" type="xs:string"/>
+        <xs:attribute name="size" type="xs:int"/>
+        <xs:attribute name="Color" type="xs:string"/>
+    </xs:complexType>
+    
+    <xs:complexType name="UserTo">
+        <xs:sequence>
+            <xs:element name="Body" type="MsgBody"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="UserGroup"/>
+    </xs:complexType>
+    
+    <xs:complexType name="Login">
+        <xs:sequence>
+            <xs:element name="UserTo" type="UserTo" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="UserGroup" />
+    </xs:complexType>
+ 
+    
+    <xs:element name="MessageHistory">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Login" type="Login" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="msgTime" type="xs:time"/>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
