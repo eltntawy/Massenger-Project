@@ -58,9 +58,13 @@ public class FXMLMainServerFrameController implements Initializable {
 
     @FXML
     private Button btnCreateUser;
-    
+
     @FXML
     private Button btnAnnouncementMessage;
+
+    @FXML
+    private Button btnShowContactCount;
+
     @FXML
     private PieChart onlineContactChart;
 
@@ -197,10 +201,10 @@ public class FXMLMainServerFrameController implements Initializable {
 	Parent root = null;
 	try {
 	    root = fxmLoader.load(getClass().getResource("FXMLAnnouncementMessage.fxml").openStream());
-	    FXMLAnnouncementMessage announcementMessage = (FXMLAnnouncementMessage)fxmLoader.getController();
+	    FXMLAnnouncementMessage announcementMessage = (FXMLAnnouncementMessage) fxmLoader.getController();
 	    announcementMessage.setMainScene(mainScene);
 	    announcementMessage.setStage(primaryStage);
-	    
+
 	    primaryStage.setScene(new Scene(root));
 
 	} catch (IOException e1) {
@@ -208,6 +212,23 @@ public class FXMLMainServerFrameController implements Initializable {
 	    e1.printStackTrace();
 	}
 
+    }
+
+    public void btnShowContactCountAction(ActionEvent e) {
+	FXMLLoader fxmLoader = new FXMLLoader();
+	Parent root = null;
+	try {
+	    root = fxmLoader.load(getClass().getResource("FXMLUserChartReport.fxml").openStream());
+	    FXMLUserChartReport userChartReport = (FXMLUserChartReport) fxmLoader.getController();
+	    userChartReport.setMainScene(mainScene);
+	    userChartReport.setStage(primaryStage);
+
+	    primaryStage.setScene(new Scene(root));
+
+	} catch (IOException e1) {
+	    // TODO Auto-generated catch block
+	    e1.printStackTrace();
+	}
     }
 
     public void setStage(Stage primaryStage) {

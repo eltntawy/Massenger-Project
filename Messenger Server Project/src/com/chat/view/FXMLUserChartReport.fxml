@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="545.0" text="User Contact Count Report" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.view.FXMLUserChartReport">
+   <content>
+      <AnchorPane prefHeight="372.0" prefWidth="568.0">
+         <children>
+            <Button fx:id="btnCancel" layoutX="25.0" layoutY="369.0" mnemonicParsing="false" onAction="#btnCancelAction" text="Cancel" />
+            <BarChart fx:id="barChartReport" layoutX="22.0" layoutY="8.0" prefHeight="326.0" prefWidth="500.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+         </children>
+      </AnchorPane>
+   </content>
+</TitledPane>

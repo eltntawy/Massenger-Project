@@ -9,14 +9,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="425.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.view.FXMLMainServerFrameController">
+<AnchorPane id="AnchorPane" prefHeight="425.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chat.view.FXMLMainServerFrameController">
    <children>
       <Button fx:id="btnAnnouncementMessage" layoutX="14.0" layoutY="390.0" mnemonicParsing="false" onAction="#btnSendAnnouncementMessageAction" text="announcement Message" />
-      <Button fx:id="btnStop" layoutX="538.0" layoutY="390.0" mnemonicParsing="false" onAction="#btnStopAction" text="Stop" />
-      <Button fx:id="btnStart" layoutX="480.0" layoutY="390.0" mnemonicParsing="false" onAction="#btnStartAction" text="Start" />
+      <Button fx:id="btnStop" layoutX="618.0" layoutY="390.0" mnemonicParsing="false" onAction="#btnStopAction" text="Stop" />
+      <Button fx:id="btnStart" layoutX="560.0" layoutY="390.0" mnemonicParsing="false" onAction="#btnStartAction" text="Start" />
       <PieChart fx:id="onlineContactChart" layoutX="14.0" layoutY="12.0" onMouseClicked="#initPieChart" prefHeight="363.0" prefWidth="572.0" />
-      <Ellipse fx:id="serverStatusIndecator" fill="#ff281f" layoutX="408.0" layoutY="390.0" radiusX="20.0" radiusY="20.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button fx:id="btnRefresh" layoutX="524.0" layoutY="12.0" mnemonicParsing="false" onAction="#initPieChart" text="Refresh" />
+      <Ellipse fx:id="serverStatusIndecator" fill="#ff281f" layoutX="512.0" layoutY="400.0" radiusX="20.0" radiusY="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <Button fx:id="btnRefresh" layoutX="604.0" layoutY="12.0" mnemonicParsing="false" onAction="#initPieChart" text="Refresh" />
       <Button fx:id="btnAddUser" layoutX="216.0" layoutY="390.0" mnemonicParsing="false" onAction="#btnAddUserAction" text="Add User" />
+      <Button fx:id="btnShowContactCount" layoutX="309.0" layoutY="390.0" mnemonicParsing="false" onAction="#btnShowContactCountAction" text="Show Contact Count" />
    </children>
 </AnchorPane>

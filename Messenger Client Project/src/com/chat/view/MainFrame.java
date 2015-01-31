@@ -162,6 +162,7 @@ public class MainFrame extends JFrame implements WindowListener {
                 	this.authenticationClientController.doSignOut();
                     
                     this.dispose();
+                    System.exit(0);
                 }
             } else {
                 if (JOptionPane.showConfirmDialog(this, "Are you sure to sign out?") == JOptionPane.OK_OPTION) {
