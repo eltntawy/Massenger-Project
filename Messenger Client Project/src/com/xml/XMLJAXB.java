@@ -7,8 +7,13 @@ package com.xml;
 
 import com.chat.model.Message;
 import com.chat.model.User;
+import com.sun.org.apache.xml.internal.serialize.OutputFormat;
+import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 import java.awt.Font;
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,10 +22,13 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.util.ValidationEventCollector;
+import javax.xml.bind.Validator;
+import javax.xml.bind.util.JAXBSource;
+import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 
 /**
@@ -30,11 +38,13 @@ import org.xml.sax.SAXException;
 public class XMLJAXB {
 
     public XMLJAXB() {
+
         User user = new User(1, "aya", "Ibraheem", "254", null, 1);
         User userOut = new User(1, "marwa", "xyz", "2554", null, 0);
         Message msg = new Message(user, userOut, "Heeey", "125");
         Font font = new Font("Dialoge", Font.BOLD, 15);
         appendMsg(msg);
+
     }
 
     public void appendMsg(Message message) {
@@ -49,12 +59,38 @@ public class XMLJAXB {
 
             JAXBContext context = JAXBContext.newInstance("com.xml");
             Unmarshaller unmarsh = context.createUnmarshaller();
-
-//            ValidationEventCollector vec = new ValidationEventCollector();
-//            unmarsh.setEventHandler(vec);
-//         //   unmarsh.setValidating(false);
-//
             MessageHistory element = (MessageHistory) unmarsh.unmarshal(xmlFile);
+            //JAXBSource source = new JAXBSource(context, message);
+            
+//            URL schemaFile = new URL("http://www.w3.org/2001/XMLSchema");
+//            Source xmlFile2 = new StreamSource(new File("XMLMessenger.xml"));
+////            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+////            dbf.setNamespaceAware(true);
+////            DocumentBuilder db = dbf.newDocumentBuilder();
+////            org.w3c.dom.Document doc = db.parse(getClass().getResourceAsStream("newXMLDocument2.xml"));
+//            SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+////
+//   //         Source schemaFile = new StreamSource(getClass().getResourceAsStream("FirstExampel.xsd"));
+////            //Schema schema;
+//            schema = schemaFactory.newSchema(new File("FirstExampel.xsd"));
+//            javax.xml.validation.Validator validator = schema.newValidator();
+//            try {
+//                validator.validate(xmlFile2);
+//                System.out.println("Nice");
+//                //validator.setErrorHandler(new MyE);
+////            validator.validate(new DOMSource((doc)));
+////            schema = schemaFactory.newSchema(new File("FirstExampel.xsd"));
+////            javax.xml.validation.Validator validator = schema.newValidator();
+////            ValidationEventCollector vec = new ValidationEventCollector();
+////            unmarsh.setEventHandler(vec);
+//                //   unmarsh.setValidating();
+////
+//            } catch (IOException ex) {
+//                System.out.println("Error");
+//               // Logger.getLogger(XMLJAXB.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            
+
 //            if(vec.hasEvents()){
             setLogList = element.getLogin();
             for (int i = 0; i < element.getLogin().size(); i++) {
@@ -94,15 +130,18 @@ public class XMLJAXB {
                 logUser.getUserTo().add(to);
                 element.getLogin().add(logUser);
             }
-            SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            schema = schemaFactory.newSchema(new File("FirstExampel.xsd"));
+            //  SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            //schema = schemaFactory.newSchema(new File("FirstExampel.xsd"));
             Marshaller marsh = context.createMarshaller();
+            marsh.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            // marsh.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION, "FirstExampel.xsd");
+            // validator.validate((Source) element);
+            // marsh.setSchema(schema);
+            
             marsh.marshal(element, xmlFile);
 
             //new PrintWriter(new BufferedWriter(new FileWriter("XMLMessenger.xml", true))
         } catch (JAXBException ex) {
-            Logger.getLogger(XMLJAXB.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SAXException ex) {
             Logger.getLogger(XMLJAXB.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -112,4 +151,6 @@ public class XMLJAXB {
         new XMLJAXB();
 
     }
+    
+  
 }

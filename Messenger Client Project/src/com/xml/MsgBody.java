@@ -15,6 +15,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 /**
@@ -43,6 +44,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "MsgBody", propOrder = {
     "text"
 })
+	
+
 public class MsgBody {
 
     @XmlElement(name = "Text", required = true)
@@ -76,6 +79,8 @@ public class MsgBody {
      * 
      * 
      */
+   
+   
     public List<String> getText() {
         if (text == null) {
             text = new ArrayList<String>();

@@ -106,7 +106,7 @@ public class AppMenuBarMenuBar extends JMenuBar implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 try {
                     userList=messengerController.getRequestContactList();
-                    getFriendRequestList xc=new getFriendRequestList(parentFrame,true,userList);
+                    getFriendRequestList xc=new getFriendRequestList(parentFrame,true,userList,messengerController);
                     xc.setVisible(true);
                 } catch (RemoteException ex) {
                     Logger.getLogger(AppMenuBarMenuBar.class.getName()).log(Level.SEVERE, null, ex);

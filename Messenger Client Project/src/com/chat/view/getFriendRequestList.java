@@ -5,6 +5,7 @@
  */
 package com.chat.view;
 
+import com.chat.controller.MessengerClientController;
 import com.chat.model.User;
 import com.chat.view.ContactPanel;
 import com.test.chat.*;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -46,32 +48,34 @@ public class getFriendRequestList extends javax.swing.JDialog {
     JLabel lab = new JLabel();
     ArrayList<User> arr = new ArrayList<>();
     FriendRequestPanel pan;
+    JFrame parentFrame;
 
     public getFriendRequestList() {
 
         initComponents();
     }
 
-    public getFriendRequestList(java.awt.Frame parent, boolean modal, List<User> userList) {
+    public getFriendRequestList(java.awt.Frame parent, boolean modal, List<User> userList,MessengerClientController messengerController) {
         super(parent, modal);
         initComponents();
+        this.parentFrame=(JFrame) parent;
         this.getContentPane().setLayout(new FlowLayout());
         panel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         this.setLayout(new CardLayout());
-        c.gridx = 0;
-        c.gridy = 0;
-        lab.setText("Friend List");
-        lab.setFont(new Font(Font.DIALOG, Font.LAYOUT_LEFT_TO_RIGHT, 20));
-        panel.setBackground(Color.WHITE);
-        panel.add(lab, c);
-        panel.add(new JSeparator(SwingConstants.HORIZONTAL));
+//        c.gridx = 0;
+//        c.gridy = 0;
+//        lab.setText("Friend List");
+//        lab.setFont(new Font(Font.DIALOG, Font.LAYOUT_LEFT_TO_RIGHT, 20));
+//        panel.setBackground(Color.WHITE);
+//        panel.add(lab, c);
+//        panel.add(new JSeparator(SwingConstants.HORIZONTAL));
 
         //panel.setSize(parent.getWidth() * 2, parent.getHeight() * 2);
         for (int i = 0; i < userList.size(); i++) {
             c.gridx = 0;
             c.gridy = i + 2;
-            pan = new FriendRequestPanel(userList.get(i));
+            pan = new FriendRequestPanel(userList.get(i),messengerController,parentFrame);
             pan.setLabel(userList.get(i).getFullName());
             pan.setSize(parent.getWidth(), parent.getHeight());
             pan.revalidate();

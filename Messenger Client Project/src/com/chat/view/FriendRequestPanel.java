@@ -3,11 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.chat.view;
 
+import com.chat.controller.MessengerClientController;
 import com.chat.model.User;
 import com.test.chat.*;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -18,12 +23,24 @@ public class FriendRequestPanel extends javax.swing.JPanel {
     /**
      * Creates new form FriendRequestPanel
      */
-    public FriendRequestPanel(User user) {
+    int flag = 0;
+    User user;
+    MessengerClientController messengerController;
+    JFrame parentFrame;
+
+    public FriendRequestPanel(User user, MessengerClientController messengerController,JFrame parentFrame) {
         initComponents();
+        this.user = user;
+        this.messengerController = messengerController;
+        this.parentFrame=parentFrame;
     }
-    
-    public void setLabel(String value){
+
+    public void setLabel(String value) {
         jLabel1.setText(value);
+    }
+
+    public int getPressedButton() {
+        return flag;
     }
 
     /**
@@ -54,6 +71,11 @@ public class FriendRequestPanel extends javax.swing.JPanel {
         });
 
         jButton2.setText("Ignore");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -65,8 +87,8 @@ public class FriendRequestPanel extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,8 +104,34 @@ public class FriendRequestPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        System.out.println("");
+        String name = user.getFullName();
+        System.out.println(name);
+        try {
+            // add to friend list
+            messengerController.addFriend(user);
+            MainPanel m=new MainPanel(parentFrame, messengerController);
+            System.out.println("xxxx");
+         //   m.initContactList();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (RemoteException ex) {
+            ex.printStackTrace();
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        flag = 0;
+        try {
+            messengerController.deleteFriendRequest(user);
+            // remove from friend Request
+        } catch (RemoteException ex) {
+            ex.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
