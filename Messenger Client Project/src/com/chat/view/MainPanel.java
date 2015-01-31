@@ -506,7 +506,7 @@ public class MainPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(parentFrame, "Sorry you cannot add yourSelf ");
     }
 
-    public void initRequestContactList() {
+    public  void initRequestContactList() {
 
         List<User> list = null;
         try {
