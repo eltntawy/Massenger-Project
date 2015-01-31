@@ -32,97 +32,106 @@ public class User implements Serializable {
     private int status;
 
     public User(int userId, String userName, String password, String FullName, Icon userPicture, int status) {
-        this.userId = userId;
-        this.userName = userName;
-        this.password = password;
-        this.FullName = FullName;
-        this.userPicture = userPicture;
-        this.status = status;
+	this.userId = userId;
+	this.userName = userName;
+	this.password = password;
+	this.FullName = FullName;
+	this.userPicture = userPicture;
+	this.status = status;
+    }
+
+    public User() {
+	this.userId = -1;
+	this.userName = "user";
+	this.password = "user";
+	this.FullName = "user";
+	this.userPicture = null;
+	this.status = OFFLINE;
     }
 
     public int getUserId() {
-        return userId;
+	return userId;
     }
 
     public void setUserId(int userId) {
-        this.userId = userId;
+	this.userId = userId;
     }
 
     public int getStatus() {
-        return status;
+	return status;
     }
 
     public void setStatus(int status) {
-        this.status = status;
+	this.status = status;
     }
 
     public String getUserName() {
-        return userName;
+	return userName;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+	this.userName = userName;
     }
 
     public String getPassword() {
-        return password;
+	return password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+	this.password = password;
     }
 
     public String getFullName() {
-        return FullName;
+	return FullName;
     }
 
     public void setFullName(String FullName) {
-        this.FullName = FullName;
+	this.FullName = FullName;
     }
 
     public Icon getUserPicture() {
-        return userPicture;
+	return userPicture;
     }
 
     public void setUserPicture(Icon userPicture) {
-        this.userPicture = userPicture;
+	this.userPicture = userPicture;
     }
 
     public void setUserFirstName(String firstname) {
-        this.FirstName = firstname;
+	this.FirstName = firstname;
     }
 
     public String getUserFirstName() {
-        return FirstName;
+	return FirstName;
     }
 
     public void setUserSecondName(String secondname) {
-        this.SecondName = secondname;
+	this.SecondName = secondname;
     }
 
     public String getUserSecondName() {
-        return SecondName;
+	return SecondName;
     }
 
     public void setUserGender(String gender) {
-        this.Gender = gender;
+	this.Gender = gender;
     }
 
     public String getUserGender() {
-        return Gender;
+	return Gender;
     }
 
     public void setUserEmail(String email) {
-        this.Email = email;
+	this.Email = email;
     }
 
     public String getUserEmail() {
-        return Email;
+	return Email;
     }
 
     @Override
     public String toString() {
-        return FullName;
+	return FullName;
     }
 
 }

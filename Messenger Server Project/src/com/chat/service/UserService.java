@@ -28,10 +28,11 @@ public class UserService {
     public static int insertUser(User user) throws SQLException {
 	Connection conn = DBConnection.getConnection();
 
-	String sql = "INSERT INTO user VALUES (('" + user.getUserFirstName() + "','" + user.getUserSecondName() + "','" + user.getUserName() + "','" + user.getPassword() + "','" + user.getUserEmail() + "')";
+	String sql = "INSERT INTO user (first_name,second_name,user_name,password,mail) VALUES ('" + user.getUserFirstName() + "','" + user.getUserSecondName() + "','" + user.getUserName() + "','" + user.getPassword() + "','" + user.getUserEmail() + "')";
 	PreparedStatement ps = conn.prepareStatement(sql);
-	return ps.executeUpdate();
-	
+	int rs = ps.executeUpdate();
+	System.out.println(rs);
+	return rs;
     }
 
     /**
@@ -87,8 +88,8 @@ public class UserService {
 	    String password = rs.getString("password");
 	    String FullName = rs.getString("first_name");
 	    int status = User.AVAILABLE;
-	    rs.updateInt("status", User.AVAILABLE); 
-	   
+	    rs.updateInt("status", User.AVAILABLE);
+
 	    String img = rs.getString("image");
 	    ImageIcon imgicon;
 	    if (img == null || "".equals(img)) { // TODO Check for file
@@ -158,9 +159,9 @@ public class UserService {
 	// TODO Auto-generated method stub
 	Connection conn = DBConnection.getConnection();
 
-	    String sql = "update user set status = " + User.SIGNOUT + " where user_id = "+user.getUserId();
-	    PreparedStatement ps = conn.prepareStatement(sql);
+	String sql = "update user set status = " + User.SIGNOUT + " where user_id = " + user.getUserId();
+	PreparedStatement ps = conn.prepareStatement(sql);
 
-	    ps.executeUpdate();
+	ps.executeUpdate();
     }
 }

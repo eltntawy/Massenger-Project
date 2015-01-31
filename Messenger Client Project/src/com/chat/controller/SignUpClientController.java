@@ -1,18 +1,19 @@
 package com.chat.controller;
 
-import com.chat.model.User;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.sql.SQLException;
 
-import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
+import com.chat.model.User;
 import com.chat.rmi.ChatClientService;
 import com.chat.rmi.ChatClientServiceImpl;
 import com.chat.rmi.ChatServerService;
 import com.chat.view.MainFrame;
 import com.chat.view.SignUpPanel;
-import java.rmi.NotBoundException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 
 public class SignUpClientController {
 
@@ -31,101 +32,87 @@ public class SignUpClientController {
     private ChatClientServiceImpl clientimp;
 
     public SignUpClientController(MainFrame parentFrame, ChatClientService chatClientService, ChatServerService chatServerService) {
-        this.chatClientService = chatClientService;
-        this.chatServerService = chatServerService;
-        this.parentFrame = parentFrame;
-        this.signUpPanel = new SignUpPanel(parentFrame, this);
+	this.chatClientService = chatClientService;
+	this.chatServerService = chatServerService;
+	this.parentFrame = parentFrame;
+	this.signUpPanel = new SignUpPanel(parentFrame, this);
     }
 
     public void initRMIService() throws RemoteException, NotBoundException {
 
-        Registry reg = LocateRegistry.getRegistry("127.0.0.1", 8888);
+	Registry reg = LocateRegistry.getRegistry("127.0.0.1", 8888);
 
-        ChatServerService serverService = (ChatServerService) reg.lookup("ChatService");
+	ChatServerService serverService = (ChatServerService) reg.lookup("ChatService");
 
-        ChatClientService clientService = new ChatClientServiceImpl(null);
+	ChatClientService clientService = new ChatClientServiceImpl(null);
 
-       
-
-        this.chatServerService = serverService;
-        this.chatClientService = clientService;
+	this.chatServerService = serverService;
+	this.chatClientService = clientService;
     }
 
-    public void doSignup() throws RemoteException {
-        // TODO Auto-generated method stub
+    public void doSignup(User user) throws RemoteException, NotBoundException,SQLException {
+	// TODO Auto-generated method stub
 
-        AuthenticationClientController signInController = ((ChatClientServiceImpl) chatClientService).getAuthenticationController();
+	AuthenticationClientController signInController = new AuthenticationClientController(parentFrame, chatClientService, chatServerService);
 
-        signInController.doSignUp();
+	initRMIService();
+
+	if (chatClientService != null && chatServerService != null) {
+
+	    ChatClientController chatController = new ChatClientController(chatClientService, chatServerService);
+	    ContactClientController contactController = new ContactClientController(chatClientService, chatServerService);
+
+	    SignUpClientController signUpController = this;
+	    StatusCLientController statusController = new StatusCLientController(parentFrame, chatClientService, chatServerService);
+
+	    ((ChatClientServiceImpl) chatClientService).setAuthenticationController(signInController);
+	    ((ChatClientServiceImpl) chatClientService).setChatController(chatController);
+	    ((ChatClientServiceImpl) chatClientService).setContactController(contactController);
+	    ((ChatClientServiceImpl) chatClientService).setSignUpController(signUpController);
+	    ((ChatClientServiceImpl) chatClientService).setStatusController(statusController);
+
+	    chatServerService.doSignup(user);
+	    signInController.showSignIn();
+	}
+
     }
 
     public void showSignUp() {
-        // TODO Auto-generated method stub
-        parentFrame.removeCurrentPanel();
-        parentFrame.addCurrentPanel(signUpPanel);
+	// TODO Auto-generated method stub
+	parentFrame.removeCurrentPanel();
+	parentFrame.addCurrentPanel(signUpPanel);
     }
 
-    public User getData() {
-        firstname = signupview.getFirstName();
-        user.setUserFirstName(firstname);
+    public void signUp(User user) throws RemoteException, SQLException {
+	AuthenticationClientController signInController = new AuthenticationClientController(parentFrame, chatClientService, chatServerService);
 
-        secondname = signupview.getSecondName();
-        user.setUserSecondName(secondname);
+	try {
+	    initRMIService();
 
-        gender = signupview.getGender();
-        if (gender == 1) {
-            user.setUserGender("male");
-        } else if (gender == 0) {
-            user.setUserGender("female");
+	    if (chatClientService != null && chatServerService != null) {
 
-        }
-        email = signupview.getEmail();
-        user.setUserEmail(email);
+		ChatClientController chatController = new ChatClientController(chatClientService, chatServerService);
+		ContactClientController contactController = new ContactClientController(chatClientService, chatServerService);
 
-        username = signupview.getUserName();
-        user.setUserName(username);
+		SignUpClientController signUpController = this;
+		StatusCLientController statusController = new StatusCLientController(parentFrame, chatClientService, chatServerService);
 
-        password = signupview.getPassword();
-        user.setPassword(password);
+		((ChatClientServiceImpl) chatClientService).setAuthenticationController(signInController);
+		((ChatClientServiceImpl) chatClientService).setChatController(chatController);
+		((ChatClientServiceImpl) chatClientService).setContactController(contactController);
+		((ChatClientServiceImpl) chatClientService).setSignUpController(signUpController);
+		((ChatClientServiceImpl) chatClientService).setStatusController(statusController);
 
-        return user;
-    }
+	    }
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	} catch (NotBoundException ex) {
+	    ex.printStackTrace();
+	}
 
-    public void signUp() throws RemoteException {
-        AuthenticationClientController signInController = new AuthenticationClientController(parentFrame, chatClientService, chatServerService);
+	chatServerService.doSignup(user);
+	signInController.showSignIn();
 
-        try {
-            initRMIService();
-            
-            if (chatClientService != null && chatServerService != null) {
-                
-                ChatClientController chatController = new ChatClientController(chatClientService, chatServerService);
-                ContactClientController contactController = new ContactClientController(chatClientService, chatServerService);
-
-                SignUpClientController signUpController = this;
-                StatusCLientController statusController = new StatusCLientController(parentFrame, chatClientService, chatServerService);
-
-                ((ChatClientServiceImpl) chatClientService).setAuthenticationController(signInController);
-                ((ChatClientServiceImpl) chatClientService).setChatController(chatController);
-                ((ChatClientServiceImpl) chatClientService).setContactController(contactController);
-                ((ChatClientServiceImpl) chatClientService).setSignUpController(signUpController);
-                ((ChatClientServiceImpl) chatClientService).setStatusController(statusController);
-                
-
-            }
-        } catch (RemoteException ex) {
-            ex.printStackTrace();
-        } catch (NotBoundException ex) {
-            ex.printStackTrace();
-        }
-   
-         chatServerService.doSignup(user);
-         signInController.showSignIn();
-    
-    
-    
-    
-    
     }
 
 }

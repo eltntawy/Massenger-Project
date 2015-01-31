@@ -109,7 +109,7 @@ public class AuthenticationClientController {
 
     public void doSignUp() throws RemoteException {
 	// TODO Auto-generated method stub
-	SignUpClientController signUpController = ((ChatClientServiceImpl) chatClientService).getSignUpController();
+	SignUpClientController signUpController = new SignUpClientController(parentFrame, chatClientService, chatServerService);
 	signUpController.showSignUp();
     }
 

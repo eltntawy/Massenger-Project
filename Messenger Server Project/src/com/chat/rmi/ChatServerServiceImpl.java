@@ -1,4 +1,4 @@
- package com.chat.rmi;
+package com.chat.rmi;
 
 import com.chat.controller.AddFriendController;
 import com.chat.controller.ChatServerController;
@@ -24,123 +24,121 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
     private ChatServerController chatController;
 
     public ChatServerController getChatController() {
-        return chatController;
+	return chatController;
     }
 
     public void setChatController(ChatServerController chatController) {
-        this.chatController = chatController;
+	this.chatController = chatController;
     }
 
     public ChatServerServiceImpl(ServerController serverController) throws RemoteException {
-        this.serverController = serverController;
+	this.serverController = serverController;
 
     }
 
     @Override
     public void registerClient(ChatClientService chatClientService) throws RemoteException {
 
-        serverController.registerClient(chatClientService);
-        if (chatClientService.getUser() != null) {
-            System.out.println("client register" + chatClientService.getUser().getUserName());
-        }
+	serverController.registerClient(chatClientService);
+	if (chatClientService.getUser() != null) {
+	    System.out.println("client register" + chatClientService.getUser().getUserName());
+	}
     }
 
     @Override
     public void unregisterClient(ChatClientService chatClientService) throws RemoteException {
-        serverController.unregisterClient(chatClientService);
-        if (chatClientService.getUser() != null) {
-            System.out.println("client unregister" + chatClientService.getUser().getUserName());
-        }
+	serverController.unregisterClient(chatClientService);
+	if (chatClientService.getUser() != null) {
+	    System.out.println("client unregister" + chatClientService.getUser().getUserName());
+	}
 
     }
 
     @Override
     public List<User> getContactOfNameOrEmailOrUseName(String searchText) throws RemoteException, SQLException {
-        // TODO Auto-generated method stub
-        ContactServerController contactController = new ContactServerController();
-        return contactController.getContactOfNameOrEmailOrUseName(searchText);
+	// TODO Auto-generated method stub
+	ContactServerController contactController = new ContactServerController();
+	return contactController.getContactOfNameOrEmailOrUseName(searchText);
 
     }
 
     @Override
     public List<User> getContactListOfCurrentUser(User u) throws RemoteException, SQLException {
-        // TODO Auto-generated method stub
-        ContactServerController contactController = new ContactServerController();
-        return contactController.getContactListOfCurrentUser(u);
+	// TODO Auto-generated method stub
+	ContactServerController contactController = new ContactServerController();
+	return contactController.getContactListOfCurrentUser(u);
     }
 
     @Override
     public User userAuthentication(String userName, String password) throws RemoteException, SQLException {
-        // TODO Auto-generated method stub
-        return UserService.userAuthentication(userName, password);
+	// TODO Auto-generated method stub
+	return UserService.userAuthentication(userName, password);
     }
 
     @Override
     public void addRequestContact(User selectedValue, User user) throws RemoteException {
-        if (user != null) {
-            addFriendRequestService.addRequestContact(selectedValue, user);
-        }
+	if (user != null) {
+	    addFriendRequestService.addRequestContact(selectedValue, user);
+	}
     }
 
     @Override
     public List<User> getRequestContactList(User user) throws SQLException, RemoteException {
-        RequestContactListController request = new RequestContactListController();
-        return request.getRequestContactList(user);
+	RequestContactListController request = new RequestContactListController();
+	return request.getRequestContactList(user);
     }
 
     @Override
     public void addFriend(User user, User mainUser) throws SQLException, RemoteException {
-        AddFriendController add = new AddFriendController();
-        add.addFriend(user, mainUser);
+	AddFriendController add = new AddFriendController();
+	add.addFriend(user, mainUser);
 
     }
 
     @Override
     public void deleteFriendRequest(User user, User user0) throws SQLException, RemoteException {
-        AddFriendController add = new AddFriendController();
-        add.deleteFriendRequest(user, user0);
+	AddFriendController add = new AddFriendController();
+	add.deleteFriendRequest(user, user0);
     }
 
     @Override
     public void updateUserImage(String Path, User user) throws SQLException, RemoteException {
-        ContactServerController.updateUserImage(Path, user);
+	ContactServerController.updateUserImage(Path, user);
     }
 
     @Override
     public void sendMessage(Message message) throws RemoteException {
 
-        System.out.println(message.getSenderName());
-        System.out.println(message.getReceiverName());
-        System.out.println(message.getMessage());
-        chatController.sendMessage(message);
+	System.out.println(message.getSenderName());
+	System.out.println(message.getReceiverName());
+	System.out.println(message.getMessage());
+	chatController.sendMessage(message);
     }
 
     @Override
     public int updateUserStatus(User user) throws SQLException, RemoteException {
-        // TODO Auto-generated method stub
-        StatusServerController statusController = new StatusServerController();
-        return statusController.doChangeStatus(user);
+	// TODO Auto-generated method stub
+	StatusServerController statusController = new StatusServerController();
+	return statusController.doChangeStatus(user);
 
     }
 
     public void unregisterAllClient() {
-        serverController.unregisterAllClient();
+	serverController.unregisterAllClient();
     }
 
     @Override
     public void DeleteContactFromUser(User user, User Mainuser) throws SQLException, RemoteException {
-        AddFriendController remove = new AddFriendController();
-        remove.DeleteContactFromUser(user, Mainuser);
+	AddFriendController remove = new AddFriendController();
+	remove.DeleteContactFromUser(user, Mainuser);
     }
 
     @Override
-    public void doSignup(User user) {
-        try {
-            // throw new UnsupportedOpera tionException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            UserService.insertUser(user);                                      
-        } catch (SQLException ex) {
-            Logger.getLogger(ChatServerServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void doSignup(User user) throws SQLException {
+
+	// throw new UnsupportedOpera tionException("Not supported yet.");
+	// //To change body of generated methods, choose Tools | Templates.
+	UserService.insertUser(user);
 
     }
 
@@ -149,11 +147,12 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
 	// TODO Auto-generated method stub
 	UserService.doSignoutUser(user);
     }
-    public void sendFile (MessageFile messageFile){
-        chatController.sendFile(messageFile);
+
+    public void sendFile(MessageFile messageFile) {
+	chatController.sendFile(messageFile);
     }
-    
-    public boolean requestSend (String fileName, User sender, User receiver, String sessionId){
-        return chatController.requestSend(fileName, sender, receiver, sessionId);
+
+    public boolean requestSend(String fileName, User sender, User receiver, String sessionId) {
+	return chatController.requestSend(fileName, sender, receiver, sessionId);
     }
 }
