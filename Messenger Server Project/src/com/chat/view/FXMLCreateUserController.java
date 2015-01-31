@@ -153,7 +153,7 @@ public class FXMLCreateUserController implements Initializable {
 	}
 
 	boolean isValidEmail = txtEmail.getText().matches(email_pattern);
-	if ("".equals(txtEmail.getText()) || isValidEmail) {
+	if ("".equals(txtEmail.getText()) || !isValidEmail) {
 	    txtEmail.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 	    isValid = false;
 	}

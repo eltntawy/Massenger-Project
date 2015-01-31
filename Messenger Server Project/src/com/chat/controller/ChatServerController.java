@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class ChatServerController {
 
-    private Vector<ChatClientService> clientVector;
+    private static Vector<ChatClientService> clientVector;
     
     public void sendMessage (Message message){
         
@@ -91,5 +91,13 @@ public class ChatServerController {
             }
             
         }
+    }
+    
+    
+    public static void sendMessageForAllClient(Message message) throws RemoteException {
+	
+	for(ChatClientService client : clientVector) {
+	    client.receiveMessage(message);
+	}
     }
 }

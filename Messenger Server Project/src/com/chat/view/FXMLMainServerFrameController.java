@@ -55,9 +55,12 @@ public class FXMLMainServerFrameController implements Initializable {
 
     @FXML
     private Button btnStop;
-    
+
     @FXML
     private Button btnCreateUser;
+    
+    @FXML
+    private Button btnAnnouncementMessage;
     @FXML
     private PieChart onlineContactChart;
 
@@ -72,127 +75,146 @@ public class FXMLMainServerFrameController implements Initializable {
     private Stage primaryStage;
 
     private Scene mainScene;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            // TODO
-            Map<String, Integer> contactStatusMap = ContactService.getAllContactStatus();
+	try {
+	    // TODO
+	    Map<String, Integer> contactStatusMap = ContactService.getAllContactStatus();
 
-            List<PieChart.Data> pieDataList = new ArrayList<PieChart.Data>();
-            for (String key : contactStatusMap.keySet()) {
-                pieDataList.add(new PieChart.Data(key, contactStatusMap.get(key)));
-            }
+	    List<PieChart.Data> pieDataList = new ArrayList<PieChart.Data>();
+	    for (String key : contactStatusMap.keySet()) {
+		pieDataList.add(new PieChart.Data(key, contactStatusMap.get(key)));
+	    }
 
-            ObservableList<PieChart.Data> pieChartData
-                    = FXCollections.observableArrayList(pieDataList);
+	    ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(pieDataList);
 
-            final Label caption = new Label("");
-            caption.setTextFill(Color.DARKORANGE);
-            caption.setStyle("-fx-font: 24 arial;");
+	    final Label caption = new Label("");
+	    caption.setTextFill(Color.DARKORANGE);
+	    caption.setStyle("-fx-font: 24 arial;");
 
-            onlineContactChart.setAnimated(true);
-            //onlineContactChart.setData(pieChartData);
-            serverStatusIndecator.setFill(Paint.valueOf("Red"));
-            onlineContactChart.setTitle("Online Contact Chart");
-            btnStop.setDisable(true);
+	    onlineContactChart.setAnimated(true);
+	    // onlineContactChart.setData(pieChartData);
+	    serverStatusIndecator.setFill(Paint.valueOf("Red"));
+	    onlineContactChart.setTitle("Online Contact Chart");
+	    btnStop.setDisable(true);
 
-        } catch (SQLException ex) {
-            Logger.getLogger(FXMLMainServerFrameController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+	} catch (SQLException ex) {
+	    Logger.getLogger(FXMLMainServerFrameController.class.getName()).log(Level.SEVERE, null, ex);
+	}
 
     }
 
-    public  void initPieChart() throws SQLException {
+    public void initPieChart() throws SQLException {
 
-        Map<String, Integer> contactStatusMap = ContactService.getAllContactStatus();
-        List<PieChart.Data> pieDataList = new ArrayList<PieChart.Data>();
-        for (String key : contactStatusMap.keySet()) {
-            pieDataList.add(new PieChart.Data(key, contactStatusMap.get(key)));
-        }
+	Map<String, Integer> contactStatusMap = ContactService.getAllContactStatus();
+	List<PieChart.Data> pieDataList = new ArrayList<PieChart.Data>();
+	for (String key : contactStatusMap.keySet()) {
+	    pieDataList.add(new PieChart.Data(key, contactStatusMap.get(key)));
+	}
 
-        ObservableList<PieChart.Data> pieChartData
-                = FXCollections.observableArrayList(pieDataList);
-        onlineContactChart.setData(pieChartData);
+	ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(pieDataList);
+	onlineContactChart.setData(pieChartData);
 
     }
 
     public void initContactController(ContactServerController contactServerController) {
-        this.contactServerController = contactServerController;
+	this.contactServerController = contactServerController;
     }
 
     public void btnStartAction(ActionEvent e) throws SQLException {
-        try {
+	try {
 
-            reg = LocateRegistry.createRegistry(8888);
+	    reg = LocateRegistry.createRegistry(8888);
 
-            ServerController serverController = new ServerController();
+	    ServerController serverController = new ServerController();
 
-            server = new ChatServerServiceImpl(serverController);
+	    server = new ChatServerServiceImpl(serverController);
 
-            ChatServerController chatController2 = new ChatServerController();
+	    ChatServerController chatController2 = new ChatServerController();
 
-            server.setChatController(chatController2);
-            reg.rebind("ChatService", server);
+	    server.setChatController(chatController2);
+	    reg.rebind("ChatService", server);
 
-            serverStatusIndecator.setFill(Paint.valueOf("Green"));
-            System.out.println("Server Started");
-            btnStart.setDisable(true);
-            btnStop.setDisable(false);
+	    serverStatusIndecator.setFill(Paint.valueOf("Green"));
+	    System.out.println("Server Started");
+	    btnStart.setDisable(true);
+	    btnStop.setDisable(false);
 
-            initPieChart();
+	    initPieChart();
 
-        } catch (RemoteException ex) {
-            ex.printStackTrace();
-            System.err.println("Server error");
+	} catch (RemoteException ex) {
+	    ex.printStackTrace();
+	    System.err.println("Server error");
 
-        }
+	}
     }
 
     public void btnStopAction(ActionEvent e) {
-        if (reg != null) {
-            try {
-                server.unregisterAllClient();
-                reg.unbind("ChatService");
-                UnicastRemoteObject.unexportObject(reg, true);
-                UnicastRemoteObject.unexportObject(server, true);
-                serverStatusIndecator.setFill(Paint.valueOf("Red"));
+	if (reg != null) {
+	    try {
+		server.unregisterAllClient();
+		reg.unbind("ChatService");
+		UnicastRemoteObject.unexportObject(reg, true);
+		UnicastRemoteObject.unexportObject(server, true);
+		serverStatusIndecator.setFill(Paint.valueOf("Red"));
 
-                btnStart.setDisable(false);
-                btnStop.setDisable(true);
-                System.out.println("Server Stopped");
-            } catch (RemoteException ex) {
-                ex.printStackTrace();
-            } catch (NotBoundException ex) {
-                ex.printStackTrace();
-            }
-        }
+		btnStart.setDisable(false);
+		btnStop.setDisable(true);
+		System.out.println("Server Stopped");
+	    } catch (RemoteException ex) {
+		ex.printStackTrace();
+	    } catch (NotBoundException ex) {
+		ex.printStackTrace();
+	    }
+	}
     }
-    
+
     public void btnAddUserAction(ActionEvent e) throws SQLException {
 
 	FXMLLoader fxmlLoader = new FXMLLoader();
 	Parent root = null;
 	try {
 	    root = fxmlLoader.load(getClass().getResource("FXMLCreateUser.fxml").openStream());
+	    FXMLCreateUserController fxmlCreateUserController = (FXMLCreateUserController) fxmlLoader.getController();
+	    fxmlCreateUserController.setStage(primaryStage);
+	    fxmlCreateUserController.setMainScene(mainScene);
+
+	    primaryStage.setScene(new Scene(root));
+
 	} catch (IOException e1) {
 	    // TODO Auto-generated catch block
 	    e1.printStackTrace();
 	}
-	FXMLCreateUserController fxmlCreateUserController = (FXMLCreateUserController)fxmlLoader.getController();
-	fxmlCreateUserController.setStage(primaryStage);
-	fxmlCreateUserController.setMainScene(mainScene);
-	
-	primaryStage.setScene(new Scene(root));
+
+    }
+
+    public void btnSendAnnouncementMessageAction(ActionEvent e) {
+	FXMLLoader fxmLoader = new FXMLLoader();
+	Parent root = null;
+	try {
+	    root = fxmLoader.load(getClass().getResource("FXMLAnnouncementMessage.fxml").openStream());
+	    FXMLAnnouncementMessage announcementMessage = (FXMLAnnouncementMessage)fxmLoader.getController();
+	    announcementMessage.setMainScene(mainScene);
+	    announcementMessage.setStage(primaryStage);
+	    
+	    primaryStage.setScene(new Scene(root));
+
+	} catch (IOException e1) {
+	    // TODO Auto-generated catch block
+	    e1.printStackTrace();
+	}
+
     }
 
     public void setStage(Stage primaryStage) {
 	// TODO Auto-generated method stub
 	this.primaryStage = primaryStage;
     }
-    
+
     public void setMainScene(Scene mainScene) {
 	this.mainScene = mainScene;
     }
