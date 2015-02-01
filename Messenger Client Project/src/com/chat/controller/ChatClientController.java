@@ -7,7 +7,10 @@ import com.chat.rmi.ChatClientService;
 import com.chat.rmi.ChatClientServiceImpl;
 import com.chat.rmi.ChatServerService;
 import com.chat.view.ChatFrame;
+import com.chat.view.NotificationPopup;
+import com.chat.view.notificationDialog;
 import com.test.chat.MainFrame;
+
 import java.rmi.RemoteException;
 import java.util.UUID;
 import java.util.Vector;
@@ -184,5 +187,10 @@ public class ChatClientController {
             return receiverChatFrame.confirmRequest(fileName);
         }
         return false;
+    }
+
+    public void showUserOnline(User u) {
+	// TODO Auto-generated method stub
+	new NotificationPopup(u).setVisible(true);
     }
 }

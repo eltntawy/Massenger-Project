@@ -22,7 +22,7 @@ public class ContactPanel extends javax.swing.JPanel {
     Status state;
 
     public ContactPanel(User username) {
-        
+	initComponents();
         this.username = username;
         lblUserName.setText(username.getUserName());
         lblUserImage.setIcon(username.getUserPicture());

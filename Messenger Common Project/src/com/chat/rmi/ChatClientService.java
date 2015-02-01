@@ -22,4 +22,6 @@ public interface ChatClientService extends Remote {
 
     public void doFourceSignOut() throws RemoteException ;
 
+    public void showUserOnline(User u) throws RemoteException;
+
 }

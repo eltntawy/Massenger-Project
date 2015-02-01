@@ -40,7 +40,8 @@ public class SignUpClientController {
 
     public void initRMIService() throws RemoteException, NotBoundException {
 
-	Registry reg = LocateRegistry.getRegistry("127.0.0.1", 8888);
+	String serverIP = JOptionPane.showInputDialog("Please enter the server ip ","127.0.0.1");
+	Registry reg = LocateRegistry.getRegistry(serverIP, 8888);
 
 	ChatServerService serverService = (ChatServerService) reg.lookup("ChatService");
 

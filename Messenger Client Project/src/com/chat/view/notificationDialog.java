@@ -1,6 +1,10 @@
 
 package com.chat.view;
 
+import javax.swing.SwingUtilities;
+
+import com.chat.model.User;
+
 /**
  *
  * @author ALHUDA
@@ -127,4 +131,23 @@ public class notificationDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+    public void view(User u) {
+	// TODO Auto-generated method stub
+	SwingUtilities.invokeLater(new Runnable() {
+	    
+	    @Override
+	    public void run() {
+		// TODO Auto-generated method stub
+		notificationDialog.this.setVisible(true);
+		try {
+		    Thread.sleep(5000);
+		} catch (InterruptedException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+		notificationDialog.this.setVisible(false);
+	    }
+	});
+	
+    }
 }

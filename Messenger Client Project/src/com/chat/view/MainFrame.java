@@ -111,7 +111,7 @@ public class MainFrame extends JFrame implements WindowListener {
             renderSplashFrame(graphics, i);
             splashScreen.update();
             try {
-                Thread.sleep(100);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

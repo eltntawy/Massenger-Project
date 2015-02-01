@@ -113,4 +113,10 @@ public class ChatClientServiceImpl extends UnicastRemoteObject implements ChatCl
     public void receiveFile (MessageFile messageFile){
         chatController.receiveFile(messageFile);
     }
+
+    @Override
+    public void showUserOnline(User u) throws RemoteException {
+	// TODO Auto-generated method stub
+	chatController.showUserOnline(u);
+    }
 }

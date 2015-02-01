@@ -243,7 +243,7 @@ public class SignUpPanel extends javax.swing.JPanel {
 	user.setUserFirstName(getFirstName());
 
 	user.setUserSecondName(getSecondName());
-
+	user.setStatus(User.SIGNOUT);
 	gender = getGender();
 	if (gender == 1) {
 	    user.setUserGender("male");

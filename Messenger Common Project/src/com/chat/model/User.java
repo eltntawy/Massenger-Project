@@ -6,7 +6,10 @@
 package com.chat.model;
 
 import java.io.Serializable;
+
 import javax.swing.Icon;
+
+import com.chat.view.resource.Resource;
 
 /**
  *
@@ -39,15 +42,26 @@ public class User implements Serializable {
 	this.userPicture = userPicture;
 	this.status = status;
     }
+    
+    
 
     public User() {
-	this.userId = -1;
-	this.userName = "user";
-	this.password = "user";
-	this.FullName = "user";
-	this.userPicture = null;
-	this.status = OFFLINE;
+	
+	userId = -1;
+	userName = "";
+	password = "";
+	FullName = "";
+	FirstName = "";
+	SecondName = "";
+	Gender ="";
+	Email = "";
+	userPicture =Resource.IMAGE_DEFAULT_USER;
+	status = User.OFFLINE;
     }
+
+
+
+   
 
     public int getUserId() {
 	return userId;

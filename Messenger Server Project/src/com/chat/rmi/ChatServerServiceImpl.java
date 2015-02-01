@@ -9,8 +9,11 @@ import com.chat.controller.StatusServerController;
 import com.chat.model.Message;
 import com.chat.model.MessageFile;
 import com.chat.model.User;
+import com.chat.service.ContactService;
 import com.chat.service.UserService;
 import com.chat.service.addFriendRequestService;
+import com.sun.security.ntlm.Client;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
@@ -155,4 +158,19 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
     public boolean requestSend(String fileName, User sender, User receiver, String sessionId) {
 	return chatController.requestSend(fileName, sender, receiver, sessionId);
     }
+
+    @Override
+    public void showMyStatus(User user) throws RemoteException, SQLException {
+	// TODO Auto-generated method stub
+	for(ChatClientService client : ServerController.getChatClientVector()) {
+	    for(User contact : ContactService.getContactListOfCurrentUser(client.getUser())) {
+		if(user.getUserName().equals(contact.getUserName())) {
+		    client.showUserOnline(user);
+		}
+		
+	    }
+	}
+    }
+
+    
 }

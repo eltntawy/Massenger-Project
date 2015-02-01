@@ -3,6 +3,7 @@ package com.chat.controller;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import com.chat.model.User;
@@ -11,6 +12,7 @@ import com.chat.rmi.ChatClientServiceImpl;
 import com.chat.rmi.ChatServerService;
 import com.chat.view.MainFrame;
 import com.chat.view.SignInPanel;
+
 import java.rmi.NotBoundException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -41,7 +43,8 @@ public class AuthenticationClientController {
     public void initRMIService() throws RemoteException, NotBoundException {
 
 	if (reg == null || chatServerService == null || chatClientService == null) {
-	    reg = LocateRegistry.getRegistry("127.0.0.1", 8888);
+	    String serverIP = JOptionPane.showInputDialog("Please enter the server ip ","127.0.0.1");
+	    reg = LocateRegistry.getRegistry(serverIP, 8888);
 
 	    ChatServerService serverService = (ChatServerService) reg.lookup("ChatService");
 
@@ -97,6 +100,8 @@ public class AuthenticationClientController {
 	User user = userAuthentication(userName, password);
 	if (user != null) {
 	    chatClientService.setUser(user);
+	    AuthenticationClientController authenticationClientController = ((ChatClientServiceImpl)chatClientService).getAuthenticationController();
+	    showMyStstus(user);
 	    MessengerClientController messengerController = new MessengerClientController(parentFrame, chatClientService, chatServerService);
 	    messengerController.showMainPanel();
 	    messengerController.getContactListOfCurrentUser();
@@ -105,6 +110,11 @@ public class AuthenticationClientController {
 	    return user;
 	}
 	return null;
+    }
+
+    public void showMyStstus(User user) throws RemoteException, SQLException {
+	// TODO Auto-generated method stub
+	chatServerService.showMyStatus(user);
     }
 
     public void doSignUp() throws RemoteException {

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import com.chat.model.User;
 import com.chat.rmi.ChatClientService;
+import com.chat.rmi.ChatClientServiceImpl;
 import com.chat.rmi.ChatServerService;
 import com.chat.view.MainFrame;
 
@@ -25,6 +26,8 @@ public class StatusCLientController {
 
    
     public int doChangeStatus(User user) throws RemoteException, SQLException {
-	return chatServerService.updateUserStatus(user);
+	int ret = chatServerService.updateUserStatus(user);
+	((ChatClientServiceImpl)chatClientService).getAuthenticationController().showMyStstus(user);
+	return ret;
     }
 }
