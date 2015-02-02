@@ -26,8 +26,21 @@ public class StatusCLientController {
 
    
     public int doChangeStatus(User user) throws RemoteException, SQLException {
-	int ret = chatServerService.updateUserStatus(user);
-	((ChatClientServiceImpl)chatClientService).getAuthenticationController().showMyStstus(user);
-	return ret;
+	
+	new Thread() {
+	    public void run() {
+		try {
+		    chatServerService.updateUserStatus(user);
+		    ((ChatClientServiceImpl)chatClientService).getAuthenticationController().showMyStstus(user);
+		} catch (RemoteException | SQLException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+		
+		}
+	    
+	}.start();
+	
+	return 0;
     }
 }

@@ -159,7 +159,7 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
 	    UserService.doSignoutUser(user);
     }
 
-    public void sendFile(MessageFile messageFile) {
+    public void sendFile(MessageFile messageFile) throws RemoteException {
 	chatController.sendFile(messageFile);
     }
 

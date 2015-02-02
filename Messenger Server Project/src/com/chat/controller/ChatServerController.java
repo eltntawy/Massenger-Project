@@ -70,27 +70,28 @@ public class ChatServerController {
         return false;
     }
     
-    public void sendFile (MessageFile messageFile){
+    public int sendFile (MessageFile messageFile) throws RemoteException{
         System.out.println("File Received at serve");
         clientVector = ServerController.getChatClientVector();
-        
+        int count = 0 ;
         for (int i = 0; i < clientVector.size(); i++){
             
             ChatClientService client = clientVector.elementAt(i);
-            try {
+            
                 User Receiver = client.getUser();
                 if (Receiver.getStatus() == User.AVAILABLE){
                     if (Receiver.getUserName().equals(messageFile.getReceiver().getUserName())){
                         //receiver is online
                         client.receiveFile(messageFile);
+                        count++;
                     }
                 }
                 
-            } catch (RemoteException ex) {
-                Logger.getLogger(ChatServerController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                
+            
             
         }
+        return count;
     }
     
     

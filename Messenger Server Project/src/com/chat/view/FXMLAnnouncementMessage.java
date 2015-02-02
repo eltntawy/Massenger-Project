@@ -15,8 +15,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 import com.chat.controller.ChatServerController;
@@ -61,8 +63,14 @@ public class FXMLAnnouncementMessage implements Initializable {
 	Message message = new Message(sender , null, txtMessage.getText(), UUID.randomUUID().toString());
 	try {
 	    ChatServerController.sendMessageForAllClient(message);
+	    txtMessage.setText("");
 	} catch (RemoteException e1) {
 	    // TODO Auto-generated catch block
+	    Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error");
+		alert.setHeaderText("Send Message");
+		alert.setContentText("Server can not send message right now please check the server is running first.");
+		alert.show();
 	    e1.printStackTrace();
 	}
     }

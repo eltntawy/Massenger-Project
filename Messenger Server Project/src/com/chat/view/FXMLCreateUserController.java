@@ -174,12 +174,22 @@ public class FXMLCreateUserController implements Initializable {
 	}
 
 	if (isValid) {
-	    int i = UserService.insertUser(new User(0, txtUserName.getText(), txtPassword.getText(), txtFirstName.getText() + " " + txtSecondName.getText(), Resource.IMAGE_DEFAULT_USER, User.OFFLINE));
-	    if (i == 0) {
+	    int i = 0 ;
+	    try {
+	     i = UserService.insertUser(new User(0, txtUserName.getText(), txtPassword.getText(), txtFirstName.getText() + " " + txtSecondName.getText(), Resource.IMAGE_DEFAULT_USER, User.OFFLINE));
+	    }catch (SQLException ex) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error");
+		alert.setHeaderText("User created fail");
+		alert.setContentText(ex.getMessage());
+		alert.show();
+	    }
+	    if (i == 1) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information");
 		alert.setHeaderText("User Creation");
 		alert.setContentText("User created successfully.");
+		alert.show();
 
 	    }
 	}

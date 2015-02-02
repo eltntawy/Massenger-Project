@@ -26,9 +26,22 @@ public class ContactClientController {
 	
     }
 
+    List<User> retList ;
     public List<User> getContactOfNameOrEmailOrUseName(String searchText) throws RemoteException, SQLException {
 	// TODO Auto-generated method stub
-	return chatServerService.getContactOfNameOrEmailOrUseName(searchText);
+	new Thread() {
+	    @Override
+	    public void run() {
+	        // TODO Auto-generated method stub
+		try {
+		    retList = chatServerService.getContactOfNameOrEmailOrUseName(searchText);
+		} catch (RemoteException | SQLException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+	    }
+	};
+	return retList;
 	
     }
 

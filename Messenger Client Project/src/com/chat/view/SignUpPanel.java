@@ -262,40 +262,41 @@ public class SignUpPanel extends javax.swing.JPanel {
 
 	if (TxtUserName.getText().equals("")) {
 	    lblCheckUserName.setEnabled(true);
-	}
+	}else
 
 	if (TxtMail.getText().equals("")) {
 	    lblCheckMail.setEnabled(true);
-	}
+	}else
 
 	if (txtPassword.getText().equals("")) {
 	    lblCheckPassword.setEnabled(true);
-	}
+	}else
 
 	if (txtConfirmPassword.getText().equals("")) {
 	    lblCheckconfirmPassword.setEnabled(true);
-	}
+	}else 
 
 	if (!(txtPassword.getText().equals(txtConfirmPassword.getText()))) {
 	    lblCheckPassword.setEnabled(true);
 	    lblCheckconfirmPassword.setEnabled(true);
-	}
+	}else 
 	if (lblCheckMail.isEnabled() || lblCheckPassword.isEnabled() || lblCheckUserName.isEnabled() || lblCheckconfirmPassword.isEnabled()) {
 	    lblCheckfieldsl.setEnabled(true);
-	}
-
-	try {
-	    if (signUpController.doSignup(getData()) == 1)
-	    	JOptionPane.showMessageDialog(this, "you sign up successfully !!");
-	    else
-		JOptionPane.showMessageDialog(this, "please choose an other user name or email !!");
-	    	    
-	}catch (SQLException ex ) {
-	    JOptionPane.showMessageDialog(this, "please choose an other user name or email !!");
-	} catch (RemoteException | NotBoundException e) {
-	    // TODO Auto-generated catch block
-	    JOptionPane.showMessageDialog(this, "Sorry server may be not started yet !!");
-	    e.printStackTrace();
+	} else {
+        
+        	try {
+        	    if (signUpController.doSignup(getData()) == 1)
+        	    	JOptionPane.showMessageDialog(this, "you sign up successfully !!");
+        	    else
+        		JOptionPane.showMessageDialog(this, "please choose an other user name or email !!");
+        	    	    
+        	}catch (SQLException ex ) {
+        	    JOptionPane.showMessageDialog(this, "please choose an other user name or email !!");
+        	} catch (RemoteException | NotBoundException e) {
+        	    // TODO Auto-generated catch block
+        	    JOptionPane.showMessageDialog(this, "Sorry server may be not started yet !!");
+        	    e.printStackTrace();
+        	}
 	}
 
     }// GEN-LAST:event_btnCreateAccountActionPerformed
