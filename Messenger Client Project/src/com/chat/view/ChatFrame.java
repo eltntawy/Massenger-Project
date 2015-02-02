@@ -230,86 +230,115 @@ public class ChatFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed"
-    // desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-	jPanel2 = new javax.swing.JPanel();
-	jPanel6 = new javax.swing.JPanel();
-	jPanel5 = new javax.swing.JPanel();
-	jScrollPane1 = new javax.swing.JScrollPane();
-	jPanel3 = new javax.swing.JPanel();
-	jPanel7 = new javax.swing.JPanel();
-	jPanel4 = new javax.swing.JPanel();
-	txtChat = new javax.swing.JTextField();
-	btnSend = new javax.swing.JButton();
-	jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        txtChat = new javax.swing.JTextField();
+        btnSend = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
-	javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-	jPanel2.setLayout(jPanel2Layout);
-	jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 100, Short.MAX_VALUE));
-	jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 100, Short.MAX_VALUE));
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
-	setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-	setTitle("Chat");
-	setMinimumSize(new java.awt.Dimension(400, 400));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Chat");
+        setMinimumSize(new java.awt.Dimension(400, 400));
 
-	jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Chat"));
-	jPanel6.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Chat"));
+        jPanel6.setLayout(new java.awt.GridLayout(1, 0));
 
-	jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.LINE_AXIS));
 
-	jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Chat Area"));
-	jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-	jScrollPane1.setMaximumSize(null);
-	jScrollPane1.setPreferredSize(null);
-	jPanel5.add(jScrollPane1);
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Chat Area"));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setMaximumSize(null);
+        jScrollPane1.setPreferredSize(null);
+        jPanel5.add(jScrollPane1);
 
-	jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Chat Memeber"));
-	jPanel3.setMaximumSize(new java.awt.Dimension(230, 32767));
-	jPanel3.setMinimumSize(new java.awt.Dimension(250, 100));
-	jPanel3.setPreferredSize(new java.awt.Dimension(200, 100));
-	jPanel3.setLayout(new java.awt.GridLayout(2, 0));
-	jPanel5.add(jPanel3);
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Chat Memeber"));
+        jPanel3.setMaximumSize(new java.awt.Dimension(230, 32767));
+        jPanel3.setMinimumSize(new java.awt.Dimension(250, 100));
+        jPanel3.setPreferredSize(new java.awt.Dimension(200, 100));
+        jPanel3.setLayout(new java.awt.GridLayout(2, 0));
+        jPanel5.add(jPanel3);
 
-	jPanel6.add(jPanel5);
+        jPanel6.add(jPanel5);
 
-	getContentPane().add(jPanel6, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanel6, java.awt.BorderLayout.CENTER);
 
-	jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("font"));
-	jPanel4.setToolTipText("font");
-	jPanel4.setMaximumSize(new java.awt.Dimension(300, 50));
-	jPanel4.setMinimumSize(new java.awt.Dimension(300, 50));
-	jPanel4.setPreferredSize(new java.awt.Dimension(300, 50));
-	jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.PAGE_AXIS));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("font"));
+        jPanel4.setToolTipText("font");
+        jPanel4.setMaximumSize(new java.awt.Dimension(300, 50));
+        jPanel4.setMinimumSize(new java.awt.Dimension(300, 50));
+        jPanel4.setPreferredSize(new java.awt.Dimension(300, 50));
+        jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
 
-	txtChat.addKeyListener(new java.awt.event.KeyAdapter() {
-	    public void keyReleased(java.awt.event.KeyEvent evt) {
-		txtChatKeyReleased(evt);
-	    }
-	});
+        txtChat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtChatKeyReleased(evt);
+            }
+        });
 
-	btnSend.setText("Send");
-	btnSend.addActionListener(new java.awt.event.ActionListener() {
-	    public void actionPerformed(java.awt.event.ActionEvent evt) {
-		btnSendActionPerformed(evt);
-	    }
-	});
+        btnSend.setText("Send");
+        btnSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendActionPerformed(evt);
+            }
+        });
 
-	jButton1.setText("Attatch File");
-	jButton1.addActionListener(new java.awt.event.ActionListener() {
-	    public void actionPerformed(java.awt.event.ActionEvent evt) {
-		jButton1ActionPerformed(evt);
-	    }
-	});
+        jButton1.setText("Attatch File");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-	javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-	jPanel7.setLayout(jPanel7Layout);
-	jPanel7Layout.setHorizontalGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(jPanel7Layout.createSequentialGroup().addContainerGap().addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addGroup(jPanel7Layout.createSequentialGroup().addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jButton1).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(btnSend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))).addContainerGap()));
-	jPanel7Layout.setVerticalGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(jPanel7Layout.createSequentialGroup().addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(jButton1).addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)).addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
-	getContentPane().add(jPanel7, java.awt.BorderLayout.SOUTH);
+        getContentPane().add(jPanel7, java.awt.BorderLayout.SOUTH);
 
-	pack();
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSendActionPerformed

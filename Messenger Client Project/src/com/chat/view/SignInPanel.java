@@ -168,7 +168,7 @@ public class SignInPanel extends javax.swing.JPanel {
 
 	} catch (RemoteException | SQLException e) {
 	    // TODO Auto-generated catch block
-	    JOptionPane.showMessageDialog(this, "Sorry server may be not started yet !!");
+	    JOptionPane.showMessageDialog(this, "Sorry server may be not started yet !!\n"+e.getMessage());
 	    isError =true;
 	    System.err.println(e.getMessage());
 	} catch (NotBoundException e) {

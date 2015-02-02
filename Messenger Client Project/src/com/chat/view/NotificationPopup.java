@@ -112,6 +112,7 @@ public class NotificationPopup extends JWindow {
 	    @Override
 	    public void actionPerformed(final ActionEvent e) {
 		dispose();
+		count--;
 	    }
 	});
 

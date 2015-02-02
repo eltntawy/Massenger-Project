@@ -25,7 +25,7 @@ public class StatusCLientController {
     }
 
    
-    public int doChangeStatus(User user) throws RemoteException, SQLException {
+    public int doChangeStatus(final User user) throws RemoteException, SQLException {
 	
 	new Thread() {
 	    public void run() {

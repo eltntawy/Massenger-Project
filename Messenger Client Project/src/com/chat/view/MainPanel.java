@@ -30,6 +30,7 @@ import com.chat.view.model.ListComboBoxModel;
 import com.chat.view.renderer.ContactListCellRender;
 import com.chat.view.renderer.StatusListCellRender;
 import com.chat.view.resource.Resource;
+
 import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -46,6 +47,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
@@ -339,7 +341,7 @@ public class MainPanel extends javax.swing.JPanel {
 	if(isFirstTime) {
             try {
                 
-                
+                isFirstTime = false;
                 messengerController.doChangeStaus((Status) cbBoxUserStatus.getSelectedItem());
     
                 if (((Status) evt.getItem()).getStatus() == User.SIGNOUT) {
@@ -347,6 +349,7 @@ public class MainPanel extends javax.swing.JPanel {
                     parentFrame.setJMenuBar(null);
                     parentFrame.revalidate();
                 }
+                
             } catch (RemoteException e) {
                 JOptionPane.showMessageDialog(this, "can not change status right now");
                 e.printStackTrace();
@@ -355,6 +358,20 @@ public class MainPanel extends javax.swing.JPanel {
                 e.printStackTrace();
             }
         }
+	
+	new Thread () {
+	  @Override
+	public void run() {
+	    // TODO Auto-generated method stub
+	      try {
+		Thread.sleep(10);
+	    } catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
+	      isFirstTime = true;
+	}  
+	}.start();
 
     }// GEN-LAST:event_cbBoxUserStatusItemStateChanged
 

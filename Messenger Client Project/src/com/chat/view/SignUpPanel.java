@@ -9,6 +9,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -26,7 +27,7 @@ public class SignUpPanel extends javax.swing.JPanel {
     private int male;
     private User user;
     private int gender;
-
+    final String email_pattern = "^[\\w-_\\.+]*[\\w-_\\.]\\" + "@([\\w]+\\.)+[\\w]+[\\w]$";
     /**
      * Creates new form TempletePanel
      */
@@ -46,6 +47,7 @@ public class SignUpPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         imgIconRegisteration = new javax.swing.JLabel();
@@ -53,10 +55,6 @@ public class SignUpPanel extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         btnCreateAccount = new javax.swing.JButton();
-        lblCheckUserName = new javax.swing.JLabel();
-        lblCheckPassword = new javax.swing.JLabel();
-        lblCheckconfirmPassword = new javax.swing.JLabel();
-        lblCheckMail = new javax.swing.JLabel();
         lblCheckfieldsl = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         lblFirstName = new javax.swing.JLabel();
@@ -70,15 +68,16 @@ public class SignUpPanel extends javax.swing.JPanel {
         radiobtnFemale = new javax.swing.JRadioButton();
         lblMail = new javax.swing.JLabel();
         TxtMail = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lblCheckMail = new javax.swing.JLabel();
         lblUserName = new javax.swing.JLabel();
         TxtUserName = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        lblCheckUserName = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
-        jLabel6 = new javax.swing.JLabel();
+        lblCheckPassword = new javax.swing.JLabel();
         lblConfirmPassword = new javax.swing.JLabel();
         txtConfirmPassword = new javax.swing.JPasswordField();
+        lblCheckconfirmPassword = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Sign Up"));
@@ -121,22 +120,6 @@ public class SignUpPanel extends javax.swing.JPanel {
             }
         });
 
-        lblCheckUserName.setForeground(new java.awt.Color(255, 51, 51));
-        lblCheckUserName.setText("*");
-        lblCheckUserName.setEnabled(false);
-
-        lblCheckPassword.setForeground(new java.awt.Color(255, 51, 51));
-        lblCheckPassword.setText("*");
-        lblCheckPassword.setEnabled(false);
-
-        lblCheckconfirmPassword.setForeground(new java.awt.Color(255, 0, 0));
-        lblCheckconfirmPassword.setText("*");
-        lblCheckconfirmPassword.setEnabled(false);
-
-        lblCheckMail.setForeground(new java.awt.Color(255, 51, 0));
-        lblCheckMail.setText("*");
-        lblCheckMail.setEnabled(false);
-
         lblCheckfieldsl.setForeground(new java.awt.Color(255, 51, 0));
         lblCheckfieldsl.setText("* Please , check your entries");
         lblCheckfieldsl.setEnabled(false);
@@ -156,30 +139,50 @@ public class SignUpPanel extends javax.swing.JPanel {
         lblGender.setText("Gender");
         jPanel3.add(lblGender);
 
+        buttonGroup1.add(radiobtnMale);
+        radiobtnMale.setSelected(true);
         radiobtnMale.setText("Male");
         jPanel3.add(radiobtnMale);
 
+        buttonGroup1.add(radiobtnFemale);
         radiobtnFemale.setText("Female");
         jPanel3.add(radiobtnFemale);
 
         lblMail.setText("E-mail");
         jPanel3.add(lblMail);
         jPanel3.add(TxtMail);
-        jPanel3.add(jLabel4);
+
+        lblCheckMail.setForeground(new java.awt.Color(255, 51, 0));
+        lblCheckMail.setText("*");
+        lblCheckMail.setEnabled(false);
+        jPanel3.add(lblCheckMail);
 
         lblUserName.setText("User Name");
         jPanel3.add(lblUserName);
         jPanel3.add(TxtUserName);
-        jPanel3.add(jLabel5);
+
+        lblCheckUserName.setForeground(new java.awt.Color(255, 51, 51));
+        lblCheckUserName.setText("*");
+        lblCheckUserName.setEnabled(false);
+        jPanel3.add(lblCheckUserName);
 
         lblPassword.setText("Password");
         jPanel3.add(lblPassword);
         jPanel3.add(txtPassword);
-        jPanel3.add(jLabel6);
+
+        lblCheckPassword.setForeground(new java.awt.Color(255, 51, 51));
+        lblCheckPassword.setText("*");
+        lblCheckPassword.setEnabled(false);
+        jPanel3.add(lblCheckPassword);
 
         lblConfirmPassword.setText("Confirm Password");
         jPanel3.add(lblConfirmPassword);
         jPanel3.add(txtConfirmPassword);
+
+        lblCheckconfirmPassword.setForeground(new java.awt.Color(255, 0, 0));
+        lblCheckconfirmPassword.setText("*");
+        lblCheckconfirmPassword.setEnabled(false);
+        jPanel3.add(lblCheckconfirmPassword);
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -198,22 +201,15 @@ public class SignUpPanel extends javax.swing.JPanel {
                     .addComponent(jSeparator1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCheckfieldsl, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblCheckfieldsl, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(btnCreateAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(73, 73, 73)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblCheckUserName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblCheckPassword))
-                                        .addComponent(lblCheckMail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblCheckconfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnCreateAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -229,23 +225,13 @@ public class SignUpPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblCheckMail)
-                        .addGap(43, 43, 43)
-                        .addComponent(lblCheckUserName)
-                        .addGap(43, 43, 43)
-                        .addComponent(lblCheckPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(lblCheckconfirmPassword))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblCheckfieldsl)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCreateAccount)
-                            .addComponent(btnBack))))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCheckfieldsl)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCreateAccount)
+                    .addComponent(btnBack))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -260,30 +246,53 @@ public class SignUpPanel extends javax.swing.JPanel {
     private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCreateAccountActionPerformed
 	// TODO add your handling code here:
 
+	boolean isError = false;
 	if (TxtUserName.getText().equals("")) {
 	    lblCheckUserName.setEnabled(true);
-	}else
+	    isError = true;
+	} else {
+	    lblCheckUserName.setEnabled(false);
+	}
 
-	if (TxtMail.getText().equals("")) {
+	if (!TxtMail.getText().matches(email_pattern)) {
 	    lblCheckMail.setEnabled(true);
-	}else
+	    isError = true;
+	} else {
+	    lblCheckMail.setEnabled(false);
+	}
 
 	if (txtPassword.getText().equals("")) {
 	    lblCheckPassword.setEnabled(true);
-	}else
+	    isError = true;
+	} else {
+	    lblCheckPassword.setEnabled(false);
+	}
 
 	if (txtConfirmPassword.getText().equals("")) {
 	    lblCheckconfirmPassword.setEnabled(true);
-	}else 
+	    isError = true;
+	} else {
+	    lblCheckconfirmPassword.setEnabled(false);
+	}
 
-	if (!(txtPassword.getText().equals(txtConfirmPassword.getText()))) {
+	if ((!txtPassword.getText().equals("")|| txtConfirmPassword.getText().equals("")) 
+		&& !(txtPassword.getText().equals(txtConfirmPassword.getText()))) {
 	    lblCheckPassword.setEnabled(true);
 	    lblCheckconfirmPassword.setEnabled(true);
-	}else 
+	    isError = true;
+	} else {
+	    lblCheckPassword.setEnabled(false);
+	    lblCheckconfirmPassword.setEnabled(false);
+	}
+	
 	if (lblCheckMail.isEnabled() || lblCheckPassword.isEnabled() || lblCheckUserName.isEnabled() || lblCheckconfirmPassword.isEnabled()) {
 	    lblCheckfieldsl.setEnabled(true);
-	} else {
+	    isError = true;
+	}  else {
+	    lblCheckfieldsl.setEnabled(false);
+	}
         
+	if(!isError) {
         	try {
         	    if (signUpController.doSignup(getData()) == 1)
         	    	JOptionPane.showMessageDialog(this, "you sign up successfully !!");
@@ -298,6 +307,7 @@ public class SignUpPanel extends javax.swing.JPanel {
         	    e.printStackTrace();
         	}
 	}
+	
 
     }// GEN-LAST:event_btnCreateAccountActionPerformed
 
@@ -370,13 +380,11 @@ public class SignUpPanel extends javax.swing.JPanel {
     private javax.swing.JTextField TxtUserName;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreateAccount;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel imgIconRegisteration;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

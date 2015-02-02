@@ -8,7 +8,9 @@ package com.chat.controller;
 import com.chat.db.DBConnection;
 import com.chat.model.User;
 import com.chat.rmi.ChatClientService;
+import com.chat.rmi.ChatServerService;
 import com.chat.service.UserService;
+
 import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -48,6 +50,18 @@ public class ServerController {
     public void registerClient(ChatClientService chatClientService) {
 
         clientVector.add(chatClientService);
+        
+        synchronized (ServerController.class) {
+            for(ChatClientService client : clientVector)  {
+                try {
+            	client.getUser();
+                } catch (RemoteException e) {
+            	clientVector.remove(client);
+            	e.printStackTrace();
+                }
+            }
+	}
+        
     }
 
     public  void  unregisterClient(ChatClientService chatClientService) {

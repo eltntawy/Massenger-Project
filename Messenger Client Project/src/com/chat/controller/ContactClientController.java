@@ -36,7 +36,7 @@ public class ContactClientController {
 	
     }
     
-    public void getContactOfNameOrEmailOrUseName(String searchText) throws RemoteException, SQLException {
+    public void getContactOfNameOrEmailOrUseName(final String searchText) throws RemoteException, SQLException {
 	// TODO Auto-generated method stub
 	new Thread() {
 	    @Override

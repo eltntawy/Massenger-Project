@@ -93,7 +93,7 @@ public class MessengerClientController {
     public void initContactListView(List<User> retList) {
 	
    	mainPanel.initContactList(retList);
-       }
+    }
 
     public void addRequestContact(User selectedValue) throws RemoteException {
         System.out.println(selectedValue.getUserId() + "    " + ((ChatClientServiceImpl)chatClientService).getUser().getUserId());
