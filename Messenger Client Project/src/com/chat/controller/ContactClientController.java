@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.chat.model.User;
 import com.chat.rmi.ChatClientService;
+import com.chat.rmi.ChatClientServiceImpl;
 import com.chat.rmi.ChatServerService;
 import com.chat.view.MainFrame;
 
@@ -26,22 +27,30 @@ public class ContactClientController {
 	
     }
 
-    List<User> retList ;
-    public List<User> getContactOfNameOrEmailOrUseName(String searchText) throws RemoteException, SQLException {
+    public List<User> getContactOfNameOrEmailOrUseNameList(String searchText) throws RemoteException, SQLException {
+	// TODO Auto-generated method stub
+	
+		   return  chatServerService.getContactOfNameOrEmailOrUseName(searchText);
+		   
+	    
+	
+    }
+    
+    public void getContactOfNameOrEmailOrUseName(String searchText) throws RemoteException, SQLException {
 	// TODO Auto-generated method stub
 	new Thread() {
 	    @Override
 	    public void run() {
 	        // TODO Auto-generated method stub
 		try {
-		    retList = chatServerService.getContactOfNameOrEmailOrUseName(searchText);
+		   List<User> retList = chatServerService.getContactOfNameOrEmailOrUseName(searchText);
+		   ((ChatClientServiceImpl)chatClientService).getMessengerController().initContactListView(retList);
 		} catch (RemoteException | SQLException e) {
 		    // TODO Auto-generated catch block
 		    e.printStackTrace();
 		}
 	    }
 	};
-	return retList;
 	
     }
 

@@ -26,11 +26,12 @@ import com.sun.xml.internal.bind.v2.schemagen.xmlschema.NoFixedFacet;
 public class NotificationPopup extends JWindow {
     private final LinearGradientPaint lpg;
 
+    private static int count=0; 
     User user ;
     public NotificationPopup(User u) {
 	this.user = u;
 	//setUndecorated(true);
-	setSize(300, 100);
+	setSize(300, 60);
 
 	// size of the screen
 	final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -39,20 +40,41 @@ public class NotificationPopup extends JWindow {
 	final Insets scnMax = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
 	final int taskBarSize = scnMax.bottom;
 
-	setLocation(screenSize.width - getWidth(), screenSize.height - taskBarSize - getHeight());
-
+	int y = (screenSize.height - taskBarSize - getHeight()) - count*60;
+	setLocation(screenSize.width - getWidth(),y );
+	count++;
 	// background paint
 	lpg = new LinearGradientPaint(0, 0, 0, getHeight() / 2, 
-		new float[] { 0f, 0.3f, 1f }, 
+		new float[] { 0f, 0.5f, 1f }, 
 		new Color[] { 
-	    new Color(0.8f, 0.8f, 1f), 
-	    new Color(0.7f, 0.7f, 1f), 
-	    new Color(0.6f, 0.6f, 1f) 
+	    new Color(1f, 1f, 1f), 
+	    new Color(1f, 1f, 1f), 
+	    new Color(1f, 1f, 1f) 
 	    });
+	
 
 	// blue background panel
 	setContentPane(new BackgroundPanel());
 	init(user);
+	
+	new Thread() {
+	  @Override
+	public void run() {
+	    // TODO Auto-generated method stub
+	    for(int i = 0 ; i < 30;i ++ ) {
+		try {
+		    Thread.sleep(1000);
+		} catch (InterruptedException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+	    }
+	    dispose();
+	    count--;
+	}  
+	}.start();
+	
+	this.setAlwaysOnTop(true);
     }
 
     public void setUser(User user) {

@@ -53,7 +53,9 @@ public class FXMLUserChartReport implements Initializable {
 	    for (String key : resultMap.keySet()) {
 		series.getData().add(new XYChart.Data(key, resultMap.get(key)));
 	    }
+	    barChartReport.setAnimated(true);
 	    barChartReport.getData().add(series);
+	    
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();

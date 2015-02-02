@@ -331,23 +331,29 @@ public class MainPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_lblUserImageMouseClicked
 
+    boolean isFirstTime=true;
+    
     private void cbBoxUserStatusItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_cbBoxUserStatusItemStateChanged
 
         // TODO add your handling code here:
-        try {
-            messengerController.doChangeStaus((Status) cbBoxUserStatus.getSelectedItem());
-
-            if (((Status) evt.getItem()).getStatus() == User.SIGNOUT) {
-                messengerController.doSignOut();
-                parentFrame.setJMenuBar(null);
-                parentFrame.revalidate();
+	if(isFirstTime) {
+            try {
+                
+                
+                messengerController.doChangeStaus((Status) cbBoxUserStatus.getSelectedItem());
+    
+                if (((Status) evt.getItem()).getStatus() == User.SIGNOUT) {
+                    messengerController.doSignOut();
+                    parentFrame.setJMenuBar(null);
+                    parentFrame.revalidate();
+                }
+            } catch (RemoteException e) {
+                JOptionPane.showMessageDialog(this, "can not change status right now");
+                e.printStackTrace();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "can not change status right now");
+                e.printStackTrace();
             }
-        } catch (RemoteException e) {
-            JOptionPane.showMessageDialog(this, "can not change status right now");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "can not change status right now");
-            e.printStackTrace();
         }
 
     }// GEN-LAST:event_cbBoxUserStatusItemStateChanged
@@ -444,6 +450,19 @@ public class MainPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtContactSearch;
     private javax.swing.JPanel userPanel;
     // End of variables declaration//GEN-END:variables
+    
+    public void initContactList(List<User> retList) {
+	ListComboBoxModel<User> listModel = new ListComboBoxModel<User>();
+
+        if (retList != null) {
+            for (User user : retList) {
+                listModel.addElement(user);
+            }
+        }
+        listContact.setModel(listModel);
+	
+    }
+    
     public void initContactList() {
         if (listContact != null) {
 
@@ -594,9 +613,11 @@ public class MainPanel extends javax.swing.JPanel {
                     } else {
                         // TODO search for name on server contacts
                         try {
-                            List<User> searchContactList = messengerController.getContactOfNameOrEmailOrUseName(txtField.getText());
-                            for (User user : searchContactList) {
-                                ((ListComboBoxModel<User>) filterList.getModel()).addElement(user);
+                            List<User> searchContactList = messengerController.getContactOfNameOrEmailOrUseNameList(txtField.getText());
+                            if(searchContactList != null){
+                                for (User user : searchContactList) {
+                                    ((ListComboBoxModel<User>) filterList.getModel()).addElement(user);
+                                }
                             }
                             if (filterList.getModel().getSize() > 0) {
                                 filterList.setSelectedIndex(0);

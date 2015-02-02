@@ -9,9 +9,11 @@ import com.chat.rmi.ChatServerService;
 import com.chat.view.ChatFrame;
 import com.chat.view.MainFrame;
 import com.chat.view.MainPanel;
+
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.List;
+
 import javax.swing.JTextField;
 
 public class MessengerClientController {
@@ -48,11 +50,11 @@ public class MessengerClientController {
 
     }
 
-    public List<User> getContactOfNameOrEmailOrUseName(String searchText) throws RemoteException, SQLException {
+    public void getContactOfNameOrEmailOrUseName(String searchText) throws RemoteException, SQLException {
 
         // TODO Auto-generated method stub
-        ContactClientController contactController = new ContactClientController(chatClientService, chatServerService);
-        return contactController.getContactOfNameOrEmailOrUseName(searchText);
+        ContactClientController contactController = ((ChatClientServiceImpl)chatClientService).getContactController();
+        contactController.getContactOfNameOrEmailOrUseName(searchText);
 
     }
 
@@ -83,6 +85,15 @@ public class MessengerClientController {
         }
         return null;
     }
+    
+    public void initContactListView() {
+	mainPanel.initContactList();
+    }
+    
+    public void initContactListView(List<User> retList) {
+	
+   	mainPanel.initContactList(retList);
+       }
 
     public void addRequestContact(User selectedValue) throws RemoteException {
         System.out.println(selectedValue.getUserId() + "    " + ((ChatClientServiceImpl)chatClientService).getUser().getUserId());
@@ -148,5 +159,12 @@ public class MessengerClientController {
 
     public void DeleteContactFromUser(User user) throws RemoteException, SQLException {
         chatServerService.DeleteContactFromUser(user, ((ChatClientServiceImpl)chatClientService).getUser());
+    }
+
+    public List<User> getContactOfNameOrEmailOrUseNameList(String searchText) throws RemoteException, SQLException  {
+	// TODO Auto-generated method stub
+	ContactClientController contactController = ((ChatClientServiceImpl)chatClientService).getContactController();
+        return contactController.getContactOfNameOrEmailOrUseNameList(searchText);
+	
     }
 }

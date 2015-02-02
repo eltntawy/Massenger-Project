@@ -65,17 +65,25 @@ public class SignUpClientController {
 
 	    SignUpClientController signUpController = this;
 	    StatusCLientController statusController = new StatusCLientController(parentFrame, chatClientService, chatServerService);
-
+	    
+	    
+	    
 	    ((ChatClientServiceImpl) chatClientService).setAuthenticationController(signInController);
 	    ((ChatClientServiceImpl) chatClientService).setChatController(chatController);
 	    ((ChatClientServiceImpl) chatClientService).setContactController(contactController);
 	    ((ChatClientServiceImpl) chatClientService).setSignUpController(signUpController);
 	    ((ChatClientServiceImpl) chatClientService).setStatusController(statusController);
 
+	    chatClientService.setUser(user);
 	    ret = chatServerService.doSignup(user);
+	    
+	    MessengerClientController messengerClientController = new MessengerClientController(parentFrame, chatClientService, chatServerService);
+	    ((ChatClientServiceImpl) chatClientService).setMessengerController(messengerClientController);
+	    messengerClientController.initContactListView();
 	    chatServerService.unregisterClient(chatClientService);
-	    if(ret == 1)
-		signInController.showSignIn();
+	    if(ret == 1) {
+		messengerClientController.showMainPanel();
+	    }
 	}
 	return ret;
 	

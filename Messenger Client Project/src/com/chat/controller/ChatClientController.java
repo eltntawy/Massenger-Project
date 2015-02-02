@@ -192,5 +192,6 @@ public class ChatClientController {
     public void showUserOnline(User u) {
 	// TODO Auto-generated method stub
 	new NotificationPopup(u).setVisible(true);
+	((ChatClientServiceImpl)chatClientService).getMessengerController().initContactListView();
     }
 }

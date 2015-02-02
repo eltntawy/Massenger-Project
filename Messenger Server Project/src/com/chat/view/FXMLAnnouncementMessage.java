@@ -64,6 +64,11 @@ public class FXMLAnnouncementMessage implements Initializable {
 	try {
 	    ChatServerController.sendMessageForAllClient(message);
 	    txtMessage.setText("");
+	    Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Information");
+		alert.setHeaderText("Send Message");
+		alert.setContentText("Message send to all online user successfully.");
+		alert.show();
 	} catch (RemoteException e1) {
 	    // TODO Auto-generated catch block
 	    Alert alert = new Alert(AlertType.ERROR);
