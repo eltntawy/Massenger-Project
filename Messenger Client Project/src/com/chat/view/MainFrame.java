@@ -7,31 +7,28 @@ package com.chat.view;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.SplashScreen;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import com.chat.controller.AuthenticationClientController;
-import com.chat.rmi.ChatClientService;
-import com.chat.rmi.ChatServerService;
 
+import de.javasoft.plaf.synthetica.SyntheticaBlackEyeLookAndFeel;
+import de.javasoft.plaf.synthetica.SyntheticaBlackMoonLookAndFeel;
+import de.javasoft.plaf.synthetica.SyntheticaBlackStarLookAndFeel;
+import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
 import de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel;
-
-import java.rmi.RemoteException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -124,11 +121,12 @@ public class MainFrame extends JFrame implements WindowListener {
     public void initLookAndFeel() {
         try {
 
-            // UIManager.setLookAndFeel("com.alee.laf.WebLookAndFeel");
-            // UIManager.installLookAndFeel("SeaGlass",
-            // "com.seaglasslookandfeel.SeaGlassLookAndFeel");
+            //UIManager.setLookAndFeel("com.alee.laf.WebLookAndFeel");
+        	//UIManager.installLookAndFeel("SeaGlass",
+        	//"com.seaglasslookandfeel.SeaGlassLookAndFeel");
             // UIManager.setLookAndFeel(new SyntheticaStandardLookAndFeel());
-            UIManager.setLookAndFeel(new SyntheticaWhiteVisionLookAndFeel());
+            //UIManager.setLookAndFeel(new SyntheticaWhiteVisionLookAndFeel());
+             UIManager.setLookAndFeel(new SyntheticaBlackMoonLookAndFeel());
 
         } catch (Exception e) {
             // TODO Auto-generated catch block

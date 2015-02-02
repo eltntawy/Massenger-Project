@@ -17,18 +17,19 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JWindow;
 import javax.swing.SwingUtilities;
 
 import com.chat.model.User;
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.NoFixedFacet;
 
-public class NotificationPopup extends JDialog {
+public class NotificationPopup extends JWindow {
     private final LinearGradientPaint lpg;
 
     User user ;
     public NotificationPopup(User u) {
 	this.user = u;
-	setUndecorated(true);
+	//setUndecorated(true);
 	setSize(300, 100);
 
 	// size of the screen

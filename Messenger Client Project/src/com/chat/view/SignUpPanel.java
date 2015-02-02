@@ -43,120 +43,219 @@ public class SignUpPanel extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed"
-    // desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-	jPanel2 = new javax.swing.JPanel();
-	jPanel1 = new javax.swing.JPanel();
-	imgIconRegisteration = new javax.swing.JLabel();
-	lblRegisterHeader = new javax.swing.JLabel();
-	jSeparator1 = new javax.swing.JSeparator();
-	jLabel1 = new javax.swing.JLabel();
-	lblFirstName = new javax.swing.JLabel();
-	txtFirstName = new javax.swing.JTextField();
-	lblSecondName = new javax.swing.JLabel();
-	txtSecondName = new javax.swing.JTextField();
-	lblMail = new javax.swing.JLabel();
-	TxtMail = new javax.swing.JTextField();
-	lblGender = new javax.swing.JLabel();
-	radiobtnMale = new javax.swing.JRadioButton();
-	radiobtnFemale = new javax.swing.JRadioButton();
-	lblUserName = new javax.swing.JLabel();
-	TxtUserName = new javax.swing.JTextField();
-	lblPassword = new javax.swing.JLabel();
-	txtPassword = new javax.swing.JTextField();
-	lblConfirmPassword = new javax.swing.JLabel();
-	txtConfirmPassword = new javax.swing.JTextField();
-	btnCreateAccount = new javax.swing.JButton();
-	lblCheckUserName = new javax.swing.JLabel();
-	lblCheckPassword = new javax.swing.JLabel();
-	lblCheckconfirmPassword = new javax.swing.JLabel();
-	lblCheckMail = new javax.swing.JLabel();
-	lblCheckfieldsl = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        imgIconRegisteration = new javax.swing.JLabel();
+        lblRegisterHeader = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        btnCreateAccount = new javax.swing.JButton();
+        lblCheckUserName = new javax.swing.JLabel();
+        lblCheckPassword = new javax.swing.JLabel();
+        lblCheckconfirmPassword = new javax.swing.JLabel();
+        lblCheckMail = new javax.swing.JLabel();
+        lblCheckfieldsl = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        lblFirstName = new javax.swing.JLabel();
+        txtFirstName = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        lblSecondName = new javax.swing.JLabel();
+        txtSecondName = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        lblGender = new javax.swing.JLabel();
+        radiobtnMale = new javax.swing.JRadioButton();
+        radiobtnFemale = new javax.swing.JRadioButton();
+        lblMail = new javax.swing.JLabel();
+        TxtMail = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        lblUserName = new javax.swing.JLabel();
+        TxtUserName = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
+        jLabel6 = new javax.swing.JLabel();
+        lblConfirmPassword = new javax.swing.JLabel();
+        txtConfirmPassword = new javax.swing.JPasswordField();
+        btnBack = new javax.swing.JButton();
 
-	setBorder(javax.swing.BorderFactory.createTitledBorder("Sign Up"));
-	setMaximumSize(new java.awt.Dimension(300, 800));
-	setMinimumSize(new java.awt.Dimension(300, 800));
-	setPreferredSize(new java.awt.Dimension(300, 800));
+        setBorder(javax.swing.BorderFactory.createTitledBorder("Sign Up"));
+        setMaximumSize(new java.awt.Dimension(300, 800));
+        setMinimumSize(new java.awt.Dimension(300, 800));
+        setPreferredSize(new java.awt.Dimension(300, 800));
 
-	jPanel2.setMaximumSize(new java.awt.Dimension(315, 600));
-	jPanel2.setMinimumSize(new java.awt.Dimension(315, 600));
-	jPanel2.setPreferredSize(new java.awt.Dimension(315, 600));
+        jPanel2.setMaximumSize(new java.awt.Dimension(315, 600));
+        jPanel2.setMinimumSize(new java.awt.Dimension(315, 600));
+        jPanel2.setPreferredSize(new java.awt.Dimension(315, 600));
 
-	imgIconRegisteration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/chat/view/resource/img/SignUp.png"))); // NOI18N
+        imgIconRegisteration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/chat/view/resource/img/SignUp.png"))); // NOI18N
 
-	lblRegisterHeader.setText("<html><h3>Hi There ! </h3>\n<ul>\n<li>Easy steps to become a member </li>\n<li>Enjoy your time with your friends </li>\n</ul></html>");
+        lblRegisterHeader.setText("<html><h3>Hi There ! </h3>\n<ul>\n<li>Easy steps to become a member </li>\n<li>Enjoy your time with your friends </li>\n</ul></html>");
 
-	javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-	jPanel1.setLayout(jPanel1Layout);
-	jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(jPanel1Layout.createSequentialGroup().addComponent(imgIconRegisteration).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(lblRegisterHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)));
-	jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(imgIconRegisteration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addGroup(jPanel1Layout.createSequentialGroup().addComponent(lblRegisterHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE).addGap(0, 0, Short.MAX_VALUE)));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(imgIconRegisteration)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblRegisterHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(imgIconRegisteration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(lblRegisterHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
-	jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-	jLabel1.setText("Tell us about your self ?");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Tell us about your self ?");
 
-	lblFirstName.setText("First Name");
+        btnCreateAccount.setText("Create My Account");
+        btnCreateAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateAccountActionPerformed(evt);
+            }
+        });
 
-	lblSecondName.setText("Second Name");
+        lblCheckUserName.setForeground(new java.awt.Color(255, 51, 51));
+        lblCheckUserName.setText("*");
+        lblCheckUserName.setEnabled(false);
 
-	lblMail.setText("E-mail");
+        lblCheckPassword.setForeground(new java.awt.Color(255, 51, 51));
+        lblCheckPassword.setText("*");
+        lblCheckPassword.setEnabled(false);
 
-	lblGender.setText("Gender");
+        lblCheckconfirmPassword.setForeground(new java.awt.Color(255, 0, 0));
+        lblCheckconfirmPassword.setText("*");
+        lblCheckconfirmPassword.setEnabled(false);
 
-	radiobtnMale.setText("Male");
-	radiobtnMale.addActionListener(new java.awt.event.ActionListener() {
-	    public void actionPerformed(java.awt.event.ActionEvent evt) {
-		radiobtnMaleActionPerformed(evt);
-	    }
-	});
+        lblCheckMail.setForeground(new java.awt.Color(255, 51, 0));
+        lblCheckMail.setText("*");
+        lblCheckMail.setEnabled(false);
 
-	radiobtnFemale.setText("Female");
-	radiobtnFemale.addActionListener(new java.awt.event.ActionListener() {
-	    public void actionPerformed(java.awt.event.ActionEvent evt) {
-		radiobtnFemaleActionPerformed(evt);
-	    }
-	});
+        lblCheckfieldsl.setForeground(new java.awt.Color(255, 51, 0));
+        lblCheckfieldsl.setText("* Please , check your entries");
+        lblCheckfieldsl.setEnabled(false);
 
-	lblUserName.setText("User Name");
+        jPanel3.setLayout(new java.awt.GridLayout(7, 3, 10, 10));
 
-	lblPassword.setText("Password");
+        lblFirstName.setText("First Name");
+        jPanel3.add(lblFirstName);
+        jPanel3.add(txtFirstName);
+        jPanel3.add(jLabel2);
 
-	lblConfirmPassword.setText("Confirm Password");
+        lblSecondName.setText("Second Name");
+        jPanel3.add(lblSecondName);
+        jPanel3.add(txtSecondName);
+        jPanel3.add(jLabel3);
 
-	btnCreateAccount.setText("Create My Account");
-	btnCreateAccount.addActionListener(new java.awt.event.ActionListener() {
-	    public void actionPerformed(java.awt.event.ActionEvent evt) {
-		btnCreateAccountActionPerformed(evt);
-	    }
-	});
+        lblGender.setText("Gender");
+        jPanel3.add(lblGender);
 
-	lblCheckUserName.setForeground(new java.awt.Color(255, 51, 51));
-	lblCheckUserName.setText("*");
-	lblCheckUserName.setEnabled(false);
+        radiobtnMale.setText("Male");
+        jPanel3.add(radiobtnMale);
 
-	lblCheckPassword.setForeground(new java.awt.Color(255, 51, 51));
-	lblCheckPassword.setText("*");
-	lblCheckPassword.setEnabled(false);
+        radiobtnFemale.setText("Female");
+        jPanel3.add(radiobtnFemale);
 
-	lblCheckconfirmPassword.setForeground(new java.awt.Color(255, 0, 0));
-	lblCheckconfirmPassword.setText("*");
-	lblCheckconfirmPassword.setEnabled(false);
+        lblMail.setText("E-mail");
+        jPanel3.add(lblMail);
+        jPanel3.add(TxtMail);
+        jPanel3.add(jLabel4);
 
-	lblCheckMail.setForeground(new java.awt.Color(255, 51, 0));
-	lblCheckMail.setText("*");
-	lblCheckMail.setEnabled(false);
+        lblUserName.setText("User Name");
+        jPanel3.add(lblUserName);
+        jPanel3.add(TxtUserName);
+        jPanel3.add(jLabel5);
 
-	lblCheckfieldsl.setForeground(new java.awt.Color(255, 51, 0));
-	lblCheckfieldsl.setText("* Please , check your entries");
-	lblCheckfieldsl.setEnabled(false);
+        lblPassword.setText("Password");
+        jPanel3.add(lblPassword);
+        jPanel3.add(txtPassword);
+        jPanel3.add(jLabel6);
 
-	javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-	jPanel2.setLayout(jPanel2Layout);
-	jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 315, Short.MAX_VALUE).addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addContainerGap().addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(jSeparator1).addGroup(jPanel2Layout.createSequentialGroup().addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addComponent(lblCheckfieldsl, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE).addGap(73, 73, 73).addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false).addComponent(lblCheckUserName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(lblCheckPassword)).addComponent(lblCheckMail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)).addComponent(lblCheckconfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE))).addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE).addGroup(jPanel2Layout.createSequentialGroup().addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(lblFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(lblSecondName).addComponent(lblGender).addComponent(lblMail, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(lblUserName).addComponent(lblPassword).addComponent(lblConfirmPassword)).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE).addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addComponent(radiobtnMale).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(radiobtnFemale)).addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false).addComponent(TxtMail, javax.swing.GroupLayout.Alignment.LEADING).addComponent(txtSecondName).addComponent(TxtUserName, javax.swing.GroupLayout.Alignment.LEADING).addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)).addComponent(txtConfirmPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))).addGroup(jPanel2Layout.createSequentialGroup().addGap(70, 70, 70).addComponent(btnCreateAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)).addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(0, 0, Short.MAX_VALUE))).addContainerGap())));
-	jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 638, Short.MAX_VALUE).addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addContainerGap().addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE).addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addGap(249, 249, 249).addComponent(lblCheckMail).addGap(43, 43, 43).addComponent(lblCheckUserName).addGap(43, 43, 43).addComponent(lblCheckPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE).addGap(34, 34, 34).addComponent(lblCheckconfirmPassword)).addGroup(jPanel2Layout.createSequentialGroup().addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jLabel1).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(txtSecondName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addGap(4, 4, 4).addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(radiobtnMale).addComponent(radiobtnFemale)).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(TxtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(TxtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(txtConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)).addGroup(jPanel2Layout.createSequentialGroup().addComponent(lblFirstName).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(lblSecondName).addGap(10, 10, 10).addComponent(lblGender).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(lblMail).addGap(10, 10, 10).addComponent(lblUserName).addGap(10, 10, 10).addComponent(lblPassword).addGap(12, 12, 12).addComponent(lblConfirmPassword))).addGap(35, 35, 35).addComponent(lblCheckfieldsl).addGap(18, 18, 18).addComponent(btnCreateAccount))).addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))));
+        lblConfirmPassword.setText("Confirm Password");
+        jPanel3.add(lblConfirmPassword);
+        jPanel3.add(txtConfirmPassword);
 
-	add(jPanel2);
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblCheckfieldsl, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(btnCreateAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(73, 73, 73)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lblCheckUserName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblCheckPassword))
+                                        .addComponent(lblCheckMail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblCheckconfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblCheckMail)
+                        .addGap(43, 43, 43)
+                        .addComponent(lblCheckUserName)
+                        .addGap(43, 43, 43)
+                        .addComponent(lblCheckPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(lblCheckconfirmPassword))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCheckfieldsl)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCreateAccount)
+                            .addComponent(btnBack))))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+
+        add(jPanel2);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        signUpController.showSignIn();
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCreateAccountActionPerformed
 	// TODO add your handling code here:
@@ -186,9 +285,14 @@ public class SignUpPanel extends javax.swing.JPanel {
 	}
 
 	try {
-	    signUpController.doSignup(getData());
-	    JOptionPane.showMessageDialog(this, "you sign up successfully !!");
-	} catch (RemoteException | SQLException | NotBoundException e) {
+	    if (signUpController.doSignup(getData()) == 1)
+	    	JOptionPane.showMessageDialog(this, "you sign up successfully !!");
+	    else
+		JOptionPane.showMessageDialog(this, "please choose an other user name or email !!");
+	    	    
+	}catch (SQLException ex ) {
+	    JOptionPane.showMessageDialog(this, "please choose an other user name or email !!");
+	} catch (RemoteException | NotBoundException e) {
 	    // TODO Auto-generated catch block
 	    JOptionPane.showMessageDialog(this, "Sorry server may be not started yet !!");
 	    e.printStackTrace();
@@ -263,11 +367,18 @@ public class SignUpPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TxtMail;
     private javax.swing.JTextField TxtUserName;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreateAccount;
     private javax.swing.JLabel imgIconRegisteration;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCheckMail;
     private javax.swing.JLabel lblCheckPassword;
@@ -284,9 +395,9 @@ public class SignUpPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblUserName;
     private javax.swing.JRadioButton radiobtnFemale;
     private javax.swing.JRadioButton radiobtnMale;
-    private javax.swing.JTextField txtConfirmPassword;
+    private javax.swing.JPasswordField txtConfirmPassword;
     private javax.swing.JTextField txtFirstName;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtSecondName;
     // End of variables declaration//GEN-END:variables
 }

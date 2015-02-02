@@ -137,18 +137,26 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
     }
 
     @Override
-    public void doSignup(User user) throws SQLException {
+    public int doSignup(User user) throws SQLException {
 
 	// throw new UnsupportedOpera tionException("Not supported yet.");
 	// //To change body of generated methods, choose Tools | Templates.
-	UserService.insertUser(user);
+	if(user != null)
+	    try {
+	    return UserService.insertUser(user); 
+	    } catch (SQLException e) {
+		return 0;
+	    }
+	else 
+	    return 0;
 
     }
 
     @Override
     public void doSignout(User user) throws RemoteException, SQLException {
 	// TODO Auto-generated method stub
-	UserService.doSignoutUser(user);
+	if(user != null)
+	    UserService.doSignoutUser(user);
     }
 
     public void sendFile(MessageFile messageFile) {
@@ -164,7 +172,7 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
 	// TODO Auto-generated method stub
 	for(ChatClientService client : ServerController.getChatClientVector()) {
 	    for(User contact : ContactService.getContactListOfCurrentUser(client.getUser())) {
-		if(user.getUserName().equals(contact.getUserName())) {
+		if(user !=null && user.getUserName().equals(contact.getUserName())) {
 		    client.showUserOnline(user);
 		}
 		

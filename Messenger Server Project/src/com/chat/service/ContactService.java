@@ -189,8 +189,8 @@ public abstract class ContactService {
 
 	Connection conn = DBConnection.getConnection();
 
-	String sql = "select u.user_name , count(friend.friend_id) from user u , "
-		+ " friend_list friend where u.user_id = friend.user_id group by u.user_name";
+	String sql = "select u.user_name , count(friend.friend_id) from user u left join "
+		+ " friend_list friend on u.user_id = friend.user_id group by u.user_name";
 	PreparedStatement ps = conn.prepareStatement(sql);
 
 	ResultSet rs = ps.executeQuery();

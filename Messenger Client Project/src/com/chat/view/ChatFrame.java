@@ -345,7 +345,7 @@ public class ChatFrame extends javax.swing.JFrame {
 	File file =attachFileChooser.getSelectedFile(); 
 	fileName = file.getName();
 	
-	if(file.getTotalSpace() > 50000000) { 
+	if(file.length()> 50000000) { 
 		JOptionPane.showMessageDialog(this, "Max file length is 50 MB");
 		return;
 	    }
