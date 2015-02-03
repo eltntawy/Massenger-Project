@@ -20,6 +20,9 @@ public class AppMenuBar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         appNameMenu = new javax.swing.JMenu();
         newConversationMenuItem = new javax.swing.JMenuItem();
@@ -35,6 +38,16 @@ public class AppMenuBar extends javax.swing.JFrame {
         viewMenuItem = new javax.swing.JMenuItem();
         RemoveMenuItem = new javax.swing.JMenuItem();
         themesMenu = new javax.swing.JMenu();
+        helpMenu = new javax.swing.JMenu();
+        helpMenuItem = new javax.swing.JMenuItem();
+
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
+
+        jCheckBoxMenuItem2.setSelected(true);
+        jCheckBoxMenuItem2.setText("jCheckBoxMenuItem2");
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,13 +106,25 @@ public class AppMenuBar extends javax.swing.JFrame {
         themesMenu.setText("themes");
         jMenuBar1.add(themesMenu);
 
+        helpMenu.setText("Help");
+
+        helpMenuItem.setText("help ...");
+        helpMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpMenuItemActionPerformed(evt);
+            }
+        });
+        helpMenu.add(helpMenuItem);
+
+        jMenuBar1.add(helpMenu);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 241, Short.MAX_VALUE)
+            .addGap(0, 604, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,6 +143,10 @@ public class AppMenuBar extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_signOutMenuItemActionPerformed
+
+    private void helpMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_helpMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,7 +193,12 @@ public class AppMenuBar extends javax.swing.JFrame {
     private javax.swing.JMenu appNameMenu;
     private javax.swing.JMenu contactsMenu;
     private javax.swing.JMenuItem fileTransferMenuItem;
+    private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem helpMenuItem;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem newConversationMenuItem;
     private javax.swing.JMenuItem settingsMenuItem;
     private javax.swing.JMenuItem signOutMenuItem;

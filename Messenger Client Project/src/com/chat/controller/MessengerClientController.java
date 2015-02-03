@@ -31,6 +31,10 @@ public class MessengerClientController {
         this.mainPanel = new MainPanel(parentFrame, this);
 
     }
+    
+    public MainPanel getPanel(){
+        return mainPanel;
+    }
 
     public void doSignOut() throws RemoteException, SQLException {
         // TODO Auto-generated method stub

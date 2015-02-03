@@ -384,40 +384,49 @@ public class MainPanel extends javax.swing.JPanel {
         }
 
         if (evt.getClickCount() == 3) {
-            try {
-                if (messengerController.checkUserId((User) listContact.getSelectedValue())) {
-                    ConfirmRemoveFriendDialoge1 confirm = new ConfirmRemoveFriendDialoge1(parentFrame, true, (User) listContact.getSelectedValue());
-
-                    confirm.setVisible(true);
-
-                    boolean flag = confirm.getPressedbutton();
-
-                    if (flag) {
-                        try {
-                            User user = (User) listContact.getSelectedValue();
-                            messengerController.DeleteContactFromUser(user);
-                            ((ListComboBoxModel<User>) listContact.getModel()).removeElement(listContact.getSelectedValue());
-
-                            messengerController.initContactListForOtherUser(user);
-                            initContactList();
-                        } catch (RemoteException ex) {
-                            Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    } else {
-
-                    }
-                } else {
-                    errMessage();
-                    txtContactSearch.setText("");
-                }
-
-            } catch (RemoteException ex) {
-                Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            try {
+//                if (messengerController.checkUserId((User) listContact.getSelectedValue())) {
+//                    ConfirmRemoveFriendDialoge1 confirm = new ConfirmRemoveFriendDialoge1(parentFrame, true, (User) listContact.getSelectedValue());
+//
+//                    confirm.setVisible(true);
+//
+//                    boolean flag = confirm.getPressedbutton();
+//
+//                    if (flag) {
+//                        try {
+//                            User user = (User) listContact.getSelectedValue();
+//                            messengerController.DeleteContactFromUser(user);
+//                            ((ListComboBoxModel<User>) listContact.getModel()).removeElement(listContact.getSelectedValue());
+//
+//                            messengerController.initContactListForOtherUser(user);
+//                            initContactList();
+//                        } catch (RemoteException ex) {
+//                            Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
+//                        } catch (SQLException ex) {
+//                            Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
+//                        }
+//                    } else {
+//
+//                    }
+//                } else {
+//                    errMessage();
+//                    txtContactSearch.setText("");
+//                }
+//
+//            } catch (RemoteException ex) {
+//                Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
+//            }
         }
     }// GEN-LAST:event_listContactMousePressed
+    
+    public User getSelectedValueFromList(){
+        if(!listContact.isSelectionEmpty()){
+            return (User) listContact.getSelectedValue();
+        }
+        else{
+            return null;
+        }
+    }
 
     private void btnAddSearchContactActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAddSearchContactActionPerformed
         // TODO add your handling code here:
