@@ -114,7 +114,8 @@ public class MessengerClientController {
     }
 
     public boolean checkUserId(User selectedValue) throws RemoteException {
-        return selectedValue.getUserId() != ((ChatClientServiceImpl) chatClientService).getUser().getUserId();
+	boolean test = selectedValue.getUserId() != ((ChatClientServiceImpl) chatClientService).getUser().getUserId();
+	return test;
     }
 
     public List<User> getRequestContactList() throws RemoteException, SQLException {

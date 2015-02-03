@@ -104,6 +104,7 @@ public class ChatClientServiceImpl extends UnicastRemoteObject implements ChatCl
 
     @Override
     public void doFourceSignOut() throws RemoteException {
+	
         authenticationController.showSignIn();
 
     }
