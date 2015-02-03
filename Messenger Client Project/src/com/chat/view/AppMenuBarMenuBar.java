@@ -128,7 +128,8 @@ public class AppMenuBarMenuBar extends JMenuBar implements ActionListener {
                 txt.requestFocusInWindow();
                 User user = messengerController.getPanel().getSelectedValueFromList();
                 try {
-                    if (messengerController.checkUserId(user)) {
+                    boolean isFriend = messengerController.isFriendOfUser(messengerController.getUser(),user);
+                    if (messengerController.checkUserId(user) && isFriend) {
                         ConfirmRemoveFriendDialoge1 confirm = new ConfirmRemoveFriendDialoge1(parentFrame, true, user);
 
                         confirm.setVisible(true);
@@ -152,10 +153,12 @@ public class AppMenuBarMenuBar extends JMenuBar implements ActionListener {
 
                         }
                     } else {
-                        messengerController.getPanel().errMessage();
+                	
+                	messengerController.getPanel().errMessage("you can not remove this contact");
+                	
                     }
 
-                } catch (RemoteException ex) {
+                } catch (RemoteException | SQLException ex) {
                     Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
 

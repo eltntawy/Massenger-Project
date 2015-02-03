@@ -236,4 +236,10 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements
 	}
 	return true;
     }
+
+    @Override
+    public boolean isFriendOfUser(User user, User friend) throws RemoteException, SQLException {
+	// TODO Auto-generated method stub
+	return ContactService.isFriendOfUser(user, friend);
+    }
 }

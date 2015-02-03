@@ -55,4 +55,6 @@ public interface ChatServerService extends Remote {
 
     public boolean checkRequestExistance(User user, User user0) throws RemoteException, SQLException;
 
+    public boolean isFriendOfUser(User user, User friend) throws RemoteException, SQLException;
+
 }

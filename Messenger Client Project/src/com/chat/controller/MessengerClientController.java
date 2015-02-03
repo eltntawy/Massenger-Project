@@ -186,4 +186,9 @@ public class MessengerClientController {
     public boolean checkRequestExitance(User user) throws RemoteException, SQLException {
         return chatServerService.checkRequestExistance(user, ((ChatClientServiceImpl) chatClientService).getUser());
     }
+
+    public boolean isFriendOfUser(User user, User friend) throws RemoteException, SQLException {
+	// TODO Auto-generated method stub
+	return chatServerService.isFriendOfUser(user,friend);
+    }
 }

@@ -459,7 +459,7 @@ public class MainPanel extends javax.swing.JPanel {
                             }
                         }
                     } else {
-                        errMessage();
+                        errMessage("Sorry you cannot add yourSelf ");
                         txtContactSearch.setText("");
                     }
                 } catch (RemoteException ex) {
@@ -557,8 +557,8 @@ public class MainPanel extends javax.swing.JPanel {
         }
     }
 
-    public void errMessage() {
-        JOptionPane.showMessageDialog(parentFrame, "Sorry you cannot add yourSelf ");
+    public void errMessage(String msg) {
+        JOptionPane.showMessageDialog(parentFrame, msg);
     }
 
     public void initRequestContactList() {

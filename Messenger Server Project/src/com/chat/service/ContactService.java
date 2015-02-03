@@ -179,7 +179,8 @@ public abstract class ContactService {
 	ResultSet rs = ps.executeQuery();
 
 	while (rs.next()) {
-	    return true;
+	    if(rs.getInt(1) > 0)
+		return true;
 	}
 
 	return false;
