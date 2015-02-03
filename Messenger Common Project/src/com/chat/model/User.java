@@ -147,5 +147,11 @@ public class User implements Serializable {
     public String toString() {
 	return FullName;
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        // TODO Auto-generated method stub
+        return userName.equals(((User)obj).getUserName());
+    }
 
 }

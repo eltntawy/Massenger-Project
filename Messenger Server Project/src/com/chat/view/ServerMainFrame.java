@@ -6,6 +6,7 @@
 package com.chat.view;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -15,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -62,8 +64,9 @@ public class ServerMainFrame extends Application {
 
 	    @Override
 	    public void handle(WindowEvent event) {
+		event.consume();
 		if (ServerController.getChatClientVector().size() > 0) {
-		    event.consume();
+		    
 		    Alert alert = new Alert(AlertType.ERROR);
 		    alert.setTitle("Error");
 		    alert.setHeaderText("Server closing warning");
@@ -71,9 +74,18 @@ public class ServerMainFrame extends Application {
 
 		    alert.showAndWait();
 		} else {
-		    primaryStage.close();
-		    Platform.exit();
-		    System.exit(0);
+		    
+		    Alert alert = new Alert(AlertType.CONFIRMATION);
+		    alert.setTitle("Alert");
+		    alert.setHeaderText("Server closing warning");
+		    alert.setContentText("Are you sure to close server !!");
+
+		    Optional<ButtonType> option = alert.showAndWait();
+		    if(option.get().equals(ButtonType.OK)){
+        		    primaryStage.close();
+        		    Platform.exit();
+        		    System.exit(0);
+		    }
 		}
 	    }
 
