@@ -26,10 +26,10 @@ import javax.swing.ImageIcon;
  */
 public class RequestContactListService {
 
-    public static List<User> getRequestContactList(User user) {
-
+    public static List<User> getRequestContactList(User user) throws SQLException {
+	Connection conn = null;
         try {
-            Connection conn = DBConnection.getConnection();
+            conn = DBConnection.getConnection();
 
             // TODO create currect select querey
             String sql = " SELECT u.user_id,u.User_Name,u.password,u.first_name,u.second_name,u.status,u.image "
@@ -60,10 +60,14 @@ public class RequestContactListService {
 
             }
 
+            
             return list;
             // return null;
         } catch (SQLException ex) {
             Logger.getLogger(RequestContactListService.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if(conn != null)
+        	conn.close();
         }
         return null;
     }

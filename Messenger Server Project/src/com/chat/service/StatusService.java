@@ -19,7 +19,10 @@ public class StatusService {
 
 	ps.setInt(1, user.getStatus());
 	ps.setInt(2, user.getUserId());
-
-	return ps.executeUpdate();
+	
+	int ret = ps.executeUpdate();
+	
+	conn.close();
+	return ret;
     }
 }

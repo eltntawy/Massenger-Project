@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class ContactServerController {
 
-    public static void updateUserImage(String Path, User user) {
+    public static void updateUserImage(String Path, User user) throws SQLException {
         ContactService.updateUserImage(Path, user);
     }
 

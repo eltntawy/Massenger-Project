@@ -78,7 +78,7 @@ public class ServerController {
         return clientVector;
     }
 
-    public  void unregisterAllClient() {
+    public  void unregisterAllClient() throws SQLException {
 
         UserService.doOfflineAllUsers();
         for (ChatClientService client : clientVector) {

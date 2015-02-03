@@ -33,24 +33,50 @@ public class Resource {
     /**
      *
      *
-     * @param imageName : is relative URL for image
-     * @return : return an Icon object for image name in path "/com/chat/view/resource/img/"
+     * @param imageName
+     *            : is relative URL for image
+     * @return : return an Icon object for image name in path
+     *         "/com/chat/view/resource/img/"
      *
-     * @throws maybe throw NullPointerException
+     * @throws maybe
+     *             throw NullPointerException
      */
     public static Icon getImage(String imageName) {
-        return new ImageIcon(Resource.class.getResource("/com/chat/view/resource/img/" + imageName));
+	return new ImageIcon(Resource.class.getResource("/com/chat/view/resource/img/" + imageName));
     }
 
     /**
      *
-     *  
-     * @param iconName : is relative URL for image
-     * @return : return an Icon object for image name in path "/com/chat/view/resource/img/"
+     * 
+     * @param iconName
+     *            : is relative URL for image
+     * @return : return an Icon object for image name in path
+     *         "/com/chat/view/resource/img/"
      *
-     * @throws maybe throw NullPointerException
+     * @throws maybe
+     *             throw NullPointerException
      */
     public static Icon getIcon(String iconName) {
-        return new ImageIcon(Resource.class.getResource("/com/chat/view/resource/img/" + iconName));
+	return new ImageIcon(Resource.class.getResource("/com/chat/view/resource/img/" + iconName));
+    }
+
+    public static void playNotificationSound() {
+
+    }
+
+    public static void playOnlineSound() {
+
+    }
+
+    public static void playOfflineSound() {
+
+    }
+
+    public static void playMessageDeleverdSound() {
+
+    }
+
+    public static void playMessageSendSound() {
+
     }
 }

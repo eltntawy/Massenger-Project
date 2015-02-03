@@ -28,15 +28,14 @@ public class UserService {
     public static int insertUser(User user) throws SQLException {
 	Connection conn = DBConnection.getConnection();
 
-	String sql = "INSERT INTO user (first_name,second_name,user_name,password,mail,image) "
-		+ "VALUES ('" + user.getUserFirstName() + "','" 
-		+ user.getUserSecondName() 
-		+ "','" + user.getUserName() 
-		+ "','" + user.getPassword() + "','"+ user.getUserEmail() + "', '')";
+	String sql = "INSERT INTO user (first_name,second_name,user_name,password,mail,image) " + "VALUES ('" + user.getUserFirstName() + "','" + user.getUserSecondName() + "','" + user.getUserName() + "','" + user.getPassword() + "','" + user.getUserEmail() + "', '')";
 	PreparedStatement ps = conn.prepareStatement(sql);
 	int rs = ps.executeUpdate();
 	System.out.println(rs);
+
+	conn.close();
 	return rs;
+
     }
 
     /**
@@ -111,6 +110,7 @@ public class UserService {
 	    break;
 	}
 
+	conn.close();
 	return user;
     }
 
@@ -146,9 +146,10 @@ public class UserService {
 	return false;
     }
 
-    public static void doOfflineAllUsers() {
+    public static void doOfflineAllUsers() throws SQLException {
+	Connection conn = null;
 	try {
-	    Connection conn = DBConnection.getConnection();
+	    conn = DBConnection.getConnection();
 
 	    String sql = "update user set status = " + User.SIGNOUT;
 	    PreparedStatement ps = conn.prepareStatement(sql);
@@ -156,7 +157,11 @@ public class UserService {
 	    ps.executeUpdate();
 	} catch (SQLException ex) {
 	    ex.printStackTrace();
+	} finally {
+	    if (conn != null)
+		conn.close();
 	}
+
     }
 
     public static void doSignoutUser(User user) throws SQLException {
@@ -167,5 +172,6 @@ public class UserService {
 	PreparedStatement ps = conn.prepareStatement(sql);
 
 	ps.executeUpdate();
+	conn.close();
     }
 }

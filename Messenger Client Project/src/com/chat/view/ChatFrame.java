@@ -107,6 +107,7 @@ public class ChatFrame extends javax.swing.JFrame {
           public void windowClosed(WindowEvent e){
               ChatFrame.this.chatController.removeChatFrame(ChatFrame.this.sessionId);
               ChatFrame.this.UserVector.removeElement(loginUser);
+              ChatFrame.this.UserVector.removeAllElements();
           }  
         };
         this.addWindowListener(this.windowClose);

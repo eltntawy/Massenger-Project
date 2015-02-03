@@ -19,9 +19,10 @@ import com.chat.view.resource.Resource;
 
 public abstract class ContactService {
 
-    public static void updateUserImage(String Path, User user) {
+    public static void updateUserImage(String Path, User user) throws SQLException {
+	Connection conn = null;
 	try {
-	    Connection conn = DBConnection.getConnection();
+	    conn = DBConnection.getConnection();
 	    String sql = "UPDATE messenger_project.user set image=? where user_id=?;";
 	    PreparedStatement ps = conn.prepareStatement(sql);
 	    // File x=File.createTempFile(Path, "");
@@ -34,6 +35,9 @@ public abstract class ContactService {
 	    ex.printStackTrace();
 	    // Logger.getLogger(ContactService.class.getName()).log(Level.SEVERE,
 	    // null, ex);
+	} finally {
+	    if(conn != null)
+	    conn.close();
 	}
     }
 
@@ -49,6 +53,7 @@ public abstract class ContactService {
 	    retMap.put(rs.getInt(2) + " " + rs.getString(1), rs.getInt(2));
 	}
 
+	conn.close();
 	return retMap;
     }
 
@@ -127,6 +132,8 @@ public abstract class ContactService {
 	    list.add(user);
 
 	}
+	
+	conn.close();
 
 	return list;
 
@@ -163,7 +170,7 @@ public abstract class ContactService {
 	    list.add(user);
 
 	}
-
+	conn.close();
 	return list;
     }
 
@@ -182,7 +189,7 @@ public abstract class ContactService {
 	    if(rs.getInt(1) > 0)
 		return true;
 	}
-
+	conn.close();
 	return false;
     }
 
@@ -201,6 +208,8 @@ public abstract class ContactService {
 	while (rs.next()) {
 	    retMap.put(rs.getString(1), rs.getInt(2));
 	}
+	
+	conn.close();
 	return retMap;
 
     }

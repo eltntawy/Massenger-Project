@@ -147,7 +147,12 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements
     }
 
     public void unregisterAllClient() {
-        serverController.unregisterAllClient();
+        try {
+	    serverController.unregisterAllClient();
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
     }
 
     @Override    public void DeleteContactFromUser(User user, User Mainuser)

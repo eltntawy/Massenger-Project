@@ -7,6 +7,8 @@ package com.chat.controller;
 
 import com.chat.model.User;
 import com.chat.service.RequestContactListService;
+
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -15,7 +17,7 @@ import java.util.List;
  */
 public class RequestContactListController {
 
-    public List<User> getRequestContactList(User user) {
+    public List<User> getRequestContactList(User user) throws SQLException {
         return RequestContactListService.getRequestContactList(user);
     }
 
