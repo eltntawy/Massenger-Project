@@ -1,6 +1,5 @@
 package com.chat.controller;
 
-
 import com.chat.model.Status;
 import com.chat.model.User;
 import com.chat.rmi.ChatClientService;
@@ -53,7 +52,7 @@ public class MessengerClientController {
     public void getContactOfNameOrEmailOrUseName(String searchText) throws RemoteException, SQLException {
 
         // TODO Auto-generated method stub
-        ContactClientController contactController = ((ChatClientServiceImpl)chatClientService).getContactController();
+        ContactClientController contactController = ((ChatClientServiceImpl) chatClientService).getContactController();
         contactController.getContactOfNameOrEmailOrUseName(searchText);
 
     }
@@ -61,18 +60,18 @@ public class MessengerClientController {
     public void showChatFrameWith(User reciever) {
 
         int counter = 0;
-        ChatClientController chatController = ((ChatClientServiceImpl)chatClientService).getChatController();
+        ChatClientController chatController = ((ChatClientServiceImpl) chatClientService).getChatController();
         //check if chat frame is opened with this user
-        if (chatController.getChatFrame().size() == 0){
+        if (chatController.getChatFrame().size() == 0) {
             chatController.showChatFrame(reciever);
         }
-        for (int i = 0; i < chatController.getChatFrame().size(); i++){
+        for (int i = 0; i < chatController.getChatFrame().size(); i++) {
             ChatFrame chatFrame = chatController.getChatFrame().elementAt(i);
-            if (!(chatFrame.getReceiver().getUserName().equals(reciever.getUserName())) ){
+            if (!(chatFrame.getReceiver().getUserName().equals(reciever.getUserName()))) {
                 counter++;
             }
         }
-        if (counter == chatController.getChatFrame().size()){
+        if (counter == chatController.getChatFrame().size()) {
             chatController.showChatFrame(reciever);
         }
     }
@@ -80,57 +79,57 @@ public class MessengerClientController {
     public List<User> getContactListOfCurrentUser() throws RemoteException, SQLException {
 
         // TODO Auto-generated method stub
-        if (((ChatClientServiceImpl)chatClientService).getUser() != null) {
-            return chatServerService.getContactListOfCurrentUser(((ChatClientServiceImpl)chatClientService).getUser());
+        if (((ChatClientServiceImpl) chatClientService).getUser() != null) {
+            return chatServerService.getContactListOfCurrentUser(((ChatClientServiceImpl) chatClientService).getUser());
         }
         return null;
     }
-    
+
     public void initContactListView() {
-	mainPanel.initContactList();
+        mainPanel.initContactList();
     }
-    
+
     public void initContactListView(List<User> retList) {
-	
-   	mainPanel.initContactList(retList);
+
+        mainPanel.initContactList(retList);
     }
 
     public void addRequestContact(User selectedValue) throws RemoteException {
-        System.out.println(selectedValue.getUserId() + "    " + ((ChatClientServiceImpl)chatClientService).getUser().getUserId());
-        if (!(selectedValue.getUserId() == ((ChatClientServiceImpl)chatClientService).getUser().getUserId())) {
-            chatServerService.addRequestContact(selectedValue, ((ChatClientServiceImpl)chatClientService).getUser());
+        System.out.println(selectedValue.getUserId() + "    " + ((ChatClientServiceImpl) chatClientService).getUser().getUserId());
+        if (!(selectedValue.getUserId() == ((ChatClientServiceImpl) chatClientService).getUser().getUserId())) {
+            chatServerService.addRequestContact(selectedValue, ((ChatClientServiceImpl) chatClientService).getUser());
         }
 
     }
 
     public boolean checkUserId(User selectedValue) throws RemoteException {
-        return selectedValue.getUserId() != ((ChatClientServiceImpl)chatClientService).getUser().getUserId();
+        return selectedValue.getUserId() != ((ChatClientServiceImpl) chatClientService).getUser().getUserId();
     }
 
     public List<User> getRequestContactList() throws RemoteException, SQLException {
 
-        if (((ChatClientServiceImpl)chatClientService).getUser() != null) {
-            return chatServerService.getRequestContactList(((ChatClientServiceImpl)chatClientService).getUser());
+        if (((ChatClientServiceImpl) chatClientService).getUser() != null) {
+            return chatServerService.getRequestContactList(((ChatClientServiceImpl) chatClientService).getUser());
         }
         return null;
 
     }
 
     public User getUser() throws RemoteException {
-        return ((ChatClientServiceImpl)chatClientService).getUser();
+        return ((ChatClientServiceImpl) chatClientService).getUser();
     }
 
     public void addFriend(User user) throws SQLException, RemoteException {
-        chatServerService.addFriend(user, ((ChatClientServiceImpl)chatClientService).getUser());
+        chatServerService.addFriend(user, ((ChatClientServiceImpl) chatClientService).getUser());
 
     }
 
     public void deleteFriendRequest(User user) throws RemoteException, SQLException {
-        chatServerService.deleteFriendRequest(user, ((ChatClientServiceImpl)chatClientService).getUser());
+        chatServerService.deleteFriendRequest(user, ((ChatClientServiceImpl) chatClientService).getUser());
     }
 
     public void updateUserImage(String Path) throws SQLException, RemoteException {
-        chatServerService.updateUserImage(Path, ((ChatClientServiceImpl)chatClientService).getUser());
+        chatServerService.updateUserImage(Path, ((ChatClientServiceImpl) chatClientService).getUser());
     }
 
     public JTextField getItemfocus() {
@@ -140,13 +139,13 @@ public class MessengerClientController {
     public void doChangeStaus(Status status) throws RemoteException, SQLException {
         // TODO Auto-generated method stub
         StatusCLientController statusController = new StatusCLientController(parentFrame, chatClientService, chatServerService);
-        User user = ((ChatClientServiceImpl)chatClientService).getUser();
+        User user = ((ChatClientServiceImpl) chatClientService).getUser();
         user.setStatus(status.getStatus());
         statusController.doChangeStatus(user);
 
         if (user.getStatus() == User.SIGNOUT) {
             // change action on current user
-            AuthenticationClientController signInController = ((ChatClientServiceImpl)chatClientService).getAuthenticationController();
+            AuthenticationClientController signInController = ((ChatClientServiceImpl) chatClientService).getAuthenticationController();
             signInController.doSignOut();
             signInController.showSignIn();
         }
@@ -158,13 +157,21 @@ public class MessengerClientController {
     }
 
     public void DeleteContactFromUser(User user) throws RemoteException, SQLException {
-        chatServerService.DeleteContactFromUser(user, ((ChatClientServiceImpl)chatClientService).getUser());
+        chatServerService.DeleteContactFromUser(user, ((ChatClientServiceImpl) chatClientService).getUser());
     }
 
-    public List<User> getContactOfNameOrEmailOrUseNameList(String searchText) throws RemoteException, SQLException  {
-	// TODO Auto-generated method stub
-	ContactClientController contactController = ((ChatClientServiceImpl)chatClientService).getContactController();
+    public List<User> getContactOfNameOrEmailOrUseNameList(String searchText) throws RemoteException, SQLException {
+        // TODO Auto-generated method stub
+        ContactClientController contactController = ((ChatClientServiceImpl) chatClientService).getContactController();
         return contactController.getContactOfNameOrEmailOrUseNameList(searchText);
-	
+
+    }
+
+    public void initContactListForOtherUser(User user) throws RemoteException {
+        chatServerService.initContactListForOtherUser(user);
+    }
+
+    public boolean checkRequestExitance(User user) throws RemoteException, SQLException {
+        return chatServerService.checkRequestExistance(user, ((ChatClientServiceImpl) chatClientService).getUser());
     }
 }

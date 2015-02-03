@@ -151,7 +151,10 @@ public class User implements Serializable {
     @Override
     public boolean equals(Object obj) {
         // TODO Auto-generated method stub
-        return userName.equals(((User)obj).getUserName());
+	if (obj != null)
+	    return userName.equals(((User)obj).getUserName());
+	else 
+	    return false;
     }
 
 }

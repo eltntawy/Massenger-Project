@@ -28,11 +28,11 @@ public class FriendRequestPanel extends javax.swing.JPanel {
     MessengerClientController messengerController;
     JFrame parentFrame;
 
-    public FriendRequestPanel(User user, MessengerClientController messengerController,JFrame parentFrame) {
+    public FriendRequestPanel(User user, MessengerClientController messengerController, JFrame parentFrame) {
         initComponents();
         this.user = user;
         this.messengerController = messengerController;
-        this.parentFrame=parentFrame;
+        this.parentFrame = parentFrame;
     }
 
     public void setLabel(String value) {
@@ -109,9 +109,14 @@ public class FriendRequestPanel extends javax.swing.JPanel {
         try {
             // add to friend list
             messengerController.addFriend(user);
-            MainPanel m=new MainPanel(parentFrame, messengerController);
-            System.out.println("xxxx");
-         //   m.initContactList();
+            MainPanel m = new MainPanel(parentFrame, messengerController);
+            m.initContactList();
+            messengerController.initContactListForOtherUser(user);
+            this.getParent().remove(this);
+            m.revalidate();
+            m.repaint();
+            System.out.println("Friend Request confirmation Panel");
+            //   m.initContactList();
         } catch (SQLException ex) {
             ex.printStackTrace();
         } catch (RemoteException ex) {
@@ -125,6 +130,13 @@ public class FriendRequestPanel extends javax.swing.JPanel {
         flag = 0;
         try {
             messengerController.deleteFriendRequest(user);
+            MainPanel m = new MainPanel(parentFrame, messengerController);
+            m.initContactList();
+            messengerController.initContactListForOtherUser(user);
+            this.getParent().remove(this);
+            m.revalidate();
+            m.repaint();
+            System.out.println("Friend Request Ignore Panel");
             // remove from friend Request
         } catch (RemoteException ex) {
             ex.printStackTrace();

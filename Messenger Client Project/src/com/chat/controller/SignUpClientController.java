@@ -80,9 +80,11 @@ public class SignUpClientController {
 	    MessengerClientController messengerClientController = new MessengerClientController(parentFrame, chatClientService, chatServerService);
 	    ((ChatClientServiceImpl) chatClientService).setMessengerController(messengerClientController);
 	    messengerClientController.initContactListView();
-	    chatServerService.unregisterClient(chatClientService);
+	    
 	    if(ret == 1) {
 		messengerClientController.showMainPanel();
+	    } else {
+		chatServerService.unregisterClient(chatClientService);
 	    }
 	}
 	return ret;

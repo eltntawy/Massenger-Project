@@ -67,7 +67,8 @@ public class ServerController {
     public  void  unregisterClient(ChatClientService chatClientService) {
 
 	synchronized (clientVector) {
-	    clientVector.remove(chatClientService);
+	    if(clientVector.contains(chatClientService))
+		clientVector.remove(chatClientService);
 	}
         
     }

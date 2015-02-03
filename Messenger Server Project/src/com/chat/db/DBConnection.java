@@ -14,8 +14,8 @@ public class DBConnection {
 
 	DriverManager.registerDriver(new Driver());
 
-	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/messenger_project", "root", "root");
-
+	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/messenger_project?useUnicode=yes&characterEncoding=utf8", "root", "root");
+	
 	return conn;
     }
 

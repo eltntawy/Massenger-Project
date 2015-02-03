@@ -160,6 +160,7 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements
 	    try {
 		return UserService.insertUser(user);
 	    } catch (SQLException e) {
+		e.printStackTrace();
 		return 0;
 	    }
 	else
@@ -199,6 +200,18 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements
 	}
     }
 
+    @Override
+    public void initContactListForOtherUser(User user) throws RemoteException {
+        AddFriendController.initContactListForOtherUser(user);
+    }
+
+    @Override
+    public boolean checkRequestExistance(User user, User user0) throws RemoteException, SQLException {
+        AddFriendController add = new AddFriendController();
+        boolean exist = add.checkRequestExistance(user, user0);
+        return exist;
+    }
+    
     @Override
     public boolean checkBeforeSignIn(User user) throws RemoteException {
 	// TODO Auto-generated method stub
