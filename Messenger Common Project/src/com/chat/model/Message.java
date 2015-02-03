@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Vector;
 
 /**
  *
@@ -22,12 +23,14 @@ public class Message implements Serializable{
     private String message;
     private String time;
     private String sessionId;
+    private Vector<User> usersVector;
     
-    public Message (User senderName, User receiverName, String message, String sessionId){
+    public Message (User senderName, Vector<User> usersVector, String message, String sessionId){
         this.senderName = senderName;
-        this.receiverName = receiverName;
         this.message = message;
         this.sessionId = sessionId;
+        this.usersVector = usersVector;
+        
     }
     public void setMessage(String message){
         this.message = message;
@@ -59,4 +62,12 @@ public class Message implements Serializable{
     public String getSessionId(){
         return sessionId;
     }
+     public void setUsersVector(Vector<User> usersVector){
+        this.usersVector = usersVector;
+    }
+    
+    public Vector<User> getUsersVector (){
+        return usersVector;
+    }
+    
 }
