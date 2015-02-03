@@ -52,10 +52,10 @@ public class ChatServerController {
     public boolean requestSend(String fileName, User sender, Vector<User> UsersVector, String sessionId) {
 
         clientVector = ServerController.getChatClientVector();
-          for (int i = 0; i < UserVector.size(); i++) {
-            if (UserVector.elementAt(i).getStatus() == User.AVAILABLE) {
+          for (int i = 0; i < UsersVector.size(); i++) {
+            if (UsersVector.elementAt(i).getStatus() == User.AVAILABLE) {
                 for (int j = 0; j < clientVector.size(); j++) {
-                    String receiver = UserVector.elementAt(i).getUserName();
+                    String receiver = UsersVector.elementAt(i).getUserName();
                     String clientName;
                     ChatClientService client = clientVector.elementAt(j);
                     try {
