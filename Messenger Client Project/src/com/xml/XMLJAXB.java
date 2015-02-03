@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.XMLConstants;
@@ -40,14 +39,11 @@ public class XMLJAXB {
 
     public XMLJAXB() {
 
-        User user = new User(1, "aya", "Ibraheem", "254", null, 1);
-        
-        User userOut = new User(1, "marwa", "xyz", "2554", null, 0);
-        Vector v = new Vector<User>();
-        v.add(userOut);
-        Message msg = new Message(user, v, "Heeey", "125");
+        User user = new User(30, "aya", "Ibraheem", "254", null, 1);
+        User userOut = new User(20, "marwa", "xyz", "2554", null, 0);
+       // Message msg = new Message(user, userOut, "Heeey", "125");
         Font font = new Font("Dialoge", Font.BOLD, 15);
-        appendMsg(msg);
+        //appendMsg(msg);
 
     }
 
@@ -64,38 +60,7 @@ public class XMLJAXB {
             JAXBContext context = JAXBContext.newInstance("com.xml");
             Unmarshaller unmarsh = context.createUnmarshaller();
             MessageHistory element = (MessageHistory) unmarsh.unmarshal(xmlFile);
-            //JAXBSource source = new JAXBSource(context, message);
-            
-//            URL schemaFile = new URL("http://www.w3.org/2001/XMLSchema");
-//            Source xmlFile2 = new StreamSource(new File("XMLMessenger.xml"));
-////            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-////            dbf.setNamespaceAware(true);
-////            DocumentBuilder db = dbf.newDocumentBuilder();
-////            org.w3c.dom.Document doc = db.parse(getClass().getResourceAsStream("newXMLDocument2.xml"));
-//            SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-////
-//   //         Source schemaFile = new StreamSource(getClass().getResourceAsStream("FirstExampel.xsd"));
-////            //Schema schema;
-//            schema = schemaFactory.newSchema(new File("FirstExampel.xsd"));
-//            javax.xml.validation.Validator validator = schema.newValidator();
-//            try {
-//                validator.validate(xmlFile2);
-//                System.out.println("Nice");
-//                //validator.setErrorHandler(new MyE);
-////            validator.validate(new DOMSource((doc)));
-////            schema = schemaFactory.newSchema(new File("FirstExampel.xsd"));
-////            javax.xml.validation.Validator validator = schema.newValidator();
-////            ValidationEventCollector vec = new ValidationEventCollector();
-////            unmarsh.setEventHandler(vec);
-//                //   unmarsh.setValidating();
-////
-//            } catch (IOException ex) {
-//                System.out.println("Error");
-//               // Logger.getLogger(XMLJAXB.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-            
 
-//            if(vec.hasEvents()){
             setLogList = element.getLogin();
             for (int i = 0; i < element.getLogin().size(); i++) {
                 setUserList = setLogList.get(i).getUserTo();
@@ -138,10 +103,12 @@ public class XMLJAXB {
             //schema = schemaFactory.newSchema(new File("FirstExampel.xsd"));
             Marshaller marsh = context.createMarshaller();
             marsh.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            // marsh.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION, "FirstExampel.xsd");
+            marsh.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION, "src\\com.xml\\FirstExampel.xsd");
+            marsh.setProperty(Marshaller.JAXB_FRAGMENT, false);
+            marsh.setProperty("com.sun.xml.internal.bind.xmlHeaders", "<?xml-stylesheet type=\"text/xsl\" href=\"Messenger_StyleSheet.xsl\" ?>");
             // validator.validate((Source) element);
             // marsh.setSchema(schema);
-            
+
             marsh.marshal(element, xmlFile);
 
             //new PrintWriter(new BufferedWriter(new FileWriter("XMLMessenger.xml", true))
@@ -155,6 +122,5 @@ public class XMLJAXB {
         new XMLJAXB();
 
     }
-    
-  
+
 }

@@ -13,16 +13,16 @@ and open the template in the editor.
     
     <xs:attributeGroup  name="UserGroup">
         <xs:attribute name="userName" type="xs:string"/>
-        <xs:attribute name="userID" type="xs:int"/>
+        <xs:attribute name="userID" type="xs:integer"/>
     </xs:attributeGroup>
     
     
     <xs:complexType name="MsgBody" >
         <xs:sequence>
-            <xs:element name="Text" type="xs:string"  minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element name="Text" type="xs:string"/>
         </xs:sequence>
         <xs:attribute name="font" type="xs:string"/>
-        <xs:attribute name="size" type="xs:int"/>
+        <xs:attribute name="size" type="xs:integer"/>
         <xs:attribute name="Color" type="xs:string"/>
     </xs:complexType>
     
