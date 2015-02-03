@@ -7,6 +7,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Vector;
 
 public interface ChatServerService extends Remote {
 
@@ -14,7 +15,7 @@ public interface ChatServerService extends Remote {
 
     public void sendFile(MessageFile messageFile) throws RemoteException;
 
-    public boolean requestSend(String fileName, User sender, User receiver, String sessionId) throws RemoteException;
+    public boolean requestSend(String fileName, User sender, Vector<User> receiver, String sessionId) throws RemoteException;
 
     public void registerClient(ChatClientService chatClientService) throws RemoteException;
 

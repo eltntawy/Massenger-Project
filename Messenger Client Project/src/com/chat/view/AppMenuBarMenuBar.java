@@ -2,6 +2,7 @@ package com.chat.view;
 
 import com.chat.controller.MessengerClientController;
 import com.chat.model.User;
+import com.chat.view.model.ListComboBoxModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
@@ -38,6 +39,8 @@ public class AppMenuBarMenuBar extends JMenuBar implements ActionListener {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         appNameMenu = new javax.swing.JMenu();
+        help = new javax.swing.JMenu();
+        helpItem = new javax.swing.JMenuItem();
         newConversationMenuItem = new javax.swing.JMenuItem();
         fileTransferMenuItem = new javax.swing.JMenuItem();
         settingsMenuItem = new javax.swing.JMenuItem();
@@ -47,7 +50,7 @@ public class AppMenuBarMenuBar extends JMenuBar implements ActionListener {
         QuitMenuItem = new javax.swing.JMenuItem();
         contactsMenu = new javax.swing.JMenu();
         addContactMenuItem = new javax.swing.JMenuItem();
-        showContactMenuItem=new javax.swing.JMenuItem();
+        showContactMenuItem = new javax.swing.JMenuItem();
         EditMenuItem = new javax.swing.JMenuItem();
         viewMenuItem = new javax.swing.JMenuItem();
         RemoveMenuItem = new javax.swing.JMenuItem();
@@ -100,13 +103,13 @@ public class AppMenuBarMenuBar extends JMenuBar implements ActionListener {
                 txt.requestFocusInWindow();
             }
         });
-         showContactMenuItem.addActionListener(new ActionListener() {
+        showContactMenuItem.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    userList=messengerController.getRequestContactList();
-                    getFriendRequestList xc=new getFriendRequestList(parentFrame,true,userList,messengerController);
+                    userList = messengerController.getRequestContactList();
+                    getFriendRequestList xc = new getFriendRequestList(parentFrame, true, userList, messengerController);
                     xc.setVisible(true);
                 } catch (RemoteException ex) {
                     Logger.getLogger(AppMenuBarMenuBar.class.getName()).log(Level.SEVERE, null, ex);
@@ -123,8 +126,41 @@ public class AppMenuBarMenuBar extends JMenuBar implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 JTextField txt = messengerController.getItemfocus();
                 txt.requestFocusInWindow();
+                User user = messengerController.getPanel().getSelectedValueFromList();
+                try {
+                    if (messengerController.checkUserId(user)) {
+                        ConfirmRemoveFriendDialoge1 confirm = new ConfirmRemoveFriendDialoge1(parentFrame, true, user);
+
+                        confirm.setVisible(true);
+
+                        boolean flag = confirm.getPressedbutton();
+
+                        if (flag) {
+                            try {
+                                
+                                messengerController.DeleteContactFromUser(user);
+                               // ((ListComboBoxModel<User>)user).removeElement(user);
+
+                                messengerController.initContactListForOtherUser(user);
+                                messengerController.getPanel().initContactList();
+                            } catch (RemoteException ex) {
+                                Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        } else {
+
+                        }
+                    } else {
+                        messengerController.getPanel().errMessage();
+                    }
+
+                } catch (RemoteException ex) {
+                    Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
             }
-        } );
+        });
         themesMenu.addActionListener(this);
 
         // get system available lookAndFeel
@@ -141,25 +177,31 @@ public class AppMenuBarMenuBar extends JMenuBar implements ActionListener {
 
         }
 
-        appNameMenu.setText("appname");
+        helpItem.addActionListener(new ActionListener() {
 
-        newConversationMenuItem.setText("New conversation");
-        appNameMenu.add(newConversationMenuItem);
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-        fileTransferMenuItem.setText("file transfer");
-        appNameMenu.add(fileTransferMenuItem);
+            }
+        });
 
-        settingsMenuItem.setText("settings");
-        appNameMenu.add(settingsMenuItem);
+        appNameMenu.setText("Appname");
 
-        HelpMenuItem.setText("Help");
+//        newConversationMenuItem.setText("New conversation");
+//        appNameMenu.add(newConversationMenuItem);
+//
+//        fileTransferMenuItem.setText("file transfer");
+//        appNameMenu.add(fileTransferMenuItem);
+//
+//        settingsMenuItem.setText("settings");
+//        appNameMenu.add(settingsMenuItem);
+        HelpMenuItem.setText("Help ...");
         appNameMenu.add(HelpMenuItem);
 
-        aboutMenuItem.setText("about");
-
-        appNameMenu.add(aboutMenuItem);
-
-        signOutMenuItem.setText("signout");
+//        aboutMenuItem.setText("about");
+//
+//        appNameMenu.add(aboutMenuItem);
+        signOutMenuItem.setText("Signout");
         appNameMenu.add(signOutMenuItem);
 
         QuitMenuItem.setText("Quit");
@@ -167,27 +209,31 @@ public class AppMenuBarMenuBar extends JMenuBar implements ActionListener {
 
         this.add(appNameMenu);
 
-        contactsMenu.setText("contacts");
+        contactsMenu.setText("Contacts");
 
-        addContactMenuItem.setText("add contact");
+        addContactMenuItem.setText("Add contact");
         contactsMenu.add(addContactMenuItem);
-        
-        showContactMenuItem.setText("show Friend Request");
+
+        showContactMenuItem.setText("Show Friend Request...");
         contactsMenu.add(showContactMenuItem);
 
-        EditMenuItem.setText("Edit");
-        contactsMenu.add(EditMenuItem);
-
-        viewMenuItem.setText("view");
-        contactsMenu.add(viewMenuItem);
-
+//        EditMenuItem.setText("Edit");
+//        contactsMenu.add(EditMenuItem);
+//
+//        viewMenuItem.setText("view");
+//        contactsMenu.add(viewMenuItem);
         RemoveMenuItem.setText("Remove");
         contactsMenu.add(RemoveMenuItem);
 
         this.add(contactsMenu);
 
-        themesMenu.setText("themes");
+        themesMenu.setText("Themes");
         this.add(themesMenu);
+
+        help.setText("About");
+        help.add(helpItem);
+        helpItem.setText("About ...");
+        this.add(help);
 
     }
 
@@ -207,6 +253,8 @@ public class AppMenuBarMenuBar extends JMenuBar implements ActionListener {
     private javax.swing.JMenuItem signOutMenuItem;
     private javax.swing.JMenu themesMenu;
     private javax.swing.JMenuItem viewMenuItem;
+    private javax.swing.JMenu help;
+    private javax.swing.JMenuItem helpItem;
 
     @Override
     public void actionPerformed(ActionEvent e) {

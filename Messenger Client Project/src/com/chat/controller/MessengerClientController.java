@@ -8,11 +8,10 @@ import com.chat.rmi.ChatServerService;
 import com.chat.view.ChatFrame;
 import com.chat.view.MainFrame;
 import com.chat.view.MainPanel;
-
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.List;
-
+import java.util.Vector;
 import javax.swing.JTextField;
 
 public class MessengerClientController {
@@ -30,6 +29,10 @@ public class MessengerClientController {
         this.parentFrame = parentFrame;
         this.mainPanel = new MainPanel(parentFrame, this);
 
+    }
+    
+    public MainPanel getPanel(){
+        return mainPanel;
     }
 
     public void doSignOut() throws RemoteException, SQLException {
@@ -59,19 +62,27 @@ public class MessengerClientController {
 
     public void showChatFrameWith(User reciever) {
 
-        int counter = 0;
-        ChatClientController chatController = ((ChatClientServiceImpl) chatClientService).getChatController();
+         int counter = 0;
+        int receiversNumber = 0;
+        int framesNumber = 0;
+        ChatClientController chatController = ((ChatClientServiceImpl)chatClientService).getChatController();
         //check if chat frame is opened with this user
-        if (chatController.getChatFrame().size() == 0) {
+        if (chatController.getChatFrame().size() == 0 && reciever.getStatus() == User.AVAILABLE){
             chatController.showChatFrame(reciever);
         }
-        for (int i = 0; i < chatController.getChatFrame().size(); i++) {
+        for (int i = 0; i < chatController.getChatFrame().size(); i++){ 
             ChatFrame chatFrame = chatController.getChatFrame().elementAt(i);
-            if (!(chatFrame.getReceiver().getUserName().equals(reciever.getUserName()))) {
-                counter++;
+            Vector<User> receiversVector = chatFrame.getReceiverVector();
+            for (int j = 0; j < receiversVector.size(); j++){
+                if (!receiversVector.elementAt(j).getUserName().equals(reciever.getUserName())){
+                    receiversNumber++;
+                }
+            }
+            if (receiversNumber == receiversVector.size()){
+                framesNumber++;
             }
         }
-        if (counter == chatController.getChatFrame().size()) {
+        if (framesNumber == chatController.getChatFrame().size() && reciever.getStatus() == User.AVAILABLE){
             chatController.showChatFrame(reciever);
         }
     }

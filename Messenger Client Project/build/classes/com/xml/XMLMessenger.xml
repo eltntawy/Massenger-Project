@@ -1,10 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<MessageHistory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-                xsi:noNamespaceSchemaLocation='newXmlSchema.xsd'>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type="text/xsl" href="Messenger_StyleSheet.xsl" ?>
+<MessageHistory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src\com.xml\FirstExampel.xsd">
     <Login userName="aya" userID="20">
         <UserTo userName="aya" userID="25">
             <Body>
                 <Text>Okay</Text>
+            </Body>
+        </UserTo>
+    </Login>
+    <Login userName="aya" userID="1">
+        <UserTo userName="marwa" userID="1">
+            <Body>
+                <Text>Heeey</Text>
+            </Body>
+        </UserTo>
+    </Login>
+    <Login userName="aya" userID="30">
+        <UserTo userName="marwa" userID="20">
+            <Body>
+                <Text>Heeey</Text>
+                <Text>Heeey</Text>
             </Body>
         </UserTo>
     </Login>

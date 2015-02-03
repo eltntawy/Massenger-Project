@@ -12,11 +12,11 @@ import com.chat.model.User;
 import com.chat.service.ContactService;
 import com.chat.service.UserService;
 import com.chat.service.addFriendRequestService;
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -185,7 +185,7 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements
         chatController.sendFile(messageFile);
     }
 
-    public boolean requestSend(String fileName, User sender, User receiver,
+    public boolean requestSend(String fileName, User sender, Vector<User> receiver,
 	    String sessionId) {
 	return chatController
 		.requestSend(fileName, sender, receiver, sessionId);
