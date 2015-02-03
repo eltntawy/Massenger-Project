@@ -6,30 +6,22 @@
             <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Client%20Project/src/com/chat/rmi/ChatClientServiceImpl.java</file>
             <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Client%20Project/src/com/chat/controller/AuthenticationClientController.java</file>
         </group>
-        <group name="Group 20150127-09:44:52">
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/NotifyFriendRequestJDialoge.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/TestSchema.xsd</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/test/chat/FriendRequestPanel.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/FriendRequestPanel.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/xml/XML.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/getFriendRequestList.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/ContactPanel.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/test/chat/getFriendRequestList.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/controller/MainClientController.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/ConfirmRemoveFriendDialoge1.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/MainFrame.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/SignInPanel.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/controller/MessengerClientController.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/ConfirmAddFriendDialoge.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/AppMenuBar.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/SignUpPanel.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/controller/AuthenticationClientController.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/MainPanel.java</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/ChatHistory.xml</file>
-            <file>file:/H:/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/AppMenuBarMenuBar.java</file>
-        </group>
         <group name="Messenger Project">
             <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/MainPanel.java</file>
+        </group>
+        <group name="Group 20150127-09:44:52">
+            <file>file:/C:/Users/Marwa/Documents/GitHub/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/EditorPanel.java</file>
+            <file>file:/C:/Users/Marwa/Documents/GitHub/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/renderer/EditorPanelRenderer.java</file>
+            <file>file:/C:/Users/Marwa/Documents/GitHub/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/getFriendRequestList.java</file>
+            <file>file:/C:/Users/Marwa/Documents/GitHub/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/renderer/EditorPanelColorRenderer.java</file>
+            <file>file:/C:/Users/Marwa/Documents/GitHub/Messenger-Project/Messenger%20Client%20Project/src/com/chat/controller/MessengerClientController.java</file>
+            <file>file:/C:/Users/Marwa/Documents/GitHub/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/renderer/StatusListCellRender.java</file>
+            <file>file:/C:/Users/Marwa/Documents/GitHub/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/ConfirmAddFriendDialoge.java</file>
+            <file>file:/C:/Users/Marwa/Documents/GitHub/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/FriendRequestPanel.java</file>
+            <file>file:/C:/Users/Marwa/Documents/GitHub/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/MainPanel.java</file>
+            <file>file:/C:/Users/Marwa/Documents/GitHub/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/model/ListComboBoxModel.java</file>
+            <file>file:/C:/Users/Marwa/Documents/GitHub/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/ConfirmRemoveFriendDialoge1.java</file>
+            <file>file:/C:/Users/Marwa/Documents/GitHub/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/renderer/ContactListCellRender.java</file>
         </group>
     </open-files>
 </project-private>

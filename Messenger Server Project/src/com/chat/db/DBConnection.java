@@ -13,8 +13,10 @@ public class DBConnection {
     public static Connection getConnection() throws SQLException {
 
 	DriverManager.registerDriver(new Driver());
+        
+        String unicode= "?useUnicode=yes&characterEncoding=UTF-8";
 
-	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/messenger_project", "root", "root");
+	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/messenger_project"+unicode, "root", "root");
 
 	return conn;
     }
