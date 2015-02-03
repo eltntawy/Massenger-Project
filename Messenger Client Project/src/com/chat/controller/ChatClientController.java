@@ -61,14 +61,8 @@ public class ChatClientController {
             System.out.println(chatSessionId);
             ChatClientController chatController = ((ChatClientServiceImpl)chatClientService).getChatController();
             MessengerClientController messengerController = ((ChatClientServiceImpl)chatClientService).getMessengerController();
-            for (int i = 0; i < usersVector.size(); i++){
-                if (!usersVector.elementAt(i).getUserName().equals(loginUser.getUserName())){
-                    counter++;
-                }
-            }
-            if (counter == usersVector.size()){
-                usersVector.addElement(loginUser);
-            }
+            usersVector.removeAllElements();
+            usersVector.addElement(loginUser);
             usersVector.addElement(reciever);
             senderChatFrame = new ChatFrame(loginUser,usersVector,messengerController, chatController,chatSessionId);
             chatController.setChatFrame(senderChatFrame);
