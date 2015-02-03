@@ -144,6 +144,7 @@ public class AuthenticationClientController {
 	parentFrame.removeCurrentPanel();
 	chatServerService.unregisterClient(chatClientService);
 	chatServerService.doSignout(chatClientService.getUser());
+	parentFrame.setJMenuBar(null);
     }
 
     public User userAuthentication(String userName, String password) throws SQLException, RemoteException {
