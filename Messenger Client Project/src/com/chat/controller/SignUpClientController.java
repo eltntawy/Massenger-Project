@@ -54,7 +54,7 @@ public class SignUpClientController {
     public int doSignup(User user) throws RemoteException, NotBoundException,SQLException {
 	// TODO Auto-generated method stub
 	int ret=0;
-	AuthenticationClientController signInController = new AuthenticationClientController(parentFrame, chatClientService, chatServerService);
+	AuthenticationClientController signInController= null;
 
 	initRMIService();
 
@@ -68,12 +68,14 @@ public class SignUpClientController {
 	    
 	    
 	    
+	    signInController = new AuthenticationClientController(parentFrame, chatClientService, chatServerService);
 	    ((ChatClientServiceImpl) chatClientService).setAuthenticationController(signInController);
 	    ((ChatClientServiceImpl) chatClientService).setChatController(chatController);
 	    ((ChatClientServiceImpl) chatClientService).setContactController(contactController);
 	    ((ChatClientServiceImpl) chatClientService).setSignUpController(signUpController);
 	    ((ChatClientServiceImpl) chatClientService).setStatusController(statusController);
 
+	    
 	    chatClientService.setUser(user);
 	    ret = chatServerService.doSignup(user);
 	    
