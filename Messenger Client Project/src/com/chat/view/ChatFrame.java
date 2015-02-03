@@ -5,15 +5,6 @@
  */
 package com.chat.view;
 
-import com.chat.controller.ChatClientController;
-import com.chat.controller.MessengerClientController;
-import com.chat.model.Message;
-import com.chat.model.MessageFile;
-import com.chat.model.User;
-import com.chat.view.model.ListComboBoxModel;
-import com.chat.view.renderer.ContactListCellRender;
-import com.chat.view.resource.Resource;
-import com.xml.XMLJAXB;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -31,11 +22,21 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.DefaultCaret;
+
+import com.chat.controller.ChatClientController;
+import com.chat.controller.MessengerClientController;
+import com.chat.model.Message;
+import com.chat.model.MessageFile;
+import com.chat.model.User;
+import com.chat.view.model.ListComboBoxModel;
+import com.chat.view.renderer.ContactListCellRender;
+import com.chat.view.resource.Resource;
 
 /**
  *
@@ -90,6 +91,11 @@ public class ChatFrame extends javax.swing.JFrame {
         jPanel8.setPreferredSize(new Dimension(200, 200));
         jPanel4.add(toolbar);
         convEditorPane = new ConversationEditorPane(font, Color.BLACK);
+        convEditorPane.setAutoscrolls(true);
+        
+        DefaultCaret caret = (DefaultCaret) convEditorPane.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        
         jScrollPane1.setViewportView(convEditorPane);
         listModel = new ListComboBoxModel<User>();
         if (UsersVector != null){
