@@ -21,7 +21,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatServerService {
+public class ChatServerServiceImpl extends UnicastRemoteObject implements
+	ChatServerService {
 
     ServerController serverController;
     private ChatServerController chatController;
@@ -34,31 +35,37 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
 	this.chatController = chatController;
     }
 
-    public ChatServerServiceImpl(ServerController serverController) throws RemoteException {
+    public ChatServerServiceImpl(ServerController serverController)
+	    throws RemoteException {
 	this.serverController = serverController;
 
     }
 
     @Override
-    public void registerClient(ChatClientService chatClientService) throws RemoteException {
+    public void registerClient(ChatClientService chatClientService)
+	    throws RemoteException {
 
 	serverController.registerClient(chatClientService);
 	if (chatClientService.getUser() != null) {
-	    System.out.println("client register" + chatClientService.getUser().getUserName());
+	    System.out.println("client register"
+		    + chatClientService.getUser().getUserName());
 	}
     }
 
     @Override
-    public void unregisterClient(ChatClientService chatClientService) throws RemoteException {
+    public void unregisterClient(ChatClientService chatClientService)
+	    throws RemoteException {
 	serverController.unregisterClient(chatClientService);
 	if (chatClientService.getUser() != null) {
-	    System.out.println("client unregister" + chatClientService.getUser().getUserName());
+	    System.out.println("client unregister"
+		    + chatClientService.getUser().getUserName());
 	}
 
     }
 
     @Override
-    public List<User> getContactOfNameOrEmailOrUseName(String searchText) throws RemoteException, SQLException {
+    public List<User> getContactOfNameOrEmailOrUseName(String searchText)
+	    throws RemoteException, SQLException {
 	// TODO Auto-generated method stub
 	ContactServerController contactController = new ContactServerController();
 	return contactController.getContactOfNameOrEmailOrUseName(searchText);
@@ -66,46 +73,53 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
     }
 
     @Override
-    public List<User> getContactListOfCurrentUser(User u) throws RemoteException, SQLException {
+    public List<User> getContactListOfCurrentUser(User u)
+	    throws RemoteException, SQLException {
 	// TODO Auto-generated method stub
 	ContactServerController contactController = new ContactServerController();
 	return contactController.getContactListOfCurrentUser(u);
     }
 
     @Override
-    public User userAuthentication(String userName, String password) throws RemoteException, SQLException {
+    public User userAuthentication(String userName, String password)
+	    throws RemoteException, SQLException {
 	// TODO Auto-generated method stub
 	return UserService.userAuthentication(userName, password);
     }
 
     @Override
-    public void addRequestContact(User selectedValue, User user) throws RemoteException {
+    public void addRequestContact(User selectedValue, User user)
+	    throws RemoteException {
 	if (user != null) {
 	    addFriendRequestService.addRequestContact(selectedValue, user);
 	}
     }
 
     @Override
-    public List<User> getRequestContactList(User user) throws SQLException, RemoteException {
+    public List<User> getRequestContactList(User user) throws SQLException,
+	    RemoteException {
 	RequestContactListController request = new RequestContactListController();
 	return request.getRequestContactList(user);
     }
 
     @Override
-    public void addFriend(User user, User mainUser) throws SQLException, RemoteException {
+    public void addFriend(User user, User mainUser) throws SQLException,
+	    RemoteException {
 	AddFriendController add = new AddFriendController();
 	add.addFriend(user, mainUser);
 
     }
 
     @Override
-    public void deleteFriendRequest(User user, User user0) throws SQLException, RemoteException {
+    public void deleteFriendRequest(User user, User user0) throws SQLException,
+	    RemoteException {
 	AddFriendController add = new AddFriendController();
 	add.deleteFriendRequest(user, user0);
     }
 
     @Override
-    public void updateUserImage(String Path, User user) throws SQLException, RemoteException {
+    public void updateUserImage(String Path, User user) throws SQLException,
+	    RemoteException {
 	ContactServerController.updateUserImage(Path, user);
     }
 
@@ -131,7 +145,8 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
     }
 
     @Override
-    public void DeleteContactFromUser(User user, User Mainuser) throws SQLException, RemoteException {
+    public void DeleteContactFromUser(User user, User Mainuser)
+	    throws SQLException, RemoteException {
 	AddFriendController remove = new AddFriendController();
 	remove.DeleteContactFromUser(user, Mainuser);
     }
@@ -141,13 +156,13 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
 
 	// throw new UnsupportedOpera tionException("Not supported yet.");
 	// //To change body of generated methods, choose Tools | Templates.
-	if(user != null)
+	if (user != null)
 	    try {
-	    return UserService.insertUser(user); 
+		return UserService.insertUser(user);
 	    } catch (SQLException e) {
 		return 0;
 	    }
-	else 
+	else
 	    return 0;
 
     }
@@ -155,7 +170,7 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
     @Override
     public void doSignout(User user) throws RemoteException, SQLException {
 	// TODO Auto-generated method stub
-	if(user != null)
+	if (user != null)
 	    UserService.doSignoutUser(user);
     }
 
@@ -163,22 +178,43 @@ public class ChatServerServiceImpl extends UnicastRemoteObject implements ChatSe
 	chatController.sendFile(messageFile);
     }
 
-    public boolean requestSend(String fileName, User sender, User receiver, String sessionId) {
-	return chatController.requestSend(fileName, sender, receiver, sessionId);
+    public boolean requestSend(String fileName, User sender, User receiver,
+	    String sessionId) {
+	return chatController
+		.requestSend(fileName, sender, receiver, sessionId);
     }
 
     @Override
     public void showMyStatus(User user) throws RemoteException, SQLException {
 	// TODO Auto-generated method stub
-	for(ChatClientService client : ServerController.getChatClientVector()) {
-	    for(User contact : ContactService.getContactListOfCurrentUser(client.getUser())) {
-		if(user !=null && user.getUserName().equals(contact.getUserName())) {
+	for (ChatClientService client : ServerController.getChatClientVector()) {
+	    for (User contact : ContactService
+		    .getContactListOfCurrentUser(client.getUser())) {
+		if (user != null
+			&& user.getUserName().equals(contact.getUserName())) {
 		    client.showUserOnline(user);
 		}
-		
+
 	    }
 	}
     }
 
-    
+    @Override
+    public boolean checkBeforeSignIn(User user) throws RemoteException {
+	// TODO Auto-generated method stub
+	for (ChatClientService client : serverController.getregisteredClient()) {
+	    try {
+		client.getUser();
+		if (client.getUser() != null && client.getUser().getUserName().equals(user.getUserName())) {
+		    return false;
+		}
+
+	    } catch (RemoteException e) {
+		e.printStackTrace();
+	    }
+
+	}
+	return true;
+    }
+
 }

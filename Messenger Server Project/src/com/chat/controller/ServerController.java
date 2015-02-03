@@ -51,7 +51,7 @@ public class ServerController {
 
         clientVector.add(chatClientService);
         
-        synchronized (ServerController.class) {
+        synchronized (clientVector) {
             for(ChatClientService client : clientVector)  {
                 try {
             	client.getUser();
@@ -66,10 +66,13 @@ public class ServerController {
 
     public  void  unregisterClient(ChatClientService chatClientService) {
 
-        clientVector.remove(chatClientService);
+	synchronized (clientVector) {
+	    clientVector.remove(chatClientService);
+	}
+        
     }
 
-    public Vector getregisteredClient() {
+    public Vector<ChatClientService> getregisteredClient() {
 
         return clientVector;
     }
@@ -86,7 +89,10 @@ public class ServerController {
             }
         }
 
-        clientVector.removeAllElements();
+        synchronized (clientVector) {
+            clientVector.removeAllElements();
+	}
+        
     }
 
 }

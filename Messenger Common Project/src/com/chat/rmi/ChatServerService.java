@@ -48,4 +48,6 @@ public interface ChatServerService extends Remote {
 
     public void showMyStatus(User user) throws RemoteException, SQLException;
 
+    public boolean checkBeforeSignIn(User user) throws RemoteException;
+
 }

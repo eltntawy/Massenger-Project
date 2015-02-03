@@ -194,4 +194,11 @@ public class SignInPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblUserName;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
+
+    public void showYouAreLoginBefore() {
+	// TODO Auto-generated method stub
+	
+	JOptionPane.showMessageDialog(this, "You are sign in from other place.\n please sign out and try to sign in again.");
+	
+    }
 }
