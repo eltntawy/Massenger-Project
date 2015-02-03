@@ -66,9 +66,9 @@ public class ConfirmRemoveFriendDialoge1 extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(290, 215));
-        setMinimumSize(new java.awt.Dimension(290, 215));
-        setPreferredSize(new java.awt.Dimension(290, 215));
+        setMaximumSize(new java.awt.Dimension(320, 215));
+        setMinimumSize(new java.awt.Dimension(320, 215));
+        setPreferredSize(new java.awt.Dimension(320, 215));
         setResizable(false);
 
         btnCancel.setText("Cancel");

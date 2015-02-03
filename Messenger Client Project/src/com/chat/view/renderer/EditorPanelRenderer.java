@@ -5,6 +5,7 @@
  */
 package com.chat.view.renderer;
 
+import com.chat.view.resource.Resource;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -27,7 +28,7 @@ public class EditorPanelRenderer implements ListCellRenderer<String> {
         fontLabel.setFont(font);
 
         if (isSelected) {
-            fontLabel.setBackground(Color.BLUE);
+            fontLabel.setBackground(Resource.HIGHLIGHT_COLOR);
         } else {
             fontLabel.setBackground(Color.WHITE);
         }
