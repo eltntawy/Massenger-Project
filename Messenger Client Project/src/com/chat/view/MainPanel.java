@@ -397,6 +397,8 @@ public class MainPanel extends javax.swing.JPanel {
                             User user = (User) listContact.getSelectedValue();
                             messengerController.DeleteContactFromUser(user);
                             ((ListComboBoxModel<User>) listContact.getModel()).removeElement(listContact.getSelectedValue());
+
+                            messengerController.initContactListForOtherUser(user);
                             initContactList();
                         } catch (RemoteException ex) {
                             Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);

@@ -5,6 +5,7 @@
  */
 package com.chat.view.renderer;
 
+import com.chat.view.resource.Resource;
 import java.awt.Color;
 import java.awt.Component;
 
@@ -39,7 +40,7 @@ public class EditorPanelColorRenderer implements ListCellRenderer<String> {
                     selectedColor = Color.BLACK;
                     break;
             }
-            colorLabel.setBackground(selectedColor);
+            colorLabel.setBackground(Resource.HIGHLIGHT_COLOR);
             colorLabel.setForeground(Color.WHITE);
 
         } else {
