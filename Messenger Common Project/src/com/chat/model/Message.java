@@ -6,11 +6,13 @@
 
 package com.chat.model;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Vector;
+
 
 /**
  *
@@ -24,6 +26,8 @@ public class Message implements Serializable{
     private String time;
     private String sessionId;
     private Vector<User> usersVector;
+    private Font font;
+    private Color color;
     
     public Message (User senderName, Vector<User> usersVector, String message, String sessionId){
         this.senderName = senderName;
@@ -69,5 +73,19 @@ public class Message implements Serializable{
     public Vector<User> getUsersVector (){
         return usersVector;
     }
+    public Font getFont() {
+        return font;
+    }
+    public void setFont(Font font) {
+        this.font = font;
+    }
+    public Color getColor() {
+        return color;
+    }
+    public void setColor(Color color) {
+        this.color = color;
+    }
+    
+    
     
 }

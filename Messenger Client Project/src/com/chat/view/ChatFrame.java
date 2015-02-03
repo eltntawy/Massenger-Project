@@ -161,6 +161,10 @@ public class ChatFrame extends javax.swing.JFrame {
             System.out.println(message.getSenderName());
             System.out.println(message.getReceiverName());
             System.out.println(message.getMessage());
+            
+            message.setFont(toolbar.getSelectedFont());
+            message.setColor(toolbar.getSelectedColor());
+            
             chatController.sendMessage(message);
         }
     }
@@ -171,7 +175,7 @@ public class ChatFrame extends javax.swing.JFrame {
         appendChatGroup(message.getUsersVector());
         UserVector = message.getUsersVector();
         //message.setUsersVector(UserVector);
-        convEditorPane.AppendText(message, toolbar.getSelectedFont(), toolbar.getSelectedColor());
+        convEditorPane.AppendText(message, message.getFont(), message.getColor());
     }
     
     public boolean requestSend(String fileName){
