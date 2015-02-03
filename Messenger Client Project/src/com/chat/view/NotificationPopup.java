@@ -21,7 +21,6 @@ import javax.swing.JWindow;
 import javax.swing.SwingUtilities;
 
 import com.chat.model.User;
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.NoFixedFacet;
 
 public class NotificationPopup extends JWindow {
     private final LinearGradientPaint lpg;

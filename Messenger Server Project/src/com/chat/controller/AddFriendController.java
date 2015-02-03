@@ -15,8 +15,12 @@ import com.chat.service.AddFriendService;
  */
 public class AddFriendController {
 
-    public  void DeleteContactFromUser(User user, User Mainuser) {
-        AddFriendService.DeleteContactFromUser(user,Mainuser);
+    public static void initContactListForOtherUser(User user) {
+        AddFriendService.initContactListForOtherUser(user);
+    }
+
+    public void DeleteContactFromUser(User user, User Mainuser) {
+        AddFriendService.DeleteContactFromUser(user, Mainuser);
     }
 
     public void addFriend(User user, User mainUser) {
@@ -26,5 +30,12 @@ public class AddFriendController {
     public void deleteFriendRequest(User user, User user0) {
         AddFriendService.deleteFriendRequest(user, user0);
     }
+
+    public boolean checkRequestExistance(User user, User user0) {
+        boolean exist = AddFriendService.checkRequestExistance(user, user0);
+        return exist;
+    }
+
+    
 
 }

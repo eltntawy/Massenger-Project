@@ -333,23 +333,23 @@ public class MainPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_lblUserImageMouseClicked
 
-    boolean isFirstTime=true;
-    
+    boolean isFirstTime = true;
+
     private void cbBoxUserStatusItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_cbBoxUserStatusItemStateChanged
 
         // TODO add your handling code here:
-	if(isFirstTime) {
+        if (isFirstTime) {
             try {
-                
+
                 isFirstTime = false;
                 messengerController.doChangeStaus((Status) cbBoxUserStatus.getSelectedItem());
-    
+
                 if (((Status) evt.getItem()).getStatus() == User.SIGNOUT) {
                     messengerController.doSignOut();
                     parentFrame.setJMenuBar(null);
                     parentFrame.revalidate();
                 }
-                
+
             } catch (RemoteException e) {
                 JOptionPane.showMessageDialog(this, "can not change status right now");
                 e.printStackTrace();
@@ -358,20 +358,20 @@ public class MainPanel extends javax.swing.JPanel {
                 e.printStackTrace();
             }
         }
-	
-	new Thread () {
-	  @Override
-	public void run() {
-	    // TODO Auto-generated method stub
-	      try {
-		Thread.sleep(10);
-	    } catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
-	      isFirstTime = true;
-	}  
-	}.start();
+
+        new Thread() {
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                isFirstTime = true;
+            }
+        }.start();
 
     }// GEN-LAST:event_cbBoxUserStatusItemStateChanged
 
@@ -387,8 +387,7 @@ public class MainPanel extends javax.swing.JPanel {
             try {
                 if (messengerController.checkUserId((User) listContact.getSelectedValue())) {
                     ConfirmRemoveFriendDialoge1 confirm = new ConfirmRemoveFriendDialoge1(parentFrame, true, (User) listContact.getSelectedValue());
-                    
-                    
+
                     confirm.setVisible(true);
 
                     boolean flag = confirm.getPressedbutton();
@@ -397,7 +396,7 @@ public class MainPanel extends javax.swing.JPanel {
                         try {
                             User user = (User) listContact.getSelectedValue();
                             messengerController.DeleteContactFromUser(user);
-                            ((ListComboBoxModel<User>)listContact.getModel()).removeElement(listContact.getSelectedValue());
+                            ((ListComboBoxModel<User>) listContact.getModel()).removeElement(listContact.getSelectedValue());
                             initContactList();
                         } catch (RemoteException ex) {
                             Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -421,31 +420,40 @@ public class MainPanel extends javax.swing.JPanel {
     private void btnAddSearchContactActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAddSearchContactActionPerformed
         // TODO add your handling code here:
         int dialogebox = 0;
+        boolean exist;
         if (listContact.getModel().getSize() > 0 && img) {
             if (!listContact.isSelectionEmpty()) {
                 try {
                     System.out.println(listContact.getSelectedValue().toString());
                     //  dialogebox = JOptionPane.showConfirmDialog(parentFrame, "Are u sure u want to add  \n" + listContact.getSelectedValue());
                     if (messengerController.checkUserId((User) listContact.getSelectedValue())) {
-                        ConfirmAddFriendDialoge confirm = new ConfirmAddFriendDialoge(parentFrame, true, (User) listContact.getSelectedValue());
-                        confirm.setVisible(true);
-
-                        boolean flag = confirm.getPressedbutton();
-
-                        if (flag) {
-                            try {
-                                messengerController.addRequestContact((User) listContact.getSelectedValue());
-                            } catch (RemoteException ex) {
-                                Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+                        exist = messengerController.checkRequestExitance((User) listContact.getSelectedValue());
+                        if (!exist) {
+                            System.out.println("thereis");
+                            JOptionPane.showMessageDialog(parentFrame, "Please , Check your Friend Requests \n There's one from this Person ");
                         } else {
+                            ConfirmAddFriendDialoge confirm = new ConfirmAddFriendDialoge(parentFrame, true, (User) listContact.getSelectedValue());
+                            confirm.setVisible(true);
 
+                            boolean flag = confirm.getPressedbutton();
+
+                            if (flag) {
+                                try {
+                                    messengerController.addRequestContact((User) listContact.getSelectedValue());
+                                } catch (RemoteException ex) {
+                                    Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            } else {
+
+                            }
                         }
                     } else {
                         errMessage();
                         txtContactSearch.setText("");
                     }
                 } catch (RemoteException ex) {
+                    Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
                     Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -467,9 +475,9 @@ public class MainPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtContactSearch;
     private javax.swing.JPanel userPanel;
     // End of variables declaration//GEN-END:variables
-    
+
     public void initContactList(List<User> retList) {
-	ListComboBoxModel<User> listModel = new ListComboBoxModel<User>();
+        ListComboBoxModel<User> listModel = new ListComboBoxModel<User>();
 
         if (retList != null) {
             for (User user : retList) {
@@ -477,9 +485,9 @@ public class MainPanel extends javax.swing.JPanel {
             }
         }
         listContact.setModel(listModel);
-	
+
     }
-    
+
     public void initContactList() {
         if (listContact != null) {
 
@@ -542,7 +550,7 @@ public class MainPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(parentFrame, "Sorry you cannot add yourSelf ");
     }
 
-    public  void initRequestContactList() {
+    public void initRequestContactList() {
 
         List<User> list = null;
         try {
@@ -562,7 +570,9 @@ public class MainPanel extends javax.swing.JPanel {
             if (flag == 1) {
                 try {
                     // add to friend list
+                    System.out.println(user.getFullName() + "contact List Test");
                     messengerController.addFriend(user);
+                    messengerController.initContactListForOtherUser(user);
                     initContactList();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
@@ -631,7 +641,7 @@ public class MainPanel extends javax.swing.JPanel {
                         // TODO search for name on server contacts
                         try {
                             List<User> searchContactList = messengerController.getContactOfNameOrEmailOrUseNameList(txtField.getText());
-                            if(searchContactList != null){
+                            if (searchContactList != null) {
                                 for (User user : searchContactList) {
                                     ((ListComboBoxModel<User>) filterList.getModel()).addElement(user);
                                 }
