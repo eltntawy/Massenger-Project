@@ -67,7 +67,7 @@ public class MessengerClientController {
         int framesNumber = 0;
         ChatClientController chatController = ((ChatClientServiceImpl)chatClientService).getChatController();
         //check if chat frame is opened with this user
-        if (chatController.getChatFrame().size() == 0){
+        if (chatController.getChatFrame().size() == 0 && reciever.getStatus() == User.AVAILABLE){
             chatController.showChatFrame(reciever);
         }
         for (int i = 0; i < chatController.getChatFrame().size(); i++){ 
@@ -82,7 +82,7 @@ public class MessengerClientController {
                 framesNumber++;
             }
         }
-        if (framesNumber == chatController.getChatFrame().size()){
+        if (framesNumber == chatController.getChatFrame().size() && reciever.getStatus() == User.AVAILABLE){
             chatController.showChatFrame(reciever);
         }
     }

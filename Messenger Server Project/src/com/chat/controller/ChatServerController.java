@@ -61,7 +61,7 @@ public class ChatServerController {
                     try {
                         clientName = clientVector.elementAt(j).getUser().getUserName();
                         if (receiver.equals(clientName) && !(receiver.equals(sender.getUserName()))) {
-                            return client.confirmRequest(sender, fileName, sessionId);
+                            return client.confirmRequest(sender, fileName, sessionId, UsersVector);
                         }
                     } catch (RemoteException ex) {
                         Logger.getLogger(ChatServerController.class.getName()).log(Level.SEVERE, null, ex);

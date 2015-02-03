@@ -13,6 +13,7 @@ import com.chat.model.User;
 import com.chat.view.model.ListComboBoxModel;
 import com.chat.view.renderer.ContactListCellRender;
 import com.chat.view.resource.Resource;
+import com.xml.XMLJAXB;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -105,7 +106,7 @@ public class ChatFrame extends javax.swing.JFrame {
         this.windowClose = new WindowAdapter() {
           public void windowClosed(WindowEvent e){
               ChatFrame.this.chatController.removeChatFrame(ChatFrame.this.sessionId);
-              
+              ChatFrame.this.UserVector.removeElement(loginUser);
           }  
         };
         this.addWindowListener(this.windowClose);
@@ -146,7 +147,14 @@ public class ChatFrame extends javax.swing.JFrame {
         if (!txtChat.getText().equals("")) {
             
             Message message = new Message(loginUser, UserVector, txtChat.getText(), sessionId);
-            
+         /*   for (int i = 0; i < UserVector.size(); i++){
+              if (!loginUser.getUserName().equals(UserVector.elementAt(i).getUserName())){
+                  message.setReceiverName(UserVector.elementAt(i));
+                  XMLJAXB xmlJAXB = new XMLJAXB();
+                  xmlJAXB.appendMsg(message);
+              }  
+            }
+           */ 
             convEditorPane.AppendText(message, toolbar.getSelectedFont(), toolbar.getSelectedColor());
             txtChat.setText("");
             System.out.println(message.getSenderName());
@@ -159,8 +167,9 @@ public class ChatFrame extends javax.swing.JFrame {
     public void receiveMessage(Message message) {
         System.out.println("||||||||");
         System.out.println(message.getMessage());
-        appendChatGroup(message.getSenderName(), message.getReceiverName(),message.getUsersVector());
-        message.setUsersVector(UserVector);
+        appendChatGroup(message.getUsersVector());
+        UserVector = message.getUsersVector();
+        //message.setUsersVector(UserVector);
         convEditorPane.AppendText(message, toolbar.getSelectedFont(), toolbar.getSelectedColor());
     }
     
@@ -168,8 +177,9 @@ public class ChatFrame extends javax.swing.JFrame {
         return chatController.requestSend(fileName, UserVector);
     }
     
-    public boolean confirmRequest(String fileName){
+    public boolean confirmRequest(String fileName, Vector<User> usersVector){
         
+        appendChatGroup(UserVector);
         int option = JOptionPane.showConfirmDialog(this, "Do you want to receive this file: "+fileName, "Confirm", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (option == JOptionPane.OK_OPTION){
             return true;
@@ -207,7 +217,7 @@ public class ChatFrame extends javax.swing.JFrame {
     }
     
     public void receiveFile (MessageFile messageFile){
-        appendChatGroup(messageFile.getSender(), messageFile.getReceiver(),messageFile.getUsersVector());
+        appendChatGroup(messageFile.getUsersVector());
         messageFile.setUsersVector(UserVector);
         JFileChooser saveFile = new JFileChooser ();
         saveFile.setSelectedFile(new File(messageFile.getFileName()));
@@ -239,7 +249,7 @@ public class ChatFrame extends javax.swing.JFrame {
 	}
     }
     
-    public void appendChatGroup (User sender, User receiver, Vector<User>receiverVector){
+    public void appendChatGroup (Vector<User>receiverVector){
         
         listModel.removeAllElements();
         for (int i = 0; i < receiverVector.size(); i++){
@@ -443,23 +453,15 @@ public class ChatFrame extends javax.swing.JFrame {
                 User friend = (messengerController.getContactListOfCurrentUser()).get(i);
                 if (friendName.equals(friend.getUserName())){
                     
-                    for (int j = 0; j < UserVector.size(); j++){
-                        if (!friend.getUserName().equals(UserVector.elementAt(j).getUserName())){
-                            counter++;
+                        for (int j = 0; j < UserVector.size(); j++){
+                            if (!friend.getUserName().equals(UserVector.elementAt(j).getUserName())){
+                                counter++;
+                            }
                         }
-                    }
-                    if (counter == UserVector.size() ){
+                    if (counter == UserVector.size() && friend.getStatus() == User.AVAILABLE ){
                         listModel.addElement(friend);
                         appendReceiver(friend);
                     }
-                    
-                   /* if (receiverVector.size() == 0){
-                        SenderPanel Rpanel2 = new SenderPanel(friend);
-                        Rpanel2.setSenderImagelbl(friend.getUserPicture());
-                        Rpanel2.setSenderNamelbl(friend.getUserName());
-                        jPanel8.add(Rpanel2);
-                        setGroupReceivers(friend);
-                    }*/
                     
                 }
             }

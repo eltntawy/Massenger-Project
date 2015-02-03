@@ -5,6 +5,7 @@ import com.chat.model.MessageFile;
 import com.chat.model.User;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.Vector;
 
 public interface ChatClientService extends Remote {
 
@@ -16,7 +17,7 @@ public interface ChatClientService extends Remote {
     
     public void receiveFile (MessageFile messageFile) throws RemoteException;
     
-    public boolean confirmRequest (User sender, String fileName, String sessionId) throws RemoteException;
+    public boolean confirmRequest (User sender, String fileName, String sessionId, Vector<User> usersVector) throws RemoteException;
 
     public void fitchContactList() throws RemoteException;
 

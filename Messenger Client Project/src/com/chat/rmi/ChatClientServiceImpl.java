@@ -11,6 +11,7 @@ import com.chat.model.MessageFile;
 import com.chat.model.User;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -106,8 +107,8 @@ public class ChatClientServiceImpl extends UnicastRemoteObject implements ChatCl
         authenticationController.showSignIn();
 
     }
-     public boolean confirmRequest (User sender, String fileName, String sessionId){
-        return chatController.confirmRequest(sender, fileName, sessionId);
+     public boolean confirmRequest (User sender, String fileName, String sessionId, Vector<User> usersVector){
+        return chatController.confirmRequest(sender, fileName, sessionId, usersVector);
     }
     
     public void receiveFile (MessageFile messageFile){
