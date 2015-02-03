@@ -8,6 +8,7 @@ package com.chat.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Vector;
 
 /**
  *
@@ -19,20 +20,28 @@ public class MessageFile implements Serializable{
     User receiver;
     String sessionID;
     String fileName="";
+    Vector<User> usersVector;
     
-    public MessageFile(List<byte []> file,String fileName, User sender, User receiver, String sessionID) {
+    public MessageFile(List<byte []> file,String fileName, User sender, Vector<User> usersVector, String sessionID) {
         this.file = file;
         this.fileName = fileName;
         this.sender = sender;
-        this.receiver = receiver;
         this.sessionID = sessionID;
+        this.usersVector = usersVector;
         
     }
 
     public void setFile(List<byte[]> file) {
         this.file = file;
     }
-
+    
+    public void setUsersVector(Vector<User> usersVector){
+        this.usersVector = usersVector;
+    }
+    
+    public Vector<User> getUsersVector (){
+        return usersVector;
+    }
     
     public String getFileName() {
         return fileName;

@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.XMLConstants;
@@ -40,8 +41,11 @@ public class XMLJAXB {
     public XMLJAXB() {
 
         User user = new User(1, "aya", "Ibraheem", "254", null, 1);
+        
         User userOut = new User(1, "marwa", "xyz", "2554", null, 0);
-        Message msg = new Message(user, userOut, "Heeey", "125");
+        Vector v = new Vector<User>();
+        v.add(userOut);
+        Message msg = new Message(user, v, "Heeey", "125");
         Font font = new Font("Dialoge", Font.BOLD, 15);
         appendMsg(msg);
 

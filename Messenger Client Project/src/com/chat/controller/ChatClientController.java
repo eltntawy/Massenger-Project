@@ -29,13 +29,14 @@ public class ChatClientController {
     private MainFrame mainFrame;
     private User loginUser;
     private User Receiver;
-
+    private Vector<User> usersVector;
+    
     public ChatClientController( ChatClientService chatClientService,ChatServerService chatServerService) {
 
 	this.chatServerService = chatServerService;
         this.chatClientService = chatClientService;
         chatFrameVector = new Vector<>();
-
+        usersVector = new Vector<>();
     }
     
     public void setLoginUser(){
@@ -58,7 +59,10 @@ public class ChatClientController {
             String chatSessionId = UUID.randomUUID().toString();
             System.out.println(chatSessionId);
             ChatClientController chatController = ((ChatClientServiceImpl)chatClientService).getChatController();
-            senderChatFrame = new ChatFrame(loginUser,reciever,chatController,chatSessionId);
+            MessengerClientController messengerController = ((ChatClientServiceImpl)chatClientService).getMessengerController();
+             usersVector.addElement(loginUser);
+            usersVector.addElement(reciever);
+            senderChatFrame = new ChatFrame(loginUser,usersVector,messengerController, chatController,chatSessionId);
             chatController.setChatFrame(senderChatFrame);
 	    senderChatFrame.setVisible(true);
 	}
@@ -69,7 +73,8 @@ public class ChatClientController {
         if (loginUser != null){
                
             ChatClientController chatController = ((ChatClientServiceImpl)chatClientService).getChatController();
-            receiverChatFrame = new ChatFrame(loginUser,receiver,chatController, sessionId);
+            MessengerClientController messengerController = ((ChatClientServiceImpl)chatClientService).getMessengerController();
+            receiverChatFrame = new ChatFrame(loginUser,usersVector,messengerController,chatController, sessionId);
             chatController.setChatFrame(receiverChatFrame);
 	    receiverChatFrame.setVisible(true);
         }
@@ -153,7 +158,7 @@ public class ChatClientController {
         }
     }
     
-    public boolean requestSend (String fileName, User receiver){
+    public boolean requestSend (String fileName, Vector<User> receiver){
         try {
             if (receiverChatFrame == null){
                 return chatServerService.requestSend(fileName, loginUser,receiver, senderChatFrame.getSessionId());
