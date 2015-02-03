@@ -97,19 +97,35 @@ public class AuthenticationClientController {
 	    ((ChatClientServiceImpl) chatClientService).setStatusController(statusController);
 
 	}
+	
+	
+	
 	User user = userAuthentication(userName, password);
 	if (user != null) {
-	    chatClientService.setUser(user);
+	    boolean isBeforeSignIn = chatServerService.checkBeforeSignIn(user);
+	    
 	    AuthenticationClientController authenticationClientController = ((ChatClientServiceImpl)chatClientService).getAuthenticationController();
-	    showMyStstus(user);
-	    MessengerClientController messengerController = new MessengerClientController(parentFrame, chatClientService, chatServerService);
-	    messengerController.showMainPanel();
-	    messengerController.getContactListOfCurrentUser();
-	    messengerController.getRequestContactList();
-	    ((ChatClientServiceImpl) chatClientService).setMessengerController(messengerController);
-	    return user;
+	    if(isBeforeSignIn){
+		chatClientService.setUser(user);
+		    
+		    showMyStstus(user);
+		    MessengerClientController messengerController = new MessengerClientController(parentFrame, chatClientService, chatServerService);
+		    messengerController.showMainPanel();
+		    messengerController.getContactListOfCurrentUser();
+		    messengerController.getRequestContactList();
+		    ((ChatClientServiceImpl) chatClientService).setMessengerController(messengerController);
+		    return user;
+	    } else {
+		authenticationClientController.showYouAreLoginBefore();
+		return user;
+	    }
+	    
 	}
 	return null;
+    }
+
+    private void showYouAreLoginBefore() {
+	signInPanel.showYouAreLoginBefore();
     }
 
     public void showMyStstus(User user) throws RemoteException, SQLException {

@@ -47,7 +47,10 @@ public interface ChatServerService extends Remote {
 
     public void showMyStatus(User user) throws RemoteException, SQLException;
 
-    public void initContactListForOtherUser(User user) throws RemoteException;
+
+    public boolean checkBeforeSignIn(User user) throws RemoteException;
+
+    void initContactListForOtherUser(User user) throws RemoteException;
 
     public boolean checkRequestExistance(User user, User user0) throws RemoteException, SQLException;
 

@@ -158,7 +158,7 @@ public class MainPanel extends javax.swing.JPanel {
 
         userPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("User Profile"));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Photo"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         lblUserImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/chat/view/resource/img/messenger.png"))); // NOI18N
         lblUserImage.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -397,6 +397,7 @@ public class MainPanel extends javax.swing.JPanel {
                             User user = (User) listContact.getSelectedValue();
                             messengerController.DeleteContactFromUser(user);
                             ((ListComboBoxModel<User>) listContact.getModel()).removeElement(listContact.getSelectedValue());
+
                             messengerController.initContactListForOtherUser(user);
                             initContactList();
                         } catch (RemoteException ex) {

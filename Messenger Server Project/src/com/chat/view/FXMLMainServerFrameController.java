@@ -138,6 +138,8 @@ public class FXMLMainServerFrameController implements Initializable {
 
 	    server = new ChatServerServiceImpl(serverController);
 
+	    server.unregisterAllClient();
+	    
 	    ChatServerController chatController2 = new ChatServerController();
 
 	    server.setChatController(chatController2);

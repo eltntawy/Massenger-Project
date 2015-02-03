@@ -60,14 +60,14 @@ public class NotificationPopup extends JWindow {
 	  @Override
 	public void run() {
 	    // TODO Auto-generated method stub
-	    for(int i = 0 ; i < 30;i ++ ) {
+	    
 		try {
-		    Thread.sleep(1000);
+		    Thread.sleep(2000);
 		} catch (InterruptedException e) {
 		    // TODO Auto-generated catch block
 		    e.printStackTrace();
 		}
-	    }
+	    
 	    dispose();
 	    count--;
 	}  

@@ -21,9 +21,16 @@ public class StatusServerController {
 	Vector<ChatClientService> clientVector = ServerController.getChatClientVector();
 	
 	for(ChatClientService client : clientVector) {
-	    if(ContactService.isFriendOfUser(user, client.getUser())) {
-		client.fitchContactList();
+	    try {
+		client.getUser();
+		if(client.getUser() != null && ContactService.isFriendOfUser(user, client.getUser())) {
+			client.fitchContactList();
+		    }
+	    } catch (RemoteException e) {
+		e.printStackTrace();
 	    }
+	    
+	    
 	}
 	return ret;
     }

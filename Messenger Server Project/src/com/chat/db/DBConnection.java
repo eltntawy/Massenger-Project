@@ -16,8 +16,8 @@ public class DBConnection {
         
         String unicode= "?useUnicode=yes&characterEncoding=UTF-8";
 
-	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/messenger_project"+unicode, "root", "root");
-
+	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/messenger_project?useUnicode=yes&characterEncoding=utf8", "root", "root");
+	
 	return conn;
     }
 
