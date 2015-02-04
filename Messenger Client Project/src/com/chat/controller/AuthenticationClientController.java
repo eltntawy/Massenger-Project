@@ -10,12 +10,14 @@ import com.chat.model.User;
 import com.chat.rmi.ChatClientService;
 import com.chat.rmi.ChatClientServiceImpl;
 import com.chat.rmi.ChatServerService;
+import com.chat.view.ChatFrame;
 import com.chat.view.MainFrame;
 import com.chat.view.SignInPanel;
 
 import java.rmi.NotBoundException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Vector;
 
 public class AuthenticationClientController {
 
@@ -153,6 +155,12 @@ public class AuthenticationClientController {
 	reg = null;
 	chatServerService = null;
 	chatClientService = null;
+//        ChatClientController chatController = ((ChatClientServiceImpl) chatClientService).getChatController();
+//        Vector<ChatFrame> chatFrameVector = chatController.getChatFrame();
+//        for (int i = 0; i < chatFrameVector.size(); i++){
+//            chatFrameVector.elementAt(i).setVisible(false);
+//        }
+//        chatFrameVector.removeAllElements();
     }
 
     public User userAuthentication(String userName, String password) throws SQLException, RemoteException {
