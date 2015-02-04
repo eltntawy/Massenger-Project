@@ -5,6 +5,8 @@
  */
 package com.chat.view;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
@@ -61,6 +63,8 @@ public class FXMLAnnouncementMessage implements Initializable {
 
 	User sender = new User(0, "Administrator", "", "Administrator", Resource.IMAGE_DEFAULT_USER, 0);
 	Message message = new Message(sender , null, txtMessage.getText(), UUID.randomUUID().toString());
+	message.setFont(new Font("Times New Roman",Font.PLAIN,4));
+	message.setColor(Color.black);
 	try {
 	    ChatServerController.sendMessageForAllClient(message);
 	    txtMessage.setText("");

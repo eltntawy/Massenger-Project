@@ -39,6 +39,12 @@ public class MessengerClientController {
         // TODO Auto-generated method stub
         AuthenticationClientController signInController = new AuthenticationClientController(parentFrame, chatClientService, chatServerService);
         signInController.doSignOut();
+//        ChatClientController chatController = ((ChatClientServiceImpl) chatClientService).getChatController();
+//        Vector<ChatFrame> chatFrameVector = chatController.getChatFrame();
+//        for (int i = 0; i < chatFrameVector.size(); i++){
+//            chatFrameVector.elementAt(i).setVisible(false);
+//        }
+//        chatFrameVector.removeAllElements();
         signInController.showSignIn();
 
     }
