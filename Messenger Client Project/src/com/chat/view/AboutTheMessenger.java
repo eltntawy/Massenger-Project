@@ -24,7 +24,7 @@ public class AboutTheMessenger extends javax.swing.JDialog {
     public AboutTheMessenger(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        jLabel3.setIcon(Resource.getImage("abouit.png"));
+        jLabel3.setIcon(Resource.getImage("about.jpg"));
         
     }
 
