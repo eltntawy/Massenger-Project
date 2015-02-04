@@ -101,24 +101,12 @@ public class ChatClientController {
                 chatFrameOpen = true;
                 break;
             }
-//            else {
-//                System.out.println("Chat farme not active !!!!!!!!!!!");
-//                showReceiverChatFrame(message.getSessionId(), message.getSenderName(), message.getUsersVector());
-//                chatFrame.receiveMessage(message);
-//            }
         }
         if (chatFrameOpen == false) {
             System.out.println("Chat farme not active !!!!!!!!!!!");
             showReceiverChatFrame(message.getSessionId(), message.getSenderName(), message.getUsersVector());
             receiverChatFrame.receiveMessage(message);
         }
-        
-
-//        if (chatController.getChatFrame().size() == 0) {
-//            System.out.println("Chat farme not active !!!!!!!!!!!");
-//            showReceiverChatFrame(message.getSessionId(), message.getSenderName(), message.getUsersVector());
-//            receiverChatFrame.receiveMessage(message);
-//        }
     }
 
     public void sendFile(MessageFile messageFile) {
@@ -132,20 +120,18 @@ public class ChatClientController {
     }
 
     public void receiveFile(MessageFile messageFile) {
+        
+        boolean chatFrameOpen = false;
         ChatClientController chatController = ((ChatClientServiceImpl) chatClientService).getChatController();
         for (int i = 0; i < chatController.getChatFrame().size(); i++) {
             ChatFrame chatFrame = chatController.getChatFrame().elementAt(i);
             if (messageFile.getSessionID().equals(chatFrame.getSessionId())) {
                 chatFrame.receiveFile(messageFile);
+                chatFrameOpen = true;
                 break;
-            } else {
-                System.out.println("Chat farme not active !!!!!!!!!!!");
-                showReceiverChatFrame(messageFile.getSessionID(), messageFile.getSender(), messageFile.getUsersVector());
-                chatFrame.receiveFile(messageFile);
             }
         }
-
-        if (chatController.getChatFrame().size() == 0) {
+        if (chatFrameOpen == false) {
             System.out.println("Chat farme not active !!!!!!!!!!!");
             showReceiverChatFrame(messageFile.getSessionID(), messageFile.getSender(), messageFile.getUsersVector());
             receiverChatFrame.receiveFile(messageFile);
@@ -183,24 +169,40 @@ public class ChatClientController {
 
     public boolean confirmRequest(User sender, String fileName, String sessionId, Vector<User> userVector) {
 
-        ChatClientController chatController = ((ChatClientServiceImpl) chatClientService).getChatController();
+        
+        boolean chatFrameOpen = false;
+         ChatClientController chatController = ((ChatClientServiceImpl) chatClientService).getChatController();
         for (int i = 0; i < chatController.getChatFrame().size(); i++) {
             ChatFrame chatFrame = chatController.getChatFrame().elementAt(i);
             if (sessionId.equals(chatFrame.getSessionId())) {
                 return chatFrame.confirmRequest(fileName, userVector);
-            } else {
-                System.out.println("Chat farme not active !!!!!!!!!!!");
-                showReceiverChatFrame(sessionId, sender, userVector);
-                return chatFrame.confirmRequest(fileName, userVector);
+//                chatFrameOpen = true;
+//                break;
             }
         }
-
-        if (chatController.getChatFrame().size() == 0) {
+    //    if (chatFrameOpen == false) {
             System.out.println("Chat farme not active !!!!!!!!!!!");
             showReceiverChatFrame(sessionId, sender, userVector);
             return receiverChatFrame.confirmRequest(fileName, userVector);
-        }
-        return false;
+  //      }
+//        ChatClientController chatController = ((ChatClientServiceImpl) chatClientService).getChatController();
+//        for (int i = 0; i < chatController.getChatFrame().size(); i++) {
+//            ChatFrame chatFrame = chatController.getChatFrame().elementAt(i);
+//            if (sessionId.equals(chatFrame.getSessionId())) {
+//                return chatFrame.confirmRequest(fileName, userVector);
+//            } else {
+//                System.out.println("Chat farme not active !!!!!!!!!!!");
+//                showReceiverChatFrame(sessionId, sender, userVector);
+//                return chatFrame.confirmRequest(fileName, userVector);
+//            }
+//        }
+//
+//        if (chatController.getChatFrame().size() == 0) {
+//            System.out.println("Chat farme not active !!!!!!!!!!!");
+//            showReceiverChatFrame(sessionId, sender, userVector);
+//            return receiverChatFrame.confirmRequest(fileName, userVector);
+//        }
+//        return false;
     }
 
     public void showUserOnline(User u) {

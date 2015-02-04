@@ -108,6 +108,7 @@ public class ChatFrame extends javax.swing.JFrame {
         jScrollPane1.setBorder(new TitledBorder(loginUser.getUserName()));
         convEditorPane.setEditable(false);
         this.pack();
+        this.toFront();
         
         this.windowClose = new WindowAdapter() {
           public void windowClosed(WindowEvent e){
