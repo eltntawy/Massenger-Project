@@ -92,10 +92,18 @@ public class MessengerClientController {
                 singleChat = true;
             }
         }
-         if ((chatController.getChatFrame().size() == 0 || singleChat == false) && reciever.getStatus() == User.AVAILABLE ) {
+         if ((chatController.getChatFrame().size() == 0 || singleChat == false) 
+        	 && reciever.getStatus() == User.AVAILABLE
+        	 && reciever.getStatus() == User.BUSY
+        	 && reciever.getStatus() == User.AWAY
+        	 ) {
             chatController.showChatFrame(reciever);
         }
-        if (framesNumber == chatController.getChatFrame().size() && reciever.getStatus() == User.AVAILABLE) {
+        if (framesNumber == chatController.getChatFrame().size() 
+        	&& reciever.getStatus() == User.AVAILABLE
+        	&& reciever.getStatus() == User.BUSY
+        	&& reciever.getStatus() == User.AWAY
+        	) {
             chatController.showChatFrame(reciever);
 
         }
