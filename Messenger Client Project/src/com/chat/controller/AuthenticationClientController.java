@@ -45,7 +45,7 @@ public class AuthenticationClientController {
     public void initRMIService() throws RemoteException, NotBoundException {
 
 	if (reg == null || chatServerService == null || chatClientService == null) {
-	    String serverIP = JOptionPane.showInputDialog("Please enter the server ip ","127.0.0.1");
+	    String serverIP = JOptionPane.showInputDialog("Please enter the server ip ", "127.0.0.1");
 	    reg = LocateRegistry.getRegistry(serverIP, 8888);
 
 	    ChatServerService serverService = (ChatServerService) reg.lookup("ChatService");
@@ -102,32 +102,29 @@ public class AuthenticationClientController {
 	    ((ChatClientServiceImpl) chatClientService).setSignUpController(signUpController);
 	    ((ChatClientServiceImpl) chatClientService).setStatusController(statusController);
 
+	    User user = userAuthentication(userName, password);
+	    if (user != null) {
+		boolean isBeforeSignIn = chatServerService.checkBeforeSignIn(user);
 
-		User user = userAuthentication(userName, password);
-		if (user != null) {
-		    boolean isBeforeSignIn = chatServerService.checkBeforeSignIn(user);
-		    
-		    AuthenticationClientController authenticationClientController = ((ChatClientServiceImpl)chatClientService).getAuthenticationController();
-		    if(isBeforeSignIn){
-			chatClientService.setUser(user);
-			    
-			    showMyStstus(user);
-			    MessengerClientController messengerController = new MessengerClientController(parentFrame, chatClientService, chatServerService);
-			    messengerController.showMainPanel();
-			    messengerController.getContactListOfCurrentUser();
-			    messengerController.getRequestContactList();
-			    ((ChatClientServiceImpl) chatClientService).setMessengerController(messengerController);
-			    return user;
-		    } else {
-			authenticationClientController.showYouAreLoginBefore();
-			return user;
-		    }
-		    
+		AuthenticationClientController authenticationClientController = ((ChatClientServiceImpl) chatClientService).getAuthenticationController();
+		if (isBeforeSignIn) {
+		    chatClientService.setUser(user);
+
+		    showMyStstus(user);
+		    MessengerClientController messengerController = new MessengerClientController(parentFrame, chatClientService, chatServerService);
+		    messengerController.showMainPanel();
+		    messengerController.getContactListOfCurrentUser();
+		    messengerController.getRequestContactList();
+		    ((ChatClientServiceImpl) chatClientService).setMessengerController(messengerController);
+		    return user;
+		} else {
+		    authenticationClientController.showYouAreLoginBefore();
+		    return user;
 		}
+
+	    }
 	}
-	
-	
-	
+
 	return null;
     }
 
@@ -148,19 +145,23 @@ public class AuthenticationClientController {
 
     public void doSignOut() throws RemoteException, SQLException {
 	// TODO Auto-generated method stub
-	parentFrame.removeCurrentPanel();
-	chatServerService.unregisterClient(chatClientService);
-	chatServerService.doSignout(chatClientService.getUser());
-	parentFrame.setJMenuBar(null);
-	reg = null;
-	chatServerService = null;
-	chatClientService = null;
-//        ChatClientController chatController = ((ChatClientServiceImpl) chatClientService).getChatController();
-//        Vector<ChatFrame> chatFrameVector = chatController.getChatFrame();
-//        for (int i = 0; i < chatFrameVector.size(); i++){
-//            chatFrameVector.elementAt(i).setVisible(false);
-//        }
-//        chatFrameVector.removeAllElements();
+	if (chatServerService != null) {
+	    parentFrame.removeCurrentPanel();
+	    chatServerService.unregisterClient(chatClientService);
+	    chatServerService.doSignout(chatClientService.getUser());
+	    parentFrame.setJMenuBar(null);
+	    reg = null;
+	    chatServerService = null;
+	    chatClientService = null;
+	    // ChatClientController chatController = ((ChatClientServiceImpl)
+	    // chatClientService).getChatController();
+	    // Vector<ChatFrame> chatFrameVector =
+	    // chatController.getChatFrame();
+	    // for (int i = 0; i < chatFrameVector.size(); i++){
+	    // chatFrameVector.elementAt(i).setVisible(false);
+	    // }
+	    // chatFrameVector.removeAllElements();
+	}
     }
 
     public User userAuthentication(String userName, String password) throws SQLException, RemoteException {

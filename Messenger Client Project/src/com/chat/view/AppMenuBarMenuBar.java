@@ -59,7 +59,16 @@ public class AppMenuBarMenuBar extends JMenuBar implements ActionListener {
         newConversationMenuItem.addActionListener(this);
         fileTransferMenuItem.addActionListener(this);
         settingsMenuItem.addActionListener(this);
-        HelpMenuItem.addActionListener(this);
+        HelpMenuItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                HelpDialogeForm dialoge=new HelpDialogeForm(parentFrame, true);
+                dialoge.setLocationRelativeTo(parentFrame);
+                dialoge.setVisible(true);
+                dialoge.dispose();
+            }
+        });
         aboutMenuItem.addActionListener(this);
         signOutMenuItem.addActionListener(new ActionListener() {
 
@@ -184,7 +193,10 @@ public class AppMenuBarMenuBar extends JMenuBar implements ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                    AboutTheMessenger about=new AboutTheMessenger(parentFrame, true);
+                    about.setLocationRelativeTo(parentFrame);
+                    about.setVisible(true);
+                    about.dispose();
             }
         });
 
