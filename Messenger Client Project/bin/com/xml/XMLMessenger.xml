@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type="text/xsl" href="Messenger_StyleSheet.xsl" ?>
-<MessageHistory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="src\com.xml\FirstExampel.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MessageHistory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
     <Login userName="aya" userID="20">
         <UserTo userName="aya" userID="25">
             <Body>

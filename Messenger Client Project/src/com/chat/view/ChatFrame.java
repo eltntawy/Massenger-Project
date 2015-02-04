@@ -37,6 +37,7 @@ import com.chat.model.User;
 import com.chat.view.model.ListComboBoxModel;
 import com.chat.view.renderer.ContactListCellRender;
 import com.chat.view.resource.Resource;
+import com.xml.XMLJAXB;
 
 /**
  *

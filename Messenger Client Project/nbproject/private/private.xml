@@ -6,9 +6,6 @@
             <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Client%20Project/src/com/chat/rmi/ChatClientServiceImpl.java</file>
             <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Client%20Project/src/com/chat/controller/AuthenticationClientController.java</file>
         </group>
-        <group name="Messenger Project">
-            <file>file:/home/eltntawy/git/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/SignUpPanel.java</file>
-        </group>
         <group name="Group 20150127-09:44:52">
             <file>file:/C:/Users/Marwa/Documents/GitHub/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/EditorPanel.java</file>
             <file>file:/C:/Users/Marwa/Documents/GitHub/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/renderer/EditorPanelRenderer.java</file>
@@ -24,5 +21,6 @@
             <file>file:/C:/Users/Marwa/Documents/GitHub/Messenger-Project/Messenger%20Client%20Project/src/com/chat/view/renderer/ContactListCellRender.java</file>
         </group>
         <group name="Project Messenger"/>
+        <group name="Messenger Project"/>
     </open-files>
 </project-private>

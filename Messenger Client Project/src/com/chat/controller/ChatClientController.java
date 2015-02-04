@@ -10,6 +10,7 @@ import com.chat.view.ChatFrame;
 import com.chat.view.NotificationPopup;
 import com.chat.view.notificationDialog;
 import com.test.chat.MainFrame;
+import com.xml.XMLJAXB;
 
 import java.rmi.RemoteException;
 import java.util.UUID;
@@ -82,10 +83,18 @@ public class ChatClientController {
         }
     }
     public void sendMessage(Message message) {
-        
+	ChatClientController chatController = ((ChatClientServiceImpl)chatClientService).getChatController();
         try {
             
             chatServerService.sendMessage(message);
+            
+            for(User receiver : message.getUsersVector()) {
+                if(!receiver.equals(chatController.getLoginUser())) {
+            	com.xml.Message xmlMsg = new com.xml.Message(message.getSenderName(), 
+                        	receiver, message.getMessage(), message.getSessionId());
+                        XMLJAXB.appendMsg(xmlMsg);
+                }
+            }
         } catch (RemoteException ex) {
             Logger.getLogger(ChatClientController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -111,6 +120,14 @@ public class ChatClientController {
             System.out.println("Chat farme not active !!!!!!!!!!!");
             showReceiverChatFrame(message.getSessionId(), message.getSenderName(), message.getUsersVector());
             receiverChatFrame.receiveMessage(message);
+        }
+        
+        for(User receiver : message.getUsersVector()) {
+            if(receiver.equals(chatController.getLoginUser())) {
+        	com.xml.Message xmlMsg = new com.xml.Message(receiver,message.getSenderName(), 
+                    	 message.getMessage(), message.getSessionId());
+                    XMLJAXB.appendMsg(xmlMsg);
+            }
         }
     }
     
