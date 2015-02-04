@@ -30,8 +30,8 @@ public class MessengerClientController {
         this.mainPanel = new MainPanel(parentFrame, this);
 
     }
-    
-    public MainPanel getPanel(){
+
+    public MainPanel getPanel() {
         return mainPanel;
     }
 
@@ -62,29 +62,38 @@ public class MessengerClientController {
 
     public void showChatFrameWith(User reciever) {
 
-         int counter = 0;
+        int counter = 0;
         int receiversNumber = 0;
         int framesNumber = 0;
-        ChatClientController chatController = ((ChatClientServiceImpl)chatClientService).getChatController();
+        boolean singleChat = false;
+        ChatClientController chatController = ((ChatClientServiceImpl) chatClientService).getChatController();
         //check if chat frame is opened with this user
-        if (chatController.getChatFrame().size() == 0 && reciever.getStatus() == User.AVAILABLE){
-            chatController.showChatFrame(reciever);
-        }
-        for (int i = 0; i < chatController.getChatFrame().size(); i++){ 
+       
+        for (int i = 0; i < chatController.getChatFrame().size(); i++) {
             ChatFrame chatFrame = chatController.getChatFrame().elementAt(i);
             Vector<User> receiversVector = chatFrame.getReceiverVector();
-            for (int j = 0; j < receiversVector.size(); j++){
-                if (!receiversVector.elementAt(j).getUserName().equals(reciever.getUserName())){
-                    receiversNumber++;
+
+            //for single chat
+            if (receiversVector.size() == 2) {
+                for (int j = 0; j < receiversVector.size(); j++) {
+                    if (!receiversVector.elementAt(j).getUserName().equals(reciever.getUserName())) {
+                        receiversNumber++;
+                    }
                 }
-            }
-            if (receiversNumber == receiversVector.size()){
-                framesNumber++;
+                if (receiversNumber == receiversVector.size()) {
+                    framesNumber++;
+                }
+                singleChat = true;
             }
         }
-        if (framesNumber == chatController.getChatFrame().size() && reciever.getStatus() == User.AVAILABLE){
+         if ((chatController.getChatFrame().size() == 0 || singleChat == false) && reciever.getStatus() == User.AVAILABLE ) {
             chatController.showChatFrame(reciever);
         }
+        if (framesNumber == chatController.getChatFrame().size() && reciever.getStatus() == User.AVAILABLE) {
+            chatController.showChatFrame(reciever);
+
+        }
+
     }
 
     public List<User> getContactListOfCurrentUser() throws RemoteException, SQLException {
@@ -114,8 +123,8 @@ public class MessengerClientController {
     }
 
     public boolean checkUserId(User selectedValue) throws RemoteException {
-	boolean test = selectedValue.getUserId() != ((ChatClientServiceImpl) chatClientService).getUser().getUserId();
-	return test;
+        boolean test = selectedValue.getUserId() != ((ChatClientServiceImpl) chatClientService).getUser().getUserId();
+        return test;
     }
 
     public List<User> getRequestContactList() throws RemoteException, SQLException {
@@ -188,7 +197,7 @@ public class MessengerClientController {
     }
 
     public boolean isFriendOfUser(User user, User friend) throws RemoteException, SQLException {
-	// TODO Auto-generated method stub
-	return chatServerService.isFriendOfUser(user,friend);
+        // TODO Auto-generated method stub
+        return chatServerService.isFriendOfUser(user, friend);
     }
 }
